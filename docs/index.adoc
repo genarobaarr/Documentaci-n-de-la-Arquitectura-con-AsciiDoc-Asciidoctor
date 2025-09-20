@@ -1,0 +1,32 @@
+= Descripción de la Arquitectura de Software
+ :doctype: book
+ :toc: left
+ :sectnums:
+ :icons: font
+ :source-highlighter: highlightjs
+ :imagesdir: images
+ :lang: es
+ :chapter-label: Capítulo
+ :appendix-caption: Apéndice
+ :part-signifier: Parte
+ :figure-caption: Figura
+ :table-caption: Tabla
+ :example-caption: Ejemplo
+ :listing-caption: Listado
+ :caution-caption: Precaución
+ :important-caption: Importante
+ :note-caption: Nota
+ :tip-caption: Consejo
+ :warning-caption: Advertencia
+ include::introduction.adoc[]
+ include::stakeholders.adoc[]
+ include::views/context.adoc[]
+ include::views/functional.adoc[]
+ include::views/information.adoc[]
+ include::views/concurrency.adoc[]
+ include::views/deployment.adoc[]
+ include::views/development.adoc[]
+ include::views/operational.adoc[]
+ include::qualities.adoc[]
+ include::decisions.adoc[]
+ include::appendix.adoc[]

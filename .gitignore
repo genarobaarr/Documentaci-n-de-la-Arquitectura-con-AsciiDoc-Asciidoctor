@@ -1,0 +1,10 @@
+ # Carpeta de salida
+ build/
+ # Archivos temporales
+ *.log
+ *.tmp
+ # Configuración de VS Code
+ .vscode/
+ # Archivos de sistema
+ .DS_Store
+ Thumbs.db
