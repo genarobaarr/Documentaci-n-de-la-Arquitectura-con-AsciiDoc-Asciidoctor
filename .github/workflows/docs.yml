@@ -1,0 +1,47 @@
+name: Build & Publish Docs
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - run: gem install asciidoctor asciidoctor-pdf
+
+      # HTML
+      - run: mkdir -p build
+      - run: asciidoctor -D build docs/index.adoc
+
+      # PDF
+      - run: asciidoctor-pdf -o build/index.pdf docs/index.adoc
+
+      # Copiar recursos estáticos (imágenes exportadas desde EA)
+      - name: Copy static assets
+        run: |
+          if [ -d docs/images ]; then
+            mkdir -p build/images
+            cp -r docs/images/* build/images/
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
