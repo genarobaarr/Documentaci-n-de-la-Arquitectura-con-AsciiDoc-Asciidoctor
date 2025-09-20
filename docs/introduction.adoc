@@ -1,0 +1,4 @@
+Introducción
+
+(Este apartado explicará el propósito, alcance y contexto general del sistema)
+

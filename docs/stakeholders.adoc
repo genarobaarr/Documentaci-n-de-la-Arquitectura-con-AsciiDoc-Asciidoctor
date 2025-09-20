@@ -1,0 +1,4 @@
+== Interesados (Stakeholders)
+
+(Aquí se describen los actores, usuarios y partes interesadas del sistema)
+

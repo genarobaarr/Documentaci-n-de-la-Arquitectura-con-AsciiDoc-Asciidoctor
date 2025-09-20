@@ -1,0 +1,8 @@
+== Atributos de Calidad
+
+(Aquí se documentan los atributos clave de calidad del sistema:
+- Rendimiento
+- Disponibilidad
+- Seguridad
+- Usabilidad)
+

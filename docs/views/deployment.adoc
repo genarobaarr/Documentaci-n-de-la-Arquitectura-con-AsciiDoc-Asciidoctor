@@ -1,0 +1,6 @@
+== Vista de Despliegue
+
+(Muestra la infraestructura, servidores, contenedores y cómo se despliega el sistema)
+
+image::deployment.png[Diagrama de Despliegue, width=600, align=center]
+

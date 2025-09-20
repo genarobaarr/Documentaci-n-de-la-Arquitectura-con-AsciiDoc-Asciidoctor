@@ -1,0 +1,6 @@
+== Vista de Desarrollo
+
+(Describe cómo está organizado el código, módulos, paquetes y capas del sistema)
+
+image::development.png[Vista de Desarrollo, width=600, align=center]
+

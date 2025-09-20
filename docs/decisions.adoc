@@ -1,0 +1,5 @@
+== Decisiones Arquitectónicas
+
+(Se registran las decisiones importantes tomadas durante el diseño del sistema, 
+ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)
+

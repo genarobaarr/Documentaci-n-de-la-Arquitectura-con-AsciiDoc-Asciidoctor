@@ -1,0 +1,6 @@
+== Vista de Concurrencia
+
+(Explica cómo el sistema maneja procesos/hilos simultáneos o concurrencia)
+
+image::concurrency.png[Vista de Concurrencia, width=600, align=center]
+
