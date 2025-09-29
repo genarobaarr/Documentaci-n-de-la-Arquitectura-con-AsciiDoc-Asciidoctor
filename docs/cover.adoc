@@ -1,19 +1,19 @@
-UNIVERSIDAD VERACRUZANA - REGIÓN XALAPA
-FACULTAD DE ESTADÍSTICA E INFORMÁTICA
+*UNIVERSIDAD VERACRUZANA - REGIÓN XALAPA
+FACULTAD DE ESTADÍSTICA E INFORMÁTICA*
 
- Licenciatura en Ingeniería de Software
+_Licenciatura en Ingeniería de Software_
 
- Experiencia Educativa Diseño de Software (Periodo Agosto 25 - Enero 26)
+_Experiencia Educativa Diseño de Software (Periodo Agosto 25 - Enero 26)_
 
- Académico: Jorge Octavio Ocharan Hernández
+_Académico:_ Jorge Octavio Ocharan Hernández
 
-Sistema Hotelero
+*Sistema Hotelero*
 
-  PRESENTAN:
-  Barradas Sánchez Genaro Alejandro || zs23014083@estudiantes.uv.mx +
-  Bello Peralta Lizeth Guadalupe || zs23014074@estudiantes.uv.mx +
-  Morales García Omar || zs23014039@estudiantes.uv.mx
+*PRESENTAN:*
+Barradas Sánchez Genaro Alejandro || zs23014083@estudiantes.uv.mx +
+Bello Peralta Lizeth Guadalupe || zs23014074@estudiantes.uv.mx +
+Morales García Omar || zs23014039@estudiantes.uv.mx
 
-REPOSITORIO: https://github.com/genarobaarr/Documentaci-n-de-la-Arquitectura-con-AsciiDoc-Asciidoctor[GitHub]
+*REPOSITORIO: https://github.com/genarobaarr/Documentaci-n-de-la-Arquitectura-con-AsciiDoc-Asciidoctor[GitHub]*
 
 <<<

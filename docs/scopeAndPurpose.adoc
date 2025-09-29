@@ -1,0 +1,4 @@
+=== Alcance y propósito del diseño
+
+(Hacer aquí el alcance y propósito del diseño)
+

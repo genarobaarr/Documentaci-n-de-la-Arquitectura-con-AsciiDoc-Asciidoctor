@@ -1,0 +1,6 @@
+=== Diagrama de casos de uso
+
+(Poner imagen(es) de los diagramas de casos de uso)
+
+image::useCase.png[Vista de Diagramas de Casos de Uso, width=600, align=center]
+

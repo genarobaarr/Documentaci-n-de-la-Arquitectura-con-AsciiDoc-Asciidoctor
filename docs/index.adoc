@@ -20,6 +20,16 @@
 :warning-caption: Advertencia
 
 include::cover.adoc[]
+== Contexto y Alcance del Sistema
+include::sight.adoc[]
+include::scope.adoc[]
+include::audience.adoc[]
+include::glossary.adoc[]
+== Definición de requerimientos
+include::problem.adoc[]
+include::scopeAndPurpose.adoc[]
+include::views/useCase.adoc[]
+include::useCaseDescription.adoc[]
 include::introduction.adoc[]
 include::stakeholders.adoc[]
 include::views/context.adoc[]
