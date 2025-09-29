@@ -18,6 +18,7 @@
 :note-caption: Nota
 :tip-caption: Consejo
 :warning-caption: Advertencia
+include::cover.adoc[]
 include::introduction.adoc[]
 include::stakeholders.adoc[]
 include::views/context.adoc[]

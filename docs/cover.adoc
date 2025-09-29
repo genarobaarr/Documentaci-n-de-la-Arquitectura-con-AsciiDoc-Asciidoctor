@@ -1,0 +1,21 @@
+UNIVERSIDAD VERACRUZANA - REGIÓN XALAPA
+FACULTAD DE ESTADÍSTICA E INFORMÁTICA
+
+LICENCIATURA EN Ingeniería de Software
+
+EXPERIENCIA EDUCATIVA: Diseño de Software
+
+DOCENTE: Jorge Octavio Ocharan Hernández
+
+Sistema Hotelero
+
+PRESENTAN:
+Barradas Sánchez Genaro Alejandro || zs23014083@estudiantes.uv.mx +
+Bello Peralta Lizeth Guadalupe || zs23014074@estudiantes.uv.mx +
+Morales García Omar || zs23014039@estudiantes.uv.mx
+
+REPOSITORIO: https://github.com/genarobaarr/Documentaci-n-de-la-Arquitectura-con-AsciiDoc-Asciidoctor[GitHub]
+
+FECHA DE ENTREGA: 05 de octubre de 2025
+
+<<<
