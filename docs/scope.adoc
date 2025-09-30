@@ -1,4 +1,49 @@
 === Alcance
 
-(Aquí va el alcance)
 
+El Alcance del Sistema de Reservaciones Centralizado (SRC) define las fronteras del diseño arquitectónico, especificando **qué se incluye** dentro de la plataforma y **qué se excluye**, delegándose a sistemas externos o a la infraestructura. El sistema está diseñado para reemplazar las soluciones locales y gestionar el ciclo de vida completo de la reserva y la habitación a través de una plataforma unificada.
+
+==== Funcionalidades Incluidas (In-Scope)
+
+El SRC abarcará los siguientes **módulos funcionales principales**:
+
+. **Módulo de Reservaciones y Venta (Huésped)**
+Este módulo gestiona la interacción directa con el cliente y el proceso de venta:
+
+* Búsqueda y Consulta de Hoteles (CU01, CU02): Permitir al huésped buscar hoteles por región/fecha y consultar la disponibilidad de tipos de habitación en tiempo real.
+* Gestión del Ciclo de Vida de la Reserva (CU03, CU04, CU05): Incluye la creación de la reserva con control de atomicidad (**QAS-05**), la modificación de fechas/habitaciones y la cancelación de la reserva, aplicando las políticas de cobro correspondientes.
+* Consulta de Historial (CU06): Permitir al huésped revisar sus reservas pasadas y activas.
+* Integración de Pagos Seguros (**QAS-06**): Captura segura y tokenización de los datos de pago, garantizando la **idempotencia** para evitar dobles cobros.
+
+. **Módulo de Recepción y Operaciones (Recepcionista)**
+Este módulo está enfocado en la eficiencia operativa y el manejo diario de huéspedes:
+
+* Check-in / Check-out (CU07, CU08): Funciones optimizadas para el personal de recepción, con actualización inmediata del estado de la habitación (**QAS-13**, **QAS-15**). El diseño debe priorizar la **Usabilidad** para alcanzar el objetivo de que un novato complete la tarea después de 10 minutos de instrucción.
+* Gestión de Cuentas y Cobros (CU09, CU16): Consolidación de todos los cargos de la estancia (tarifa base, impuestos, consumos adicionales) y procesamiento del cobro final con alta seguridad (**QAS-17**).
+* Servicios Adicionales (CU10): Registro de cargos a la cuenta por consumos en el bar, lavandería, gimnasio u otros servicios.
+* Gestión de Habitaciones (CU11, CU12): Funcionalidades para cambiar a un huésped de habitación de forma atómica (**QAS-21**) y para marcar habitaciones como "Fuera de Servicio".
+
+. **Módulo de Administración y Configuración (Administrador)**
+Este módulo se centra en las herramientas gerenciales para optimizar ingresos y capacidad:
+
+* Gestión de Hoteles y Tipos de Habitación (CU14, CU15): Alta, baja y modificación de hoteles, así como la definición de la categorización de habitaciones, amenidades y capacidades.
+* Configuración Avanzada de Precios (CU16): Definición de tarifas base, precios dinámicos, promociones, descuentos y políticas de temporadas altas.
+* Configuración de Políticas de Overbooking (CU17): Ajuste de los umbrales de sobreventa de inventario, lo que es crítico para la maximización de la capacidad de venta.
+* Monitoreo de Inventario (CU18): Consulta en tiempo real de la ocupación y disponibilidad en toda la cadena.
+
+. **Módulo de Seguridad y Auditoría (Auditor)**
+Este módulo es esencial para los requisitos de **Seguridad** y **Confiabilidad** del sistema:
+
+* Generación de Reportes de Trazabilidad (CU19, CU20, CU22, CU24): Consultas avanzadas sobre actividades sospechosas (cancelaciones rápidas, cambios de precio o descuentos) que requieren un log de auditoría inmutable.
+* Reconciliación Financiera (CU21, CU23): Reportes para conciliar ingresos por servicios adicionales y validar que todos los cobros en línea se hayan procesado y registrado correctamente.
+* Validación de Políticas (CU26): Herramientas para asegurar la uniformidad de precios y políticas entre diferentes hoteles o regiones.
+
+==== Funcionalidades Excluidas (Out-of-Scope)
+
+Las siguientes áreas funcionales **no forman parte** del alcance directo del SRC y se consideran responsabilidades de sistemas o servicios externos:
+
+* **Procesamiento de Pagos::** El SRC no almacenará ni procesará directamente información de tarjetas de crédito. Esta responsabilidad se delega por completo a una **Pasarela de Pagos (Payment Gateway)** certificada (ej. cumplimiento PCI-DSS).
+* **Gestión de Sistemas de Fidelización::** El manejo de programas de puntos de lealtad, niveles de membresía o recompensas para huéspedes. El SRC solo notificará a un sistema externo el *check-out* para que este acredite los puntos.
+* **Servicios de Limpieza y Mantenimiento::** La gestión de la logística interna de las camareras o técnicos. El SRC solo actualizará el estado de la habitación a "Limpieza Necesaria" (L/N), pero no gestionará la asignación de tareas.
+* **Marketing y CRM::** Campañas de correo electrónico, gestión de relaciones con el cliente más allá del historial transaccional de reservas.
+* **Autenticación de Terceros::** La autenticación robusta del personal (Administradores/Recepcionistas) se delegará a un **Sistema de Identidad Institucional** existente. El SRC solo gestionará la **Autorización (RBAC)** basada en los roles recibidos.
