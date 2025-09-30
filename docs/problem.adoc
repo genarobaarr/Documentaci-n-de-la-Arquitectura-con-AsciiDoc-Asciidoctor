@@ -1,4 +1,13 @@
 === Planteamiento del Problema
 
-(Hacer aquí el planteamiento del problema)
+La industria hotelera es una de las más competidas a nivel mundial, lo que exige mantenerse a la vanguardia y dar servicios superiores para sobresalir. La cadena hotelera, posicionada como un líder global en la hospitalidad, opera a una escala sin precedentes que necesita máxima eficiencia operativa. Por lo tanto, para mantener su liderazgo estratégico, es imperativo gestionar un vasto inventario de 1,000,000 de habitaciones de forma unificada. Esto requiere uniformidad en el proceso para gestionar las más de 5000 propiedades a nivel mundial. A pesar de esta magnitud,la realidad operativa actual revela una vulnerabilidad crítica: cada hotel utiliza una solución local de reservas, lo que genera inconsistencias entre hoteles, errores y dificultades en el proceso de centralización.
+
+Este problema de fragmentación se traduce en que se crean múltiples fuentes de información, lo que genera diversos reportes o ingresos que pueden diferir entre el hotel y el corporativo. Esto hace necesaria una conciliación manual que consume tiempo y retrasa la toma de decisiones estratégicas. Además, los empleados de central o gerentes de hotel también pierden tiempo al tener que ingresar datos, exportar o manipular información de diferentes sistemas, elevando la fricción operativa de la cadena.
+
+Sumado a esta ineficiencia, el riesgo tecnológico es significativo. La arquitectura basada en soluciones locales individuales está desactualizada. Mantener estos sistemas requiere soporte especializado y caro, lo cual ya no es escalable ni sostenible. En consecuencia, la infraestructura actual, al tener 5000 puntos de entrada en lugar de uno centralizado, multiplica las vulnerabilidades, es decir, el riesgo de ciberataques o fallas en el cumplimiento de normativas de privacidad de datos, comprometiendo la fiabilidad de la operación.
+
+Por consiguiente, la justificación de este proyecto radica en la necesidad de transformar la gestión de reservaciones de un costo operativo a una ventaja competitiva. La implementación de una plataforma centralizada y robusta es la única vía para optimizar las operaciones diarias a esta escala. Un sistema unificado permitirá llevar a cabo procesos más eficientes, asegurando un incremento estructural de los ingresos y mejorando la satisfacción del cliente. Al estandarizar la arquitectura tecnológica, el nuevo sistema permitirá una centralización de datos, eliminando la conciliación manual y, por consiguiente, recortando tiempos y mitigando riesgos de seguridad.
+
+Además, esta transformación desbloqueará la capacidad de implementar precios dinámicos y políticas de ocupación avanzadas a nivel de cadena, garantizando la máxima monetización del inventario y la escalabilidad futura.
+
 
