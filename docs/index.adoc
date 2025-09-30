@@ -21,6 +21,10 @@
 
 include::cover.adoc[]
 
+*Control de versiones*
+
+include::versions.adoc[]
+
 == Contexto y Alcance del Sistema
 include::sight.adoc[]
 include::scope.adoc[]

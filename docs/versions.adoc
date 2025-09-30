@@ -1,0 +1,93 @@
+
+[cols="1,2,2,2", options="header"]
+|===
+|Versión|Fecha|Autor(es)|Resumen de cambios significativos
+
+| 0.0.1
+| 7 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Creación de documento inicial con apartados
+
+| 0.1.0
+| 7 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+
+Lizeth Guadalupe Bello Peralta
+| Se añadieron los borradores de los casos de uso
+
+| 0.1.1
+| 8 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+
+Lizeth Guadalupe Bello Peralta
+| Se realizó una segunda iteración de los casos de uso
+
+| 0.1.2
+| 9 de septiembre de 2025
+| Omar Morales García
+| Se añadió el primer borrador del diagrama de clases
+
+| 0.2.0
+| 11 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+
+Lizeth Guadalupe Bello Peralta
+| Se realizaron los cambios en base a las observaciones del profesor al listado de casos de uso
+
+| 0.2.1
+| 14 de septiembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se añadieron las restricciones del proyecto, actores dentro del sistema, alcance del proyecto, visión del sistema y planteamiento del problema
+
+| 0.2.2
+| 17 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+
+Lizeth Guadalupe Bello Peralta
+| Se identificaron y plasmaron los QAs del sistema con sus respectivos escenarios y trazabilidad
+
+| 0.2.3
+| 14 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+
+Lizeth Guadalupe Bello Peralta
+
+Omar Morales García
+| Se realizó e integró el diagrama Utility tree
+
+| 0.3.0
+| 21 de septiembre de 2025
+| Omar Morales García
+| Se creó y anexó el diagrama de contexto de nivel 0 del sistema
+
+| 0.3.1
+| 21 de septiembre de 2025
+| Omar Morales García
+| Se añadió el segundo borrador del diagrama de clases del sistema
+
+| 0.4.0
+| 26 de septiembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se añadió el diccionario de datos correspondiente al sistema
+
+| 0.4.1
+| 27 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se creó el glosario y añadieron conceptos al mismo
+
+| 0.4.2
+| 30 de septiembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se añadió el Planteamiento del Problema
+
+| 0.4.3
+| 30 de septiembre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se adjuntó la tabla de versiones al documento
+
+| 0.4.4
+| 30 de septiembre de 2025
+| Omar Morales García
+| Se adjuntan imágenes de diagramas de casos de uso, por actores y paquetes
+|===
+
