@@ -6,14 +6,14 @@ image::useCaseDiagramSistemaHotelero.png[Vista de Diagrama de Casos de Uso, widt
 image::useCaseDiagramSistemaHoteleroPackage.png[Vista de Diagrama de Casos de Uso por paquete, width=600, align=center]
 
 
-image::useCaseDiagramHuesped.png[Vista de Diagrama de Casos de Uso de Huésped, high=500,align=center]
+image::useCaseDiagramHuesped.png[Vista de Diagrama de Casos de Uso de Huésped, width=300,align=center]
 
 
-image::useCaseDiagramRecepcion.png[Vista de Diagrama de Casos de Uso de Recepción, high=500, align=center]
+image::useCaseDiagramRecepcion.png[Vista de Diagrama de Casos de Uso de Recepción, width=300, align=center]
 
 
-image::useCaseDiagramAdministracion.png[Vista de Diagrama de Casos de Uso de Administración, high=500, align=center]
+image::useCaseDiagramAdministracion.png[Vista de Diagrama de Casos de Uso de Administración, width=300, align=center]
 
 
-image::useCaseDiagramAuditoria.png[Vista de Diagrama de Casos de Uso de Auditoría, high=500, align=center]
+image::useCaseDiagramAuditoria.png[Vista de Diagrama de Casos de Uso de Auditoría, width=300, align=center]
 
