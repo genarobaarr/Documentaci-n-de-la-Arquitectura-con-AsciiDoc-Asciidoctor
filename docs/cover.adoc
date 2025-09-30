@@ -10,6 +10,7 @@ _Académico:_ Jorge Octavio Ocharan Hernández
 *Sistema Hotelero*
 
 *PRESENTAN:*
+
 Barradas Sánchez Genaro Alejandro || zs23014083@estudiantes.uv.mx +
 Bello Peralta Lizeth Guadalupe || zs23014074@estudiantes.uv.mx +
 Morales García Omar || zs23014039@estudiantes.uv.mx
