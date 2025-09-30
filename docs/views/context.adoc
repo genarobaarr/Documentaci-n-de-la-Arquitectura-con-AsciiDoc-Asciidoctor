@@ -2,5 +2,5 @@
 
 (Describe el sistema como una “caja negra” y cómo se relaciona con su entorno externo)
 
-image::context.png[Diagrama de Contexto, width=600, align=center]
+image::contextDiagramSistemaHoteleroLevel0.png[Diagrama de Contexto, width=600, align=center]
 
