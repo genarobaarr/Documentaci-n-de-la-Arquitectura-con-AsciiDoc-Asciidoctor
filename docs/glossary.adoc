@@ -1,4 +1,14 @@
 === Glosario
 
-(Aquí va el glosario)
+
+[cols="1,2,1", options="header"]
+|===
+|Concepto|Descripción / significado|Estándar
+
+3+^| A
+| *Acceso al sistema*
+| Proceso mediante el cual un usuario inicia sesión en el sistema utilizando sus credenciales (usuario y contraseña) para realizar tareas según su rol. Incluye controles sobre gestión de accesos (autenticación, privilegios mínimos, gestión de identidades, control de contraseñas, sesiones).
+| ISO/IEC 27001 Seguridad de la Información
+3+^| B
+|===
 
