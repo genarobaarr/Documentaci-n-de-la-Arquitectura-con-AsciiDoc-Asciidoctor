@@ -1,6 +1,19 @@
 === Diagrama de casos de uso
 
-(Poner imagen(es) de los diagramas de casos de uso)
+image::useCaseDiagramSistemaHotelero.png[Vista de Diagrama de Casos de Uso, width=600, align=center]
 
-image::useCase.png[Vista de Diagramas de Casos de Uso, width=600, align=center]
+
+image::useCaseDiagramSistemaHoteleroPackage.png[Vista de Diagrama de Casos de Uso por paquete, width=600, align=center]
+
+
+image::useCaseDiagramHuesped.png[Vista de Diagrama de Casos de Uso de Huésped, width=600, align=center]
+
+
+image::useCaseDiagramRecepcion.png[Vista de Diagrama de Casos de Uso de Recepción, width=600, align=center]
+
+
+image::useCaseDiagramAdministracion.png[Vista de Diagrama de Casos de Uso de Administración, width=600, align=center]
+
+
+image::useCaseDiagramAuditoria.png[Vista de Diagrama de Casos de Uso de Auditoría, width=600, align=center]
 
