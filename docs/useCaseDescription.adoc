@@ -1,4 +1,73 @@
 === Descripciones de casos de uso
 
+[cols="1,3", options="header"]
+|===
+|Nombre |Gestionar hoteles de la cadena
+|Actor(es) |Administrador
+|Objetivo |El administrador mantiene la información de los hoteles de la cadena actualizada, permitiendo la adición de nuevas propiedades y la modificación de las existentes
+|Precondiciones |PRE-01 Se tienen los datos mínimos para el alta o la modificación
+|Flujo normal |
+. El administrador selecciona la opción “Gestionar catálogo”
+. El sistema presenta la interfaz principal de gestión (incluye la lista de hoteles y la opción de “Registrar Nuevo Hotel”)
+. El administrador selecciona la opción “Registrar nuevo hotel” (ver FA 3.1)
+. El sistema presenta un formulario para ingresar la información del hotel (nombre, dirección, categoría, contacto, cantidad de habitaciones)
+. El administrador ingresa los datos obligatorios y confirma el registro
+. El sistema valida la información dada, crea el registro con los datos proporcionados, notifica el éxito de la operación y guarda los movimientos del administrador en una bitácora
+. Termina caso de uso
+|Flujo alterno |
+FA 3.1 Modificación de un Hotel Existente
+. El administrador busca y selecciona un hotel, da clic en “Modificar información”
+. El sistema recupera y muestra los datos actuales en el formulario de edición
+. El administrador modifica los campos requeridos y confirma la modificación
+. El sistema valida los cambios, actualiza el registro, notifica al administrador y guarda los movimientos del administrador en una bitácora
+. Termina caso de uso
+|Excepción |
+EX-1 Fallo al registrar movimiento en la bitácora
+. El sistema revierte la transacción para mantener la integridad entre los datos y la bitácora.
+. Además, notifica al administrador del fallo y vuelve al menú principal
+. Termina caso de uso
+|Postcondición |
+POST-01 Se crea un nuevo registro de hotel en el catálogo
+POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos
+|===
+
+[cols="1,3", options="header"]
+|===
+|Nombre |Configurar tipos de habitación
+|Actor(es) |Administrador
+|Objetivo |El administrador define, actualiza y gestiona las categorías de habitaciones, sus amenidades y sus capacidades
+|Precondiciones |PRE-01 El hotel a quien se le asociará las habitaciones ya está registrado en sistema
+|Flujo normal |
+. El administrador selecciona la opción “Configurar habitación”
+. El sistema presenta la interfaz para seleccionar el hotel al cuál se le van a configurar sus habitaciones.
+. El administrador selecciona el hotel y la opción “Registrar nuevo tipo” (ver FA 3.1) (ver FA 3.2)
+. El sistema presenta un formulario para ingresar la categorización, las capacidades y la lista de amenidades de la habitación
+. El administrador ingresa los datos, selecciona las amenidades y confirma la configuración
+. El sistema valida la información, guarda el registro, notifica al administrador y guarda sus movimientos en la bitácora
+. Termina caso de uso
+|Flujo alterno |
+FA 3.1 Modificación de un Hotel Existente
+. El administrador selecciona un hotel, da clic en “Modificar Configuración”
+. El sistema recupera y muestra los datos actuales de los tipos de habitación
+. El administrador actualiza los campos requeridos
+. El sistema valida los cambios, actualiza el registro, notifica al administrador sobre el éxito de la operación y guarda sus movimientos en la bitácora
+. Termina caso de uso
+FA 3.2 Dar de baja un tipo de habitación
+. El administrador selecciona un hotel, da clic en “Dar de baja el tipo”
+. El sistema verifica si existen habitaciones activas o reservas futuras asociadas con ese tipo de habitación
+. Después, pide la confirmación de baja
+|Excepción |
+EX-1 Fallo al registrar movimiento en la bitácora
+. El sistema revierte la transacción para mantener la integridad entre los datos y la bitácora.
+. Además, notifica al administrador del fallo y vuelve al menú principal
+. El administrador confirma la baja
+. El sistema cambia el estado de la habitación, notifica al administrador el éxito de la operación y guarda en la bitácora los movimientos de la operación
+. Termina caso de uso
+|Postcondición |
+POST-01 Se crea un nuevo registro de habitación en un hotel del catálogo
+POST-02 La habitación seleccionada de un hotel seleccionado se actualiza con los nuevos datos
+POST-03 La habitación seleccionada de un hotel seleccionado es dada de baja
+|===
+
 (Adjuntar todas las descripciones de casos de uso)
 
