@@ -1,4 +1,10 @@
 == Interesados (Stakeholders)
 
-(Aquí se describen los actores, usuarios y partes interesadas del sistema)
+
+Dentro de este proyecto nos encontraremos con los siguientes actores:
+
+* AC01 - Huésped
+* AC02 - Recepcionista
+* AC03 - Administrativo
+* AC04 - Auditoría
 
