@@ -1,4 +1,13 @@
 === Visión del Sistema
 
-(Hacer aquí la visión del sistema)
+
+La visión del Sistema de Reservaciones es establecer la plataforma como líder tecnológica, convirtiendo las reservaciones y sistema en una ventaja competitiva a nivel global.
+
+Actualmente, la dependencia en soluciones locales ineficientes y dispersas genera inconsistencias críticas, errores de inventario y un alto riesgo de incidentes (como dobles reservas y dobles cobros). El sistema de reservaciones busca erradicar estos problemas mediante una arquitectura escalable y robusta diseñada para soportar a más de 5,000 hoteles y un millón de habitaciones.
+
+Nuestra prioridad es garantizar la confianza y consistencia en el momento de realziar reservas: el sistema debe operar con una tasa de incidentes de dobles cobros o dobles reservas de cero, incluso bajo escenarios de alta concurrencia. Esto se logrará a través de transacciones atómicas y un riguroso enfoque en la seguridad y trazabilidad.
+
+Siendo así que, permitirá la implementación de precios dinámicos y políticas avanzadas de overbooking gestionadas centralmente para optimizar los ingresos. Finalmente, la eficiencia operacional es clave; el sistema ofrecerá una interfaz intuitiva y altamente disponible que permitirá al 90% del personal novato de recepción completar tareas críticas (check-in/out) de manera autónoma en minutos, garantizando una operación fluida y un servicio al cliente superior.
+
+El Sistema de Reservaciones es el pilar para un crecimiento rentable, la estandarización de procesos y la excelencia operativa en toda la cadena hotelera.
 
