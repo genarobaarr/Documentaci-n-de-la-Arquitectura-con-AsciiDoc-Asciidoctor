@@ -89,5 +89,35 @@ Omar Morales García
 | 30 de septiembre de 2025
 | Omar Morales García
 | Se adjuntan imágenes de diagramas de casos de uso, por actores y paquetes
+
+| 0.5.0
+| 30 de septiembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se añaden dos descripciones de casos de uso del actor Administrador
+
+| 0.5.1
+| 01 de octubre de 2025
+| Omar Morales García
+| Se añaden tres descripciones de casos de uso del actor Huésped
+
+| 0.5.2
+| 02 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se añaden tres descripciones de casos de uso del actor Recepción
+
+| 0.5.3
+| 02 de octubre de 2025
+| Omar Morales García
+| Se añaden tres descripciones de casos de uso del actor Huésped
+
+| 0.5.4
+| 03 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se añaden cuatro descripciones de casos de uso del actor Recepción
+
+| 0.5.5
+| 03 de octubre de 2025
+| Omar Morales García
+| Se añadió la visión y alcance del sistema
 |===
 

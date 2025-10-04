@@ -12,12 +12,19 @@
 |Objetivo | El HUÉSPED busca hoteles disponibles que cumplan con sus criterios de búsqueda (destino, fechas).
 |Precondiciones | Existen HOTELes registrados y accesibles dentro del sistema.
 |Flujo normal |
+
 1. El sistema muestra una lista de hoteles disponibles con barra de búsqueda.
+
 2. El HUÉSPED selecciona un hotel y da clic en “Aceptar”.
+
 3. El sistema muestra información del hotel con filtros.
+
 4. El HUÉSPED visualiza la información y da clic en “Cancelar”.
+
 5. El sistema cierra la ventana.
+
 6. Termina el caso de uso.
+
 |Flujo alterno |
 FA 2.1: El HUÉSPED da clic en “Salir”. El sistema confirma y finaliza.
 FA 4.1: El HUÉSPED consulta disponibilidad → continúa en CU02.
@@ -35,13 +42,21 @@ EX1: No hay hoteles registrados. El sistema muestra error y finaliza.
 |Objetivo | El HUÉSPED consulta la disponibilidad de una habitación de un hotel.
 |Precondiciones | Existen hoteles con habitaciones registradas y tarifas actualizadas.
 |Flujo normal |
+
 1. El sistema muestra información del hotel con filtros.
+
 2. El HUÉSPED selecciona una habitación.
+
 3. El sistema muestra información de la habitación.
+
 4. El HUÉSPED da clic en “Reservar”.
+
 5. El sistema muestra disponibilidad de la habitación.
+
 6. El HUÉSPED da clic en “Cancelar”.
+
 7. Termina el caso de uso.
+
 |Flujo alterno |
 FA 2.1: El HUÉSPED da clic en “Salir”. El sistema confirma y finaliza.
 FA 6.1: El HUÉSPED decide reservar → continúa en CU03.
@@ -59,15 +74,25 @@ EX1: No hay habitaciones registradas. El sistema muestra error y finaliza.
 |Objetivo | El HUÉSPED realiza la reserva de una habitación.
 |Precondiciones | La habitación seleccionada está disponible y con tarifas actualizadas.
 |Flujo normal |
+
 1. El sistema valida disponibilidad y muestra la información de la habitación.
+
 2. El HUÉSPED da clic en “Reservar”.
+
 3. El sistema muestra ventana con fechas y botón “Reservar”.
+
 4. El HUÉSPED selecciona fechas y confirma.
+
 5. El sistema valida y muestra información de pago.
+
 6. El HUÉSPED ingresa datos personales y confirma.
+
 7. El sistema procesa pago y muestra mensaje de confirmación.
+
 8. El HUÉSPED da clic en “Aceptar”.
+
 9. Termina el caso de uso.
+
 |Flujo alterno |
 FA 2.1: El HUÉSPED cancela el proceso.
 FA 6.1: El HUÉSPED paga en check-out.
@@ -88,15 +113,25 @@ El HUÉSPED realiza la reserva y el sistema la registra.
 |Objetivo | El HUÉSPED modifica una reserva activa.
 |Precondiciones | El sistema tiene reservas registradas.
 |Flujo normal |
+
 1. El sistema recupera reservas activas.
+
 2. El HUÉSPED selecciona una reserva.
+
 3. El sistema muestra detalles con opción de modificar.
+
 4. El HUÉSPED selecciona “Modificar reserva”.
+
 5. El sistema muestra campos editables.
+
 6. El HUÉSPED edita y confirma.
+
 7. El sistema valida cambios y procesa pago si aplica.
+
 8. El HUÉSPED confirma.
+
 9. El sistema registra cambios y finaliza.
+
 |Flujo alterno |
 FA 2.1: Cancelación del proceso.
 FA 4.1: El flujo continúa en CU05 - Cancelar reserva.
@@ -116,15 +151,25 @@ EX2: Error con el banco.
 |Objetivo | El HUÉSPED cancela una reserva activa.
 |Precondiciones | El sistema tiene reservas registradas.
 |Flujo normal |
+
 1. El sistema recupera reservas activas.
+
 2. El HUÉSPED selecciona una reserva.
+
 3. El sistema muestra detalles con opción de cancelar.
+
 4. El HUÉSPED selecciona “Cancelar reserva”.
+
 5. El sistema solicita confirmación.
+
 6. El HUÉSPED confirma.
+
 7. El sistema cancela la reserva y muestra mensaje.
+
 8. El HUÉSPED confirma.
+
 9. Termina el caso de uso.
+
 |Flujo alterno |
 FA 2.1: Cancelación del proceso.
 FA 6.1: El HUÉSPED no confirma cancelación.
@@ -136,6 +181,420 @@ EX2: Error en cancelación de la reserva.
 
 
 ==== AC02 - Recepción
+
+===== CU07 - Registrar check-in
+[cols="1,3", options="header"]
+|===
+|Nombre | CU07 - Registrar check-in
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista registra la entrada del huésped en el sistema.
+|Precondiciones |
+PRE-1. Existe una reserva activa a nombre del huésped.
+
+PRE-2. El huésped se presenta en la recepción
+|Flujo normal |
+1. El sistema muestra una ventana donde solicita el nombre del huésped o persona que hizo la reserva y el botón “Buscar”.
+
+2. El recepcionista ingresa los datos de búsqueda de la reserva y da clic en la opción “Buscar”.
+
+3. El sistema busca la reserva en la base de datos y despliega los detalles de la reserva (nombre del huésped, fecha de inicio y fin, habitación asignada) junto a los botones “Confirmar check-in” y “Cancelar”. (ver FA 3.1) (ver EX1)
+
+4. El recepcionista valida los datos y da clic en el botón “Confirmar check-in”. (ver FA 4.1)
+
+5. El sistema muestra una ventana con campos a llenar para realizar la pre-autorización de la tarifa estándar (dependiendo de la habitación seleccionada) y depósito de seguridad con cargo en la tarjeta de crédito del huésped con el botón “Realizar pre-autorización”. (ver FA 5.1)
+
+6. El recepcionista solicita la tarjeta de crédito del huésped y llena los campos solicitados y da clic en el botón “Realizar pre-autorización”.
+
+7. El sistema cambia el estado de la habitación a “Ocupada” y muestra la ventana con un código autogenerado de 6 dígitos para acceder a la habitación junto con el botón “Finalizar”. (ver EX1)
+
+8. El recepcionista entrega la llave al huésped y confirma en el sistema con botón “Finalizar”.
+
+9. El sistema muestra el mensaje “Check-in registrado exitosamente”.
+
+10. Termina el caso de uso.
+|Flujo alterno |
+*FA 3.1* No existe la reserva en la base de datos
+
+1. El sistema muestra la ventana emergente con el mensaje “Reserva no encontrada, vuelve a intentarlo” y el botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar”.
+
+3. Regresa al paso 1 del flujo normal.
+
+*FA 4.1* El recepcionista cancela el proceso de la búsqueda de reserva
+
+1. El recepcionista da clic en el botón “Cancelar”.
+
+2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botónes “Aceptar” y “Cancelar”.
+
+3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.
+
+4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 3 del flujo normal.
+
+*FA 5.1* El huésped realizó una reserva prepagada
+
+1. Continúa al paso 7 del flujo normal.
+|Excepción |
+*EX1.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3.Termina el caso de uso.
+|Postcondiciones |
+POST-1. El huésped queda registrado como en estancia
+
+POST-2. La habitación cambia su estado a “Ocupada”.
+|===
+
+
+===== CU08 - Registrar check-out
+[cols="1,3", options="header"]
+|===
+|Nombre | CU08 - Registrar check-out
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista registra la salida del huésped en el sistema y bloquea la habitación.
+|Precondiciones |
+PRE-1. El huésped debe tener una estancia activa.
+|Flujo normal |
+1. El sistema muestra una ventana donde solicita el número de reserva y el botón “Buscar”.
+
+2. El recepcionista ingresa los datos de búsqueda de la reserva y da clic en la opción “Buscar”.
+
+3. El sistema busca la reserva en la base de datos y despliega los detalles de la reserva (nombre del huésped, fecha de inicio y fin, habitación asignada y los cargos pendientes (si hay)) junto a los botones “Confirmar check-out” y “Cancelar”. (ver EX1)
+
+4. El recepcionista valida los datos y da clic en el botón “Confirmar check-out”. (ver FA 4.1)
+
+5. El sistema calcula el total a pagar y muestra los botones “Cobrar ahora”, “Continuar” y “Regresar”. (ver FA 5.1)
+
+6. El recepcionista da clic en el botón “Continuar” (ver FA 6.1) (ver FA 6.2)
+
+7. El sistema cambia el estado de la habitación a “Disponible”, genera un comprobante impreso junto con el botón “Finalizar”. (ver EX1)
+
+8. El recepcionista entrega el recibo al huésped y confirma en el sistema con botón “Finalizar”.
+
+9. El sistema muestra el mensaje “Check-out realizado exitosamente”.
+
+10. Termina el caso de uso.
+|Flujo alterno |
+*FA 4.1* El recepcionista cancela el proceso de la búsqueda de reserva
+
+1. El recepcionista da clic en el botón “Cancelar”.
+
+2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.
+
+3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.
+
+4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 3 del flujo normal.
+
+*FA 5.1* La reserva fue de prepago
+
+1. Continúa al paso 7 del flujo normal.
+
+*FA 6.1* El recepcionista procede a completar el cobro.
+
+1. El recepcionista da clic en el botón “Cobrar ahora”.
+
+2. El flujo normal continúa en el CU09 - Completar cobro
+
+3. Termina el caso de uso
+
+*FA 6.2* El recepcionista procede a completar el cobro.
+
+1. El recepcionista da clic en el botón “Regresar”.
+
+2. Regresa al paso 5 del flujo normal.
+|Excepción |
+*EX1.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3.Termina el caso de uso.
+|Postcondiciones |
+POST-1. La habitación se marca como “Disponible”.
+
+POST-2. El huésped queda registrado como salida finalizada.
+|===
+
+
+===== CU09 - Completar cobro
+[cols="1,3", options="header"]
+|===
+|Nombre | CU09 - Completar cobro
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista realiza el cobro al huésped una vez terminada su estancia en el hotel
+|Precondiciones |
+PRE-1. Deben existir cargos pendientes por pagar
+|Flujo normal |
+1. El sistema muestra la ventana con el monto total y con el botón “Procesar pago”.
+
+2. El recepcionista da clic en “Procesar pago”.
+
+3. El sistema envía solicitud a pasarela de pagos, y muestra en pantalla el mensaje “La transacción se realizó correctamente” junto con el botón “Aceptar”. (ver EX1)
+
+4. El recepcionista observa el resultado en pantalla y confirma con el botón “Aceptar”.
+
+5. El sistema registra la transacción en la base de datos, muestra el mensaje “Pago completado exitosamente” junto al botón “Aceptar”  y genera comprobante impreso. (ver EX2)
+
+6. El recepcionista da clic en “Aceptar” y entrega comprobante impreso al huésped.
+
+7. Termina el caso de uso.
+|Flujo alterno |
+N/A
+|Excepción |
+*EX1.* El sistema no puede conectarse con la pasarela de pagos
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Ha ocurrido un error al realizar el pago, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3. Termina el caso de uso.
+
+*EX2.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3. Termina el caso de uso.
+|Postcondiciones |
+POST-1. El pago queda registrado en el sistema.
+
+POST-2. Se genera comprobante impreso.
+|===
+
+
+===== CU10 - Registrar consumo de servicios
+[cols="1,3", options="header"]
+|===
+|Nombre | CU10 - Registrar consumo de servicios
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista registra consumos adicionales del huésped durante su instancia (desayuno, consumo de productos, lavandería, etc.)
+|Precondiciones |
+PRE-1. El huésped debe tener una estancia activa.
+|Flujo normal |
+1. El sistema muestra la ventana “Registro de consumo”, solicitando los datos del huésped y número de habitación junto al botón “Buscar”.
+
+2. El recepcionista ingresa los datos solicitados y  da clic en “Buscar”.
+
+3. El sistema consulta la base de datos y muestra la cuenta activa de dicha habitación, el campo para introducir el nuevo servicio y los botones “Agregar servicio” y “Regresar”. (ver EX1)
+
+4. El recepcionista ingresa el tipo de servicio consumido, cantidad y costo y da clic en “Agregar servicio”. (ver FA 4.1)
+
+5. El sistema actualiza la cuenta de la habitación y muestra el mensaje “El servicio se agregó correctamente” con el botón “Aceptar”. (ver EX1)
+
+6. El recepcionista da clic en “Aceptar”.
+
+
+7. Termina el caso de uso
+|Flujo alterno |
+*FA 4.1* El recepcionista decide regresar
+
+1. El recepcionista da clic en el botón “Regresar”.
+
+2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.
+
+3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.
+
+4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 3 del flujo normal.
+|Excepción |
+*EX1.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3. Termina el caso de uso.
+|Postcondiciones |
+POST-1. El consumo queda registrado en la cuenta del huésped.
+|===
+
+
+===== CU11 - Gestionar cambio de habitación
+[cols="1,3", options="header"]
+|===
+|Nombre | CU11 - Gestionar cambio de habitación
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista cambia al huésped de habitación de acuerdo a la disponibilidad y respetando tarifas
+|Precondiciones |
+PRE-1. El huésped tiene una estancia activa.
+
+PRE-2. Debe haber habitaciones disponibles.
+|Flujo normal |
+1. El sistema muestra la ventana “Cambio de habitación” solicitando el nombre del huésped y el botón “Buscar”.
+
+2. El recepcionista ingresa los datos y presiona “Buscar”.
+
+3. El sistema muestra una lista de habitaciones con disponibilidad con el botón “Asignar”. (ver EX2)
+
+4. El recepcionista selecciona una habitación y da clic en el botón “Asignar”.
+
+5. El sistema muestra la habitación actual a la izquierda y la habitación nueva seleccionada a la izquierda y muestra el cargo a cobrar por el cambio y el botón “Pagar en efectivo” “Pagar con tarjeta de crédito” “Regresar”.
+
+6. El recepcionista da clic en “Pagar con tarjeta de crédito”. (ver FA 6.1) (ver FA 6.2)
+
+7. El sistema muestra una ventana con campos a llenar para realizar el cargo en la tarjeta de crédito del huésped y los botones “Realizar cobro” y “Cancelar”.
+
+8. El recepcionista solicita la tarjeta de crédito del huésped y llena los campos solicitados y da clic en el botón “Realizar cobro”. (ver FA 8.1)
+
+9. El sistema envía solicitud a pasarela de pagos, y muestra en pantalla el mensaje “La transacción se realizó correctamente” junto con el botón “Aceptar”. (ver EX1)
+
+10. El recepcionista observa el resultado en pantalla y confirma con el botón “Aceptar”.
+
+11. El sistema registra la transacción en la base de datos, muestra el mensaje “Pago completado exitosamente” junto al botón “Aceptar”, también cambia el estado de las habitaciones, la anterior a “Disponible” y la actualizada a “Ocupada” y genera comprobante impreso. (ver EX2)
+
+12. El recepcionista da clic en “Aceptar” y entrega comprobante impreso al huésped.
+
+13. Termina el caso de uso
+|Flujo alterno |
+*FA 6.1* El huésped decide pagar en efectivo
+
+1. El recepcionista da clic en el botón “Pagar en efectivo”.
+
+2. El sistema muestra en la ventana la cantidad a cobrar y el campo para introducir la cantidad pagada desbloquea la caja registradora.
+
+3. El recepcionista introduce la cantidad a cobrar en la caja y escribe en el campo la cantidad introducida.
+
+4. El sistema realiza la resta y muestra en pantalla el cambio que se debe regresar.
+
+5. El recepcionista toma el dinero de cambio y cierra la caja.
+
+6. El sistema genera el comprobante impreso, y registra la transacción en la base de datos, y muestra el mensaje “Pago completado exitosamente” junto al botón “Aceptar”. (ver EX2)
+
+7. El recepcionista da clic en el botón “Aceptar” y entrega el comprobante impreso al huésped.
+
+8. Termina el caso de uso.
+
+*FA 6.2* El recepcionista decide regresar
+
+1. El recepcionista da clic en el botón “Regresar”.
+
+2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.
+
+3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.
+
+4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 5 del flujo normal.
+
+*FA 8.1* El recepcionista decide cancelar
+
+1. El recepcionista da clic en el botón “Cancelar”.
+
+2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.
+
+3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.
+
+4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 7 del flujo normal.
+|Excepción |
+*EX1.* El sistema no puede conectarse con la pasarela de pagos
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Ha ocurrido un error al realizar el pago, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3. Termina el caso de uso.
+
+*EX2.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3. Termina el caso de uso.
+|Postcondiciones |
+POST-1. La reserva se actualiza con la nueva habitación.
+|===
+
+
+===== CU12 - Gestionar bloqueos de habitaciones
+[cols="1,3", options="header"]
+|===
+|Nombre | CU12 - Gestionar bloqueos de habitaciones
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista marca una habitación como fuera de servicio por determinado motivo (mantenimiento o limpieza) impidiendo su reserva
+|Precondiciones |
+PRE-1. La habitación debe existir en el sistema.
+|Flujo normal |
+1. El sistema muestra la ventana “Bloqueo de habitación” solicitando el número de habitación, junto al botón “Continuar”.
+
+2. El recepcionista introduce el número de habitación a bloquear.
+
+3. El sistema verifica que la habitación no esté en estado “Ocupada” y muestra en la ventana un cuadro combinado para seleccionar el motivo junto a los botones “Bloquear” y “Cancelar”. (ver EX1)
+
+4. El recepcionista selecciona del cuadro combinado una opción y da clic en “Bloquear”. (ver FA 4.1)
+
+5. El sistema cambia el estado de la habitación a “Fuera de servicio” y muestra el mensaje “La habitación se ha bloqueado correctamente” con el botón “Aceptar”. (ver EX1)
+
+6. El recepcionista da clic en el botón “Aceptar”.
+
+7. Termina el caso de uso
+|Flujo alterno |
+*FA 8.1* El recepcionista decide cancelar el proceso
+
+1. El recepcionista da clic en el botón “Cancelar”.
+
+2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.
+
+3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.
+
+4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 7 del flujo normal.
+
+|Excepción |
+*EX1.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3.Termina el caso de uso.
+|Postcondiciones |
+POST-1. La habitación queda en estado “Fuera de servicio”.
+|===
+
+
+===== CU13 - Cancelar reserva a petición del cliente en recepción
+[cols="1,3", options="header"]
+|===
+|Nombre | CU13 - Cancelar reserva a petición del cliente en recepción
+|Actor(es) | Recepción (AC02)
+|Objetivo | El recepcionista cancela la reserva directamente en el hotel si el cliente lo solicita
+|Precondiciones |
+PRE-1. El huésped debe tener una reserva activa.
+|Flujo normal |
+1. El sistema muestra la ventana “Cancelar reserva” con campos a llenar de los datos del huésped junto al botón “Buscar”.
+
+2. El recepcionista ingresa los datos solicitados y da clic en “Buscar”.
+
+3. El sistema consulta la base de datos y muestra los detalles de la reserva, y las políticas de cancelación junto al botón “Finalizar” y “Regresar”. (ver EX1)
+
+4. El recepcionista le explica las políticas al huésped, y da clic “Finalizar”. (ver FA 4.1)
+
+5. El sistema actualiza el estado de la reserva a “Cancelada” y muestra el mensaje “Reserva cancelada exitosamente” con el botón “Aceptar”. (ver EX1)
+
+6. El recepcionista da clic en  “Aceptar”.
+
+7. Termina el caso de uso.
+|Flujo alterno |
+*FA 4.1* El recepcionista decide regresar
+
+1. El recepcionista da clic en el botón “Regresar”.
+
+2. Regresa al paso 1 del flujo normal.
+|Excepción |
+*EX1.* El sistema no puede conectarse con la base de datos.
+
+1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.
+
+2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.
+
+3. Termina el caso de uso.
+|Postcondiciones |
+POST-1. La reserva queda cancelada
+
+POST-2. La habitación queda disponible.
+|===
 
 
 ==== AC03 - Administrador
