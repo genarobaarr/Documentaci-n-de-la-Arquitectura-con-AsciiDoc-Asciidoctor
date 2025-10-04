@@ -1,5 +1,147 @@
 === Descripciones de casos de uso
 
+
+==== AC01 - Huésped
+
+
+===== CU01 - Buscar hotel
+[cols="1,3", options="header"]
+|===
+|Nombre | CU01 - Buscar hotel
+|Actor(es) | Huésped (AC01)
+|Objetivo | El HUÉSPED busca hoteles disponibles que cumplan con sus criterios de búsqueda (destino, fechas).
+|Precondiciones | Existen HOTELes registrados y accesibles dentro del sistema.
+|Flujo normal |
+1. El sistema muestra una lista de hoteles disponibles con barra de búsqueda.
+2. El HUÉSPED selecciona un hotel y da clic en “Aceptar”.
+3. El sistema muestra información del hotel con filtros.
+4. El HUÉSPED visualiza la información y da clic en “Cancelar”.
+5. El sistema cierra la ventana.
+6. Termina el caso de uso.
+|Flujo alterno |
+FA 2.1: El HUÉSPED da clic en “Salir”. El sistema confirma y finaliza.
+FA 4.1: El HUÉSPED consulta disponibilidad → continúa en CU02.
+|Excepción |
+EX1: No hay hoteles registrados. El sistema muestra error y finaliza.
+|Postcondiciones | El HUÉSPED visualiza la lista de hoteles disponibles.
+|===
+
+
+===== CU02 - Consultar disponibilidad
+[cols="1,3", options="header"]
+|===
+|Nombre | CU02 - Consultar disponibilidad
+|Actor(es) | Huésped (AC01)
+|Objetivo | El HUÉSPED consulta la disponibilidad de una habitación de un hotel.
+|Precondiciones | Existen hoteles con habitaciones registradas y tarifas actualizadas.
+|Flujo normal |
+1. El sistema muestra información del hotel con filtros.
+2. El HUÉSPED selecciona una habitación.
+3. El sistema muestra información de la habitación.
+4. El HUÉSPED da clic en “Reservar”.
+5. El sistema muestra disponibilidad de la habitación.
+6. El HUÉSPED da clic en “Cancelar”.
+7. Termina el caso de uso.
+|Flujo alterno |
+FA 2.1: El HUÉSPED da clic en “Salir”. El sistema confirma y finaliza.
+FA 6.1: El HUÉSPED decide reservar → continúa en CU03.
+|Excepción |
+EX1: No hay habitaciones registradas. El sistema muestra error y finaliza.
+|Postcondiciones | El HUÉSPED consulta la disponibilidad de una habitación.
+|===
+
+
+===== CU03 - Realizar reserva
+[cols="1,3", options="header"]
+|===
+|Nombre | CU03 - Realizar reserva
+|Actor(es) | Huésped (AC01)
+|Objetivo | El HUÉSPED realiza la reserva de una habitación.
+|Precondiciones | La habitación seleccionada está disponible y con tarifas actualizadas.
+|Flujo normal |
+1. El sistema valida disponibilidad y muestra la información de la habitación.
+2. El HUÉSPED da clic en “Reservar”.
+3. El sistema muestra ventana con fechas y botón “Reservar”.
+4. El HUÉSPED selecciona fechas y confirma.
+5. El sistema valida y muestra información de pago.
+6. El HUÉSPED ingresa datos personales y confirma.
+7. El sistema procesa pago y muestra mensaje de confirmación.
+8. El HUÉSPED da clic en “Aceptar”.
+9. Termina el caso de uso.
+|Flujo alterno |
+FA 2.1: El HUÉSPED cancela el proceso.
+FA 6.1: El HUÉSPED paga en check-out.
+FA 7.1: Pago rechazado.
+|Excepción |
+EX1: Error de conexión con BD.
+EX2: Error de conexión con pasarela de pago.
+|Postcondiciones |
+El HUÉSPED realiza la reserva y el sistema la registra.
+|===
+
+
+===== CU04 - Modificar reserva
+[cols="1,3", options="header"]
+|===
+|Nombre | CU04 - Modificar reserva
+|Actor(es) | Huésped (AC01)
+|Objetivo | El HUÉSPED modifica una reserva activa.
+|Precondiciones | El sistema tiene reservas registradas.
+|Flujo normal |
+1. El sistema recupera reservas activas.
+2. El HUÉSPED selecciona una reserva.
+3. El sistema muestra detalles con opción de modificar.
+4. El HUÉSPED selecciona “Modificar reserva”.
+5. El sistema muestra campos editables.
+6. El HUÉSPED edita y confirma.
+7. El sistema valida cambios y procesa pago si aplica.
+8. El HUÉSPED confirma.
+9. El sistema registra cambios y finaliza.
+|Flujo alterno |
+FA 2.1: Cancelación del proceso.
+FA 4.1: El flujo continúa en CU05 - Cancelar reserva.
+FA 9.1: Pago rechazado.
+|Excepción |
+EX1: Error de conexión con BD.
+EX2: Error con el banco.
+|Postcondiciones | La reserva queda modificada en el sistema.
+|===
+
+
+===== CU05 - Cancelar reserva
+[cols="1,3", options="header"]
+|===
+|Nombre | CU05 - Cancelar reserva
+|Actor(es) | Huésped (AC01)
+|Objetivo | El HUÉSPED cancela una reserva activa.
+|Precondiciones | El sistema tiene reservas registradas.
+|Flujo normal |
+1. El sistema recupera reservas activas.
+2. El HUÉSPED selecciona una reserva.
+3. El sistema muestra detalles con opción de cancelar.
+4. El HUÉSPED selecciona “Cancelar reserva”.
+5. El sistema solicita confirmación.
+6. El HUÉSPED confirma.
+7. El sistema cancela la reserva y muestra mensaje.
+8. El HUÉSPED confirma.
+9. Termina el caso de uso.
+|Flujo alterno |
+FA 2.1: Cancelación del proceso.
+FA 6.1: El HUÉSPED no confirma cancelación.
+|Excepción |
+EX1: Error de conexión con BD.
+EX2: Error en cancelación de la reserva.
+|Postcondiciones | La reserva queda cancelada en el sistema.
+|===
+
+
+==== AC02 - Recepción
+
+
+==== AC03 - Administrador
+
+
+===== CU14 - Gestionar hoteles de la cadena
 [cols="1,3", options="header"]
 |===
 |Nombre |Gestionar hoteles de la cadena
@@ -31,6 +173,8 @@ POST-01 Se crea un nuevo registro de hotel en el catálogo
 POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos
 |===
 
+
+===== CU15 - Gestionar tipos de habitación
 [cols="1,3", options="header"]
 |===
 |Nombre |Configurar tipos de habitación
@@ -69,5 +213,6 @@ POST-02 La habitación seleccionada de un hotel seleccionado se actualiza con lo
 POST-03 La habitación seleccionada de un hotel seleccionado es dada de baja
 |===
 
-(Adjuntar todas las descripciones de casos de uso)
+
+==== AC04 - Auditoría
 

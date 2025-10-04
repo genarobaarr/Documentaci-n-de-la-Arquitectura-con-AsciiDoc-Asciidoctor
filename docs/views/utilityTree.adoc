@@ -1,5 +1,4 @@
 === Utility Tree
 
-(Poner imagen del Utility Tree)
 
 image::utilityTree.png[Vista del Utility Tree, width=600, align=center]
