@@ -158,7 +158,244 @@
 ==== Usabilidad
 
 
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-01 Huésped consulta hoteles
+|Escenario | Un huésped consulta los hoteles de la cadena de forma intuitiva
+|Atributo | Usabilidad
 
+|Preocupación del atributo | Facilidad de uso y eficiencia.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped ingresa criterios de búsqueda y hace clic en "Buscar"
+
+|Ambiente | El usuario se encuentra en un entorno típico con una conexión a internet estable
+
+|Artefacto | Interfaz de búsqueda y sus respectivos resultados
+
+|Respuesta | El sistema muestra una lista clara y organizada de hoteles que cumplen con los criterios de búsqueda, incluyendo fotos, precios y calificaciones
+
+|Medida de la respuesta | El tiempo de carga de la página no debe exceder los 2 segundos. Al menos el 95% de los usuarios de prueba deben poder completar la búsqueda sin asistencia
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-02 Huésped consulta la disponibilidad de una habitación
+|Escenario | El huésped busca una habitación sin fricción y puede completar la consulta de disponibilidad con éxito.
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Complejidad de la interfaz
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped realiza una búsqueda en el sitio web del hotel
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Página de resultados del motor de búsqueda
+
+|Respuesta | El sistema muestra en una lista los hoteles que en aquel momento estén disponibles
+
+|Medida de la respuesta | Un usuario puede completar la consulta de disponibilidad en menos de 15 segundos
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-04 Huésped selecciona una habitación y confirma la reserva
+|Escenario | El proceso de reserva debe ser simple, directo y sin ambigüedades
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Intuitividad y minimización de errores.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped hace clic en "Confirmar reserva"
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Formulario de reserva y pasarela de pago
+
+|Respuesta | El sistema muestra una página de confirmación con los detalles de la reserva y envía un correo electrónico al huésped
+
+|Medida de la respuesta | El proceso de reserva debe completarse en menos de 5 pasos. La tasa de éxito de la reserva debe ser superior al 98%
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-07 Huésped  modifica alguna característica de su reserva
+|Escenario | La modificación de una reserva debe ser tan fácil como la original
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Simplicidad de la interfaz de modificación
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped navega a la sección de "Mis reservas" y selecciona la opción para modificar una reserva específica
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Interfaz de gestión de reservas
+
+|Respuesta | El sistema presenta un formulario pre-llenado que permite al huésped cambiar los campos editables, como las fechas, y muestra un resumen de los posibles cargos adicionales
+
+|Medida de la respuesta | El tiempo medio para completar la modificación debe ser menor a 1 minuto. El 100% de las modificaciones válidas deben ser procesadas correctamente
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-09 Huésped cancela su reserva
+|Escenario | El proceso de cancelación debe ser sencillo y transparente para el huésped
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Intuitividad y claridad en el proceso de cancelación
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped hace clic en el botón de "Cancelar reserva"
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Interfaz de gestión de reservas
+
+|Respuesta | El sistema muestra una ventana emergente que pide al huésped confirmar la cancelación y le informa sobre la política de cancelación y los posibles reembolsos
+
+|Medida de la respuesta | El proceso de cancelación debe completarse en un máximo de 3 clics. No debe haber ambigüedad en la confirmación de la cancelación
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-10 Huésped revisa todas las reservas pasadas y activas realizadas por él
+|Escenario | El huésped puede ver un historial completo y organizado de sus reservas pasadas y activas
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Claridad en la visualización de datos y navegabilidad
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped navega a la sección de su historial de reservas
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Interfaz de perfil de usuario
+
+|Respuesta | El sistema muestra una lista de reservas, categorizadas como "activas" y "pasadas", con detalles clave como fechas, hotel y estado
+
+|Medida de la respuesta | El tiempo de carga de la página del historial de reservas debe ser menor a 3 segundos. El 100% de las reservas deben ser recuperadas y mostradas sin errores
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-12 Recepcionista registra la entrada del huésped
+|Escenario | El proceso de check-in debe ser rápido y sencillo para el recepcionista
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Eficiencia operativa y curva de aprendizaje mínima para el personal
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepción
+
+|Estímulo | El recepcionista busca la reserva del huésped y hace clic en "Check-in"
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de check-in y gestión de reservas
+
+|Respuesta | El sistema guía al recepcionista a través de los pasos necesarios, como la verificación de identidad, la asignación de habitación y la activación de la llave, con mensajes claros
+
+|Medida de la respuesta | El tiempo promedio para un check-in debe ser menor a 2 minutos. El 99% de los check-ins deben completarse sin errores
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-14 Recepcionista registra la salida del huésped
+|Escenario | El proceso de check-out debe ser rápido y sin errores para el recepcionista
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Eficiencia y precisión en el proceso de salida
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepción
+
+|Estímulo | El recepcionista busca la reserva del huésped y hace clic en "Check-out"
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de check-out y procesamiento de pagos
+
+|Respuesta | El sistema muestra un resumen de la cuenta, procesa el pago y marca la habitación como desocupada, con una confirmación clara para el recepcionista
+
+|Medida de la respuesta | El tiempo promedio para un check-out debe ser menor a 1 minuto. La conciliación de pagos no debe presentar errores
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-16 Recepcionista realiza el cobro al huésped terminada su estancia
+|Escenario | El sistema de cobro debe de ser eficiente para la recepcionista, minimizando errores y agilizando el proceso de check-out
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Curva de aprendizaje mínima
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | Recepcionista lleva a cabo los pasos para procesar el pago final del huésped
+
+|Ambiente | Operación normal, potencialmente con una fila de huéspedes que necesitan hacer su pago final rápidamente
+
+|Artefacto | Interfaz de check-out del sistema
+
+|Respuesta | La recepcionista completa el proceso de cobro de forma rápida y sin errores. La interfaz monto a pagar, detalles del huésped y formas de pago
+
+|Medida de la respuesta | El cobro debe de hacerse en menos de 5 minutos, con una tasa de error inferior al 2%
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-20 Recepcionista cambia al huésped de habitación
+|Escenario | El sistema debe permitir que un recepcionista reasigne una habitación a un huésped de forma rápida y sin errores
+|Atributo | Usabilidad
+
+|Preocupación del atributo | Flujo de trabajo ineficiente
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepción
+
+|Estímulo | El huésped solicita un cambio de habitación
+
+|Ambiente | Operación normal, posiblemente bajo presión de otros huéspedes
+
+|Artefacto | Interfaz del sistema
+
+|Respuesta | La recepcionista puede buscar otra habitación, reasignar al huésped y actualizar el sistema con los nuevos detalles con un mínimo de clics
+
+|Medida de la respuesta | Los clics promedio para completar de actividad deben ser máximo 5
+|===
 
 
 ==== Seguridad
