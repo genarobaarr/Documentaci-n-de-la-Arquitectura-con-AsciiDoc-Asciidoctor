@@ -1,3 +1,357 @@
 === Escenarios de atributos de calidad
 
-(Adjuntar todos los escenarios de atributos de calidad)
+
+==== Rendimiento
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta |  QAS-11 Huésped revisa todas las reservas pasadas y activas realizadas por él
+|Escenario | El huésped consulta su historial de reservas y el sistema debe responder rápidamente.
+|Atributo | Rendimiento
+
+|Preocupación del atributo | Latencia
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | Solicitud de consulta de reservas.
+
+|Ambiente | Alta concurrencia (picos de demanda).
+
+|Artefacto | Módulo de reservas, base de datos transaccional.
+
+|Respuesta | El sistema retorna la lista completa de reservas pasadas y activas.
+
+|Medida de la respuesta | Latencia ≤ 500 ms para P95 bajo 300 QPS
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-25 Administrador configura habitaciones disponibles mediante categorización, amenidades y capacidades
+|Escenario | El administrador gestiona la disponibilidad y características de habitaciones.
+|Atributo | Rendimiento
+
+|Preocupación del atributo | Latencia del catálogo.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administración
+
+|Estímulo | Registro o actualización de habitaciones y sus atributos.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de catálogo.
+
+|Respuesta | Actualización reflejada en el sistema de manera inmediata.
+
+|Medida de la respuesta | Confirmación ≤ 2.5 s (P95)
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-29 Administrador ajusta hasta el overbooking
+|Escenario | El administrador define política de sobreventa hasta el 10% por tipo de habitación.
+|Atributo | Rendimiento
+
+|Preocupación del atributo | Velocidad en la escritura de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administración
+
+|Estímulo | Ajuste de parámetros de overbooking.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Motor de reglas de disponibilidad.
+
+|Respuesta | El sistema actualiza inmediatamente la política y la refleja en las reservas.
+
+|Medida de la respuesta | Latencia ≤ 2.5 s en la confirmación
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-31 Administrador consulta disponibilidad y ocupación
+|Escenario | El administrador consulta el estado de ocupación de todas las habitaciones.
+|Atributo | Rendimiento
+
+|Preocupación del atributo | Eficiencia de la consulta a la base de datos y latencia de la red
+
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administración
+
+|Estímulo | Petición de reporte de ocupación/disponibilidad.
+
+|Ambiente | Operación con carga media, con una media de 2000 solicitudes simultáneas
+
+|Artefacto | Motor de consultas de disponibilidad.
+
+|Respuesta | El sistema retorna resultados precisos en tiempo real.
+
+|Medida de la respuesta | Latencia ≤ 500 ms (P95) bajo 300 QPS
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-38 Genera un reporte para verificar que los pagos en línea se hayan procesado correctamente.
+|Escenario | El auditor genera un reporte masivo sobre el estado de pagos.
+|Atributo | Rendimiento
+
+|Preocupación del atributo | Cuellos de botella de la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de reporte de conciliación de pagos.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Subsistema de pagos y motor de reportes.
+
+|Respuesta | Generación del reporte con todos los pagos confirmados y rechazados.
+
+|Medida de la respuesta | Tiempo de respuesta ≤ 4 s (P99)
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-42 El auditor compara el estado de las habitaciones en el sistema con reportes físicos
+|Escenario | El auditor solicita datos de ocupación registrados en el sistema.
+|Atributo | Rendimiento
+
+|Preocupación del atributo | Cuellos de botella de la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de consulta histórica de habitaciones.
+
+|Ambiente | Carga de auditoría con múltiples registros.
+
+|Artefacto | Base de datos de reservas.
+
+|Respuesta | Listado completo de habitaciones y su estado.
+
+|Medida de la respuesta | Consulta resuelta en ≤ 2 s bajo 200 QPS.
+|===
+
+
+==== Disponibilidad
+
+
+
+
+
+==== Usabilidad
+
+
+
+
+
+==== Seguridad
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-06 Huésped selecciona una habitación y confirma la reserva
+|Escenario | Un huésped reserva una habitación.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Integridad de transacciones.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | Confirmación de la reserva con pago.
+
+|Ambiente | Operación con alta concurrencia, con una media de 10,000 solicitudes simultáneas
+
+|Artefacto | Módulo de reservas y pagos.
+
+|Respuesta | El sistema confirma una sola vez y asegura la transacción.
+
+|Medida de la respuesta | Incidentes de doble cobro = 0
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-17 Recepcionista realiza el cobro al huésped terminada su estancia
+|Escenario | El recepcionista realiza un cargo de consumos al finalizar la estancia.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Integridad de transacciones.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepción
+
+|Estímulo | Solicitud de pago final.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Respuesta | Registro único del cobro.
+
+|Medida de la respuesta | 100% de consistencia en la transacción.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-27 Administrador define precios diarios, temporadas altas y promociones.
+|Escenario | El administrador cambia tarifas y promociones.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Autenticación y autorización.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administración
+
+|Estímulo | Modificación de tarifas.
+
+|Ambiente | Sesión autenticada.
+
+|Artefacto | Módulo de catálogo de precios.
+
+|Respuesta | Solo usuarios autorizados pueden modificar precios.
+
+|Medida de la respuesta | Acceso no autorizado = 0.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-32 Un auditor busca reservas canceladas poco después de su creación
+|Escenario | Un auditor valida intentos sospechosos de cancelación.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Trazabilidad de operaciones.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Consulta de cancelaciones recientes.
+
+|Ambiente | Carga de auditoría.
+
+|Artefacto | Log de operaciones.
+
+|Respuesta | Mostrar todas las cancelaciones con marca de tiempo y usuario.
+
+|Medida de la respuesta | 100% de transacciones trazables.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-33 Un auditor rastrea cambios en el precio de una reserva después de confirmada.
+|Escenario | Auditor revisa modificaciones de precios post-confirmación.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Integridad de precios.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de historial de cambios.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Registro de precios.
+
+|Respuesta | Mostrar cada modificación con usuario y hora
+
+|Medida de la respuesta | 100% de cambios registrados
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-35 El auditor sigue reembolsos y descuentos aplicados, asegurando que estén justificados.
+|Escenario | Un auditor valida descuentos y devoluciones.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Autenticidad y justificación de descuentos.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de reporte de reembolsos/descuentos.
+
+|Ambiente | Operación con carga normal, con media de 1000 solicitudes simultáneas
+
+|Artefacto | Subsistema de pagos.
+
+|Respuesta | Registro completo de cada descuento con justificación.
+
+|Medida de la respuesta | 100% de descuentos con registro válido.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-37 El auditor genera un reporte para verificar que los pagos en línea se hayan procesado correctamente.
+|Escenario | Auditor valida pagos electrónicos.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Disponibilidad e integridad de los registros de pago.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de reporte de conciliación.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Pasarela de pagos.
+
+|Respuesta | Generación de reporte con estatus de cada pago.
+
+|Medida de la respuesta | 100% de pagos procesados verificados
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-40 El auditor puede ver un registro de cada inicio de sesión y la actividad del personal.
+|Escenario | El auditor revisa accesos al sistema.
+|Atributo | Seguridad
+
+|Preocupación del atributo | Autenticidad y trazabilidad de usuarios.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de logins del personal.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Sistema de autenticación.
+
+|Respuesta | Lista completa de sesiones e interacciones.
+
+|Medida de la respuesta | 100% de accesos registrados.
+|===
+

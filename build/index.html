@@ -5,7 +5,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
-<meta name="author" content="Introducción">
 <title>Descripción de la Arquitectura de Software</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -440,23 +439,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <body class="book toc2 toc-left">
 <div id="header">
 <h1>Descripción de la Arquitectura de Software</h1>
-<div class="details">
-<span id="author" class="author">Introducción</span><br>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_interesados_stakeholders">1. Interesados (Stakeholders)</a></li>
-<li><a href="#_vista_de_contexto">2. Vista de Contexto</a></li>
-<li><a href="#_vista_funcional">3. Vista Funcional</a></li>
-<li><a href="#_vista_de_información">4. Vista de Información</a></li>
-<li><a href="#_vista_de_concurrencia">5. Vista de Concurrencia</a></li>
-<li><a href="#_vista_de_despliegue">6. Vista de Despliegue</a></li>
-<li><a href="#_vista_de_desarrollo">7. Vista de Desarrollo</a></li>
-<li><a href="#_vista_operacional">8. Vista Operacional</a></li>
-<li><a href="#_atributos_de_calidad">9. Atributos de Calidad</a></li>
-<li><a href="#_decisiones_arquitectónicas">10. Decisiones Arquitectónicas</a></li>
-<li><a href="#_apéndice">11. Apéndice</a></li>
+<li><a href="#_contexto_y_alcance_del_sistema">1. Contexto y Alcance del Sistema</a>
+<ul class="sectlevel2">
+<li><a href="#_visión_del_sistema">1.1. Visión del Sistema</a></li>
+<li><a href="#_alcance">1.2. Alcance</a></li>
+<li><a href="#_audiencia">1.3. Audiencia</a></li>
+<li><a href="#_glosario">1.4. Glosario</a></li>
+</ul>
+</li>
+<li><a href="#_definición_de_requerimientos">2. Definición de requerimientos</a>
+<ul class="sectlevel2">
+<li><a href="#_planteamiento_del_problema">2.1. Planteamiento del Problema</a></li>
+<li><a href="#_alcance_y_propósito_del_diseño">2.2. Alcance y propósito del diseño</a></li>
+<li><a href="#_diagrama_de_casos_de_uso">2.3. Diagrama de casos de uso</a></li>
+<li><a href="#_descripciones_de_casos_de_uso">2.4. Descripciones de casos de uso</a></li>
+</ul>
+</li>
+<li><a href="#_impulsores_arquitectónicos_asrs_y_priorización">3. Impulsores Arquitectónicos (ASRs) y Priorización</a>
+<ul class="sectlevel2">
+<li><a href="#_utility_tree">3.1. Utility Tree</a></li>
+<li><a href="#_escenarios_de_atributos_de_calidad">3.2. Escenarios de atributos de calidad</a></li>
+</ul>
+</li>
+<li><a href="#_interesados_stakeholders">4. Interesados (Stakeholders)</a></li>
+<li><a href="#_vista_de_contexto">5. Vista de Contexto</a></li>
+<li><a href="#_vista_funcional">6. Vista Funcional</a></li>
+<li><a href="#_vista_de_información">7. Vista de Información</a></li>
+<li><a href="#_vista_de_concurrencia">8. Vista de Concurrencia</a></li>
+<li><a href="#_vista_de_despliegue">9. Vista de Despliegue</a></li>
+<li><a href="#_vista_de_desarrollo">10. Vista de Desarrollo</a></li>
+<li><a href="#_vista_operacional">11. Vista Operacional</a></li>
+<li><a href="#_atributos_de_calidad">12. Atributos de Calidad</a></li>
+<li><a href="#_decisiones_arquitectónicas">13. Decisiones Arquitectónicas</a></li>
+<li><a href="#_apéndice">14. Apéndice</a></li>
 </ul>
 </div>
 </div>
@@ -464,33 +482,2106 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>(Este apartado explicará el propósito, alcance y contexto general del sistema)</p>
+<p><strong>UNIVERSIDAD VERACRUZANA - REGIÓN XALAPA
+FACULTAD DE ESTADÍSTICA E INFORMÁTICA</strong></p>
+</div>
+<div class="paragraph">
+<p><em>Licenciatura en Ingeniería de Software</em></p>
+</div>
+<div class="paragraph">
+<p><em>Experiencia Educativa Diseño de Software (Periodo Agosto 25 - Enero 26)</em></p>
+</div>
+<div class="paragraph">
+<p><em>Académico:</em> Jorge Octavio Ocharan Hernández</p>
+</div>
+<div class="paragraph">
+<p><strong>Sistema Hotelero</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>PRESENTAN:</strong></p>
+</div>
+<div class="paragraph">
+<p>Barradas Sánchez Genaro Alejandro || <a href="mailto:zs23014083@estudiantes.uv.mx">zs23014083@estudiantes.uv.mx</a><br>
+Bello Peralta Lizeth Guadalupe || <a href="mailto:zs23014074@estudiantes.uv.mx">zs23014074@estudiantes.uv.mx</a><br>
+Morales García Omar || <a href="mailto:zs23014039@estudiantes.uv.mx">zs23014039@estudiantes.uv.mx</a></p>
+</div>
+<div class="paragraph">
+<p><strong>REPOSITORIO: <a href="https://github.com/genarobaarr/Documentaci-n-de-la-Arquitectura-con-AsciiDoc-Asciidoctor">GitHub</a></strong></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>Control de versiones</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Versión</th>
+<th class="tableblock halign-left valign-top">Fecha</th>
+<th class="tableblock halign-left valign-top">Autor(es)</th>
+<th class="tableblock halign-left valign-top">Resumen de cambios significativos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creación de documento inicial con apartados</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p>
+<p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadieron los borradores de los casos de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p>
+<p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se realizó una segunda iteración de los casos de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió el primer borrador del diagrama de clases</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p>
+<p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se realizaron los cambios en base a las observaciones del profesor al listado de casos de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadieron las restricciones del proyecto, actores dentro del sistema, alcance del proyecto, visión del sistema y planteamiento del problema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p>
+<p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se identificaron y plasmaron los QAs del sistema con sus respectivos escenarios y trazabilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p>
+<p class="tableblock">Lizeth Guadalupe Bello Peralta</p>
+<p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se realizó e integró el diagrama Utility tree</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se creó y anexó el diagrama de contexto de nivel 0 del sistema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió el segundo borrador del diagrama de clases del sistema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió el diccionario de datos correspondiente al sistema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">27 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se creó el glosario y añadieron conceptos al mismo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió el Planteamiento del Problema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se adjuntó la tabla de versiones al documento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se adjuntan imágenes de diagramas de casos de uso, por actores y paquetes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de septiembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lizeth Guadalupe Bello Peralta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añaden dos descripciones de casos de uso del actor Administrador</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">01 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añaden tres descripciones de casos de uso del actor Huésped</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añaden tres descripciones de casos de uso del actor Recepción</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añaden tres descripciones de casos de uso del actor Huésped</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añaden cuatro descripciones de casos de uso del actor Recepción</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió la visión y alcance del sistema</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contexto_y_alcance_del_sistema">1. Contexto y Alcance del Sistema</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_visión_del_sistema">1.1. Visión del Sistema</h3>
+<div class="paragraph">
+<p>La visión del Sistema de Reservaciones es establecer la plataforma como líder tecnológica, convirtiendo las reservaciones y sistema en una ventaja competitiva a nivel global.</p>
+</div>
+<div class="paragraph">
+<p>Actualmente, la dependencia en soluciones locales ineficientes y dispersas genera inconsistencias críticas, errores de inventario y un alto riesgo de incidentes (como dobles reservas y dobles cobros). El sistema de reservaciones busca erradicar estos problemas mediante una arquitectura escalable y robusta diseñada para soportar a más de 5,000 hoteles y un millón de habitaciones.</p>
+</div>
+<div class="paragraph">
+<p>Nuestra prioridad es garantizar la confianza y consistencia en el momento de realziar reservas: el sistema debe operar con una tasa de incidentes de dobles cobros o dobles reservas de cero, incluso bajo escenarios de alta concurrencia. Esto se logrará a través de transacciones atómicas y un riguroso enfoque en la seguridad y trazabilidad.</p>
+</div>
+<div class="paragraph">
+<p>Siendo así que, permitirá la implementación de precios dinámicos y políticas avanzadas de overbooking gestionadas centralmente para optimizar los ingresos. Finalmente, la eficiencia operacional es clave; el sistema ofrecerá una interfaz intuitiva y altamente disponible que permitirá al 90% del personal novato de recepción completar tareas críticas (check-in/out) de manera autónoma en minutos, garantizando una operación fluida y un servicio al cliente superior.</p>
+</div>
+<div class="paragraph">
+<p>El Sistema de Reservaciones es el pilar para un crecimiento rentable, la estandarización de procesos y la excelencia operativa en toda la cadena hotelera.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alcance">1.2. Alcance</h3>
+<div class="paragraph">
+<p>El Alcance del Sistema de Reservaciones define las fronteras del diseño arquitectónico, especificando qué se incluye dentro de la plataforma y qué se excluye, delegándose a sistemas externos o a la infraestructura. El sistema está diseñado para reemplazar las soluciones locales y gestionar el ciclo de vida completo de la reserva y la habitación a través de una plataforma unificada.</p>
+</div>
+<div class="sect3">
+<h4 id="_funcionalidades_incluidas_in_scope">1.2.1. Funcionalidades Incluidas (In-Scope)</h4>
+<div class="paragraph">
+<p>El Sistema de Reservaciones abarcará los siguientes módulos funcionales principales:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Módulo de reservaciones y venta (Huésped)
+Este módulo gestiona la interacción directa con el cliente y el proceso de venta:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Búsqueda y consulta de hoteles: Permitir al huésped buscar hoteles por región/fecha y consultar la disponibilidad de tipos de habitación en tiempo real.</p>
+</li>
+<li>
+<p>Gestión de la Reserva: Incluye la creación de la reserva con control de atomicidad, la modificación de fechas/habitaciones y la cancelación de la reserva, aplicando las políticas de cobro correspondientes.</p>
+</li>
+<li>
+<p>Consulta de Historial: Permitir al huésped revisar sus reservas pasadas y activas.</p>
+</li>
+<li>
+<p>Integración de pagos seguros: Captura segura y tokenización de los datos de pago, garantizando la idempotencia para evitar dobles cobros.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Módulo de recepción y operaciones (Recepcionista)
+Este módulo está enfocado en la eficiencia operativa y el manejo diario de huéspedes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Check-in / Check-out: Funciones optimizadas para el personal de recepción, con actualización inmediata del estado de la habitación. El diseño debe priorizar la usabilidad para alcanzar el objetivo de que un novato complete la tarea después de 10 minutos de instrucción.</p>
+</li>
+<li>
+<p>Gestión de cuentas y cobros: Consolidación de todos los cargos de la estancia (tarifa base, impuestos, consumos adicionales) y procesamiento del cobro final con alta seguridad.</p>
+</li>
+<li>
+<p>Servicios adicionales: Registro de cargos a la cuenta por consumos en el bar, lavandería, gimnasio u otros servicios.</p>
+</li>
+<li>
+<p>Gestión de habitaciones: Funcionalidades para cambiar a un huésped de habitación de forma atómica y para marcar habitaciones como "Fuera de Servicio".</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Módulo de administración y configuración (Administrador)
+Este módulo se centra en las herramientas gerenciales para optimizar ingresos y capacidad:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Gestión de hoteles y tipos de habitación: Alta y modificación de hoteles, así como la definición de la categorización de habitaciones, amenidades y capacidades.</p>
+</li>
+<li>
+<p>Configuración avanzada de precios: Definición de tarifas base, precios dinámicos, promociones, descuentos y políticas de temporadas altas.</p>
+</li>
+<li>
+<p>Configuración de políticas de overbooking: Ajuste de los umbrales de sobreventa de inventario, lo que es crítico para la maximización de la capacidad de venta.</p>
+</li>
+<li>
+<p>Monitoreo de inventario: Consulta en tiempo real de la ocupación y disponibilidad en toda la cadena.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Módulo de seguridad y auditoría (Auditor)
+Este módulo es esencial para los requisitos de seguridad y confiabilidad del sistema:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Generación de reportes de trazabilidad: Consultas avanzadas sobre actividades sospechosas (cancelaciones rápidas, cambios de precio o descuentos) que requieren un log de auditoría inmutable.</p>
+</li>
+<li>
+<p>Reconciliación Financiera: Reportes para conciliar ingresos por servicios adicionales y validar que todos los cobros en línea se hayan procesado y registrado correctamente.</p>
+</li>
+<li>
+<p>Validación de Políticas: Herramientas para asegurar la uniformidad de precios y políticas entre diferentes hoteles o regiones.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_funcionalidades_excluidas_out_of_scope">1.2.2. Funcionalidades Excluidas (Out-of-Scope)</h4>
+<div class="paragraph">
+<p>Las siguientes áreas funcionales no forman parte del alcance directo del Sistema de Reservas y se consideran responsabilidades de sistemas o servicios externos:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Procesamiento de Pagos: El Sistema de Reservas no almacenará ni procesará directamente información de tarjetas de crédito. Esta responsabilidad se delega por completo a una pasarela de pagos (Payment Gateway).</p>
+</li>
+<li>
+<p>Gestión de Sistemas de Fidelización: El manejo de programas de puntos de lealtad, niveles de membresía o recompensas para huéspedes. El SRC solo notificará a un sistema externo el check-out para que este acredite los puntos.</p>
+</li>
+<li>
+<p>Servicios de Limpieza y Mantenimiento: La gestión de la logística interna de las camareras o técnicos. El SRC solo actualizará el estado de la habitación a "Limpieza Necesaria" (L/N), pero no gestionará la asignación de tareas.</p>
+</li>
+<li>
+<p>Marketing y CRM: Campañas de correo electrónico, gestión de relaciones con el cliente más allá del historial transaccional de reservas.</p>
+</li>
+<li>
+<p>Autenticación de Terceros: La autenticación robusta del personal (Administradores/Recepcionistas) se delegará a un Sistema de Identidad Institucional existente. El SRC solo gestionará la Autorización (RBAC) basada en los roles recibidos.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_audiencia">1.3. Audiencia</h3>
+<div class="paragraph">
+<p>(Aquí va la audiencia del documento)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_glosario">1.4. Glosario</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Concepto</th>
+<th class="tableblock halign-left valign-top">Descripción / significado</th>
+<th class="tableblock halign-left valign-top">Estándar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock">A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Acceso al sistema</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proceso mediante el cual un usuario inicia sesión en el sistema utilizando sus credenciales (usuario y contraseña) para realizar tareas según su rol. Incluye controles sobre gestión de accesos (autenticación, privilegios mínimos, gestión de identidades, control de contraseñas, sesiones).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISO/IEC 27001 Seguridad de la Información</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock">B</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interesados_stakeholders">1. Interesados (Stakeholders)</h2>
+<h2 id="_definición_de_requerimientos">2. Definición de requerimientos</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_planteamiento_del_problema">2.1. Planteamiento del Problema</h3>
+<div class="paragraph">
+<p>La industria hotelera es una de las más competidas a nivel mundial, lo que exige mantenerse a la vanguardia y dar servicios superiores para sobresalir. La cadena hotelera, posicionada como un líder global en la hospitalidad, opera a una escala sin precedentes que necesita máxima eficiencia operativa. Por lo tanto, para mantener su liderazgo estratégico, es imperativo gestionar un vasto inventario de 1,000,000 de habitaciones de forma unificada. Esto requiere uniformidad en el proceso para gestionar las más de 5000 propiedades a nivel mundial. A pesar de esta magnitud,la realidad operativa actual revela una vulnerabilidad crítica: cada hotel utiliza una solución local de reservas, lo que genera inconsistencias entre hoteles, errores y dificultades en el proceso de centralización.</p>
+</div>
+<div class="paragraph">
+<p>Este problema de fragmentación se traduce en que se crean múltiples fuentes de información, lo que genera diversos reportes o ingresos que pueden diferir entre el hotel y el corporativo. Esto hace necesaria una conciliación manual que consume tiempo y retrasa la toma de decisiones estratégicas. Además, los empleados de central o gerentes de hotel también pierden tiempo al tener que ingresar datos, exportar o manipular información de diferentes sistemas, elevando la fricción operativa de la cadena.</p>
+</div>
+<div class="paragraph">
+<p>Sumado a esta ineficiencia, el riesgo tecnológico es significativo. La arquitectura basada en soluciones locales individuales está desactualizada. Mantener estos sistemas requiere soporte especializado y caro, lo cual ya no es escalable ni sostenible. En consecuencia, la infraestructura actual, al tener 5000 puntos de entrada en lugar de uno centralizado, multiplica las vulnerabilidades, es decir, el riesgo de ciberataques o fallas en el cumplimiento de normativas de privacidad de datos, comprometiendo la fiabilidad de la operación.</p>
+</div>
+<div class="paragraph">
+<p>Por consiguiente, la justificación de este proyecto radica en la necesidad de transformar la gestión de reservaciones de un costo operativo a una ventaja competitiva. La implementación de una plataforma centralizada y robusta es la única vía para optimizar las operaciones diarias a esta escala. Un sistema unificado permitirá llevar a cabo procesos más eficientes, asegurando un incremento estructural de los ingresos y mejorando la satisfacción del cliente. Al estandarizar la arquitectura tecnológica, el nuevo sistema permitirá una centralización de datos, eliminando la conciliación manual y, por consiguiente, recortando tiempos y mitigando riesgos de seguridad.</p>
+</div>
+<div class="paragraph">
+<p>Además, esta transformación desbloqueará la capacidad de implementar precios dinámicos y políticas de ocupación avanzadas a nivel de cadena, garantizando la máxima monetización del inventario y la escalabilidad futura.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alcance_y_propósito_del_diseño">2.2. Alcance y propósito del diseño</h3>
+<div class="paragraph">
+<p>(Hacer aquí el alcance y propósito del diseño)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_diagrama_de_casos_de_uso">2.3. Diagrama de casos de uso</h3>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/useCaseDiagramSistemaHotelero.png" alt="Vista de Diagrama de Casos de Uso" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/useCaseDiagramSistemaHoteleroPackage.png" alt="Vista de Diagrama de Casos de Uso por paquete" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/useCaseDiagramHuesped.png" alt="Vista de Diagrama de Casos de Uso de Huésped" width="300">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/useCaseDiagramRecepcion.png" alt="Vista de Diagrama de Casos de Uso de Recepción" width="300">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/useCaseDiagramAdministracion.png" alt="Vista de Diagrama de Casos de Uso de Administración" width="300">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/useCaseDiagramAuditoria.png" alt="Vista de Diagrama de Casos de Uso de Auditoría" width="300">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_descripciones_de_casos_de_uso">2.4. Descripciones de casos de uso</h3>
+<div class="sect3">
+<h4 id="_ac01_huésped">2.4.1. AC01 - Huésped</h4>
+<div class="sect4">
+<h5 id="_cu01_buscar_hotel">CU01 - Buscar hotel</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU01 - Buscar hotel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped (AC01)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED busca hoteles disponibles que cumplan con sus criterios de búsqueda (destino, fechas).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Existen HOTELes registrados y accesibles dentro del sistema.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra una lista de hoteles disponibles con barra de búsqueda.</p>
+<p class="tableblock">2. El HUÉSPED selecciona un hotel y da clic en “Aceptar”.</p>
+<p class="tableblock">3. El sistema muestra información del hotel con filtros.</p>
+<p class="tableblock">4. El HUÉSPED visualiza la información y da clic en “Cancelar”.</p>
+<p class="tableblock">5. El sistema cierra la ventana.</p>
+<p class="tableblock">6. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 2.1: El HUÉSPED da clic en “Salir”. El sistema confirma y finaliza.
+FA 4.1: El HUÉSPED consulta disponibilidad → continúa en CU02.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX1: No hay hoteles registrados. El sistema muestra error y finaliza.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED visualiza la lista de hoteles disponibles.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu02_consultar_disponibilidad">CU02 - Consultar disponibilidad</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU02 - Consultar disponibilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped (AC01)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED consulta la disponibilidad de una habitación de un hotel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Existen hoteles con habitaciones registradas y tarifas actualizadas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra información del hotel con filtros.</p>
+<p class="tableblock">2. El HUÉSPED selecciona una habitación.</p>
+<p class="tableblock">3. El sistema muestra información de la habitación.</p>
+<p class="tableblock">4. El HUÉSPED da clic en “Reservar”.</p>
+<p class="tableblock">5. El sistema muestra disponibilidad de la habitación.</p>
+<p class="tableblock">6. El HUÉSPED da clic en “Cancelar”.</p>
+<p class="tableblock">7. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 2.1: El HUÉSPED da clic en “Salir”. El sistema confirma y finaliza.
+FA 6.1: El HUÉSPED decide reservar → continúa en CU03.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX1: No hay habitaciones registradas. El sistema muestra error y finaliza.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED consulta la disponibilidad de una habitación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu03_realizar_reserva">CU03 - Realizar reserva</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU03 - Realizar reserva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped (AC01)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED realiza la reserva de una habitación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La habitación seleccionada está disponible y con tarifas actualizadas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema valida disponibilidad y muestra la información de la habitación.</p>
+<p class="tableblock">2. El HUÉSPED da clic en “Reservar”.</p>
+<p class="tableblock">3. El sistema muestra ventana con fechas y botón “Reservar”.</p>
+<p class="tableblock">4. El HUÉSPED selecciona fechas y confirma.</p>
+<p class="tableblock">5. El sistema valida y muestra información de pago.</p>
+<p class="tableblock">6. El HUÉSPED ingresa datos personales y confirma.</p>
+<p class="tableblock">7. El sistema procesa pago y muestra mensaje de confirmación.</p>
+<p class="tableblock">8. El HUÉSPED da clic en “Aceptar”.</p>
+<p class="tableblock">9. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 2.1: El HUÉSPED cancela el proceso.
+FA 6.1: El HUÉSPED paga en check-out.
+FA 7.1: Pago rechazado.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX1: Error de conexión con BD.
+EX2: Error de conexión con pasarela de pago.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED realiza la reserva y el sistema la registra.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu04_modificar_reserva">CU04 - Modificar reserva</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU04 - Modificar reserva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped (AC01)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED modifica una reserva activa.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema tiene reservas registradas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema recupera reservas activas.</p>
+<p class="tableblock">2. El HUÉSPED selecciona una reserva.</p>
+<p class="tableblock">3. El sistema muestra detalles con opción de modificar.</p>
+<p class="tableblock">4. El HUÉSPED selecciona “Modificar reserva”.</p>
+<p class="tableblock">5. El sistema muestra campos editables.</p>
+<p class="tableblock">6. El HUÉSPED edita y confirma.</p>
+<p class="tableblock">7. El sistema valida cambios y procesa pago si aplica.</p>
+<p class="tableblock">8. El HUÉSPED confirma.</p>
+<p class="tableblock">9. El sistema registra cambios y finaliza.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 2.1: Cancelación del proceso.
+FA 4.1: El flujo continúa en CU05 - Cancelar reserva.
+FA 9.1: Pago rechazado.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX1: Error de conexión con BD.
+EX2: Error con el banco.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La reserva queda modificada en el sistema.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu05_cancelar_reserva">CU05 - Cancelar reserva</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU05 - Cancelar reserva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped (AC01)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El HUÉSPED cancela una reserva activa.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema tiene reservas registradas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema recupera reservas activas.</p>
+<p class="tableblock">2. El HUÉSPED selecciona una reserva.</p>
+<p class="tableblock">3. El sistema muestra detalles con opción de cancelar.</p>
+<p class="tableblock">4. El HUÉSPED selecciona “Cancelar reserva”.</p>
+<p class="tableblock">5. El sistema solicita confirmación.</p>
+<p class="tableblock">6. El HUÉSPED confirma.</p>
+<p class="tableblock">7. El sistema cancela la reserva y muestra mensaje.</p>
+<p class="tableblock">8. El HUÉSPED confirma.</p>
+<p class="tableblock">9. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 2.1: Cancelación del proceso.
+FA 6.1: El HUÉSPED no confirma cancelación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX1: Error de conexión con BD.
+EX2: Error en cancelación de la reserva.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La reserva queda cancelada en el sistema.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ac02_recepción">2.4.2. AC02 - Recepción</h4>
+<div class="sect4">
+<h5 id="_cu07_registrar_check_in">CU07 - Registrar check-in</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU07 - Registrar check-in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista registra la entrada del huésped en el sistema.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. Existe una reserva activa a nombre del huésped.</p>
+<p class="tableblock">PRE-2. El huésped se presenta en la recepción</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra una ventana donde solicita el nombre del huésped o persona que hizo la reserva y el botón “Buscar”.</p>
+<p class="tableblock">2. El recepcionista ingresa los datos de búsqueda de la reserva y da clic en la opción “Buscar”.</p>
+<p class="tableblock">3. El sistema busca la reserva en la base de datos y despliega los detalles de la reserva (nombre del huésped, fecha de inicio y fin, habitación asignada) junto a los botones “Confirmar check-in” y “Cancelar”. (ver FA 3.1) (ver EX1)</p>
+<p class="tableblock">4. El recepcionista valida los datos y da clic en el botón “Confirmar check-in”. (ver FA 4.1)</p>
+<p class="tableblock">5. El sistema muestra una ventana con campos a llenar para realizar la pre-autorización de la tarifa estándar (dependiendo de la habitación seleccionada) y depósito de seguridad con cargo en la tarjeta de crédito del huésped con el botón “Realizar pre-autorización”. (ver FA 5.1)</p>
+<p class="tableblock">6. El recepcionista solicita la tarjeta de crédito del huésped y llena los campos solicitados y da clic en el botón “Realizar pre-autorización”.</p>
+<p class="tableblock">7. El sistema cambia el estado de la habitación a “Ocupada” y muestra la ventana con un código autogenerado de 6 dígitos para acceder a la habitación junto con el botón “Finalizar”. (ver EX1)</p>
+<p class="tableblock">8. El recepcionista entrega la llave al huésped y confirma en el sistema con botón “Finalizar”.</p>
+<p class="tableblock">9. El sistema muestra el mensaje “Check-in registrado exitosamente”.</p>
+<p class="tableblock">10. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FA 3.1</strong> No existe la reserva en la base de datos</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente con el mensaje “Reserva no encontrada, vuelve a intentarlo” y el botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar”.</p>
+<p class="tableblock">3. Regresa al paso 1 del flujo normal.</p>
+<p class="tableblock"><strong>FA 4.1</strong> El recepcionista cancela el proceso de la búsqueda de reserva</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Cancelar”.</p>
+<p class="tableblock">2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botónes “Aceptar” y “Cancelar”.</p>
+<p class="tableblock">3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.</p>
+<p class="tableblock">4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 3 del flujo normal.</p>
+<p class="tableblock"><strong>FA 5.1</strong> El huésped realizó una reserva prepagada</p>
+<p class="tableblock">1. Continúa al paso 7 del flujo normal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3.Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. El huésped queda registrado como en estancia</p>
+<p class="tableblock">POST-2. La habitación cambia su estado a “Ocupada”.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu08_registrar_check_out">CU08 - Registrar check-out</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU08 - Registrar check-out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista registra la salida del huésped en el sistema y bloquea la habitación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. El huésped debe tener una estancia activa.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra una ventana donde solicita el número de reserva y el botón “Buscar”.</p>
+<p class="tableblock">2. El recepcionista ingresa los datos de búsqueda de la reserva y da clic en la opción “Buscar”.</p>
+<p class="tableblock">3. El sistema busca la reserva en la base de datos y despliega los detalles de la reserva (nombre del huésped, fecha de inicio y fin, habitación asignada y los cargos pendientes (si hay)) junto a los botones “Confirmar check-out” y “Cancelar”. (ver EX1)</p>
+<p class="tableblock">4. El recepcionista valida los datos y da clic en el botón “Confirmar check-out”. (ver FA 4.1)</p>
+<p class="tableblock">5. El sistema calcula el total a pagar y muestra los botones “Cobrar ahora”, “Continuar” y “Regresar”. (ver FA 5.1)</p>
+<p class="tableblock">6. El recepcionista da clic en el botón “Continuar” (ver FA 6.1) (ver FA 6.2)</p>
+<p class="tableblock">7. El sistema cambia el estado de la habitación a “Disponible”, genera un comprobante impreso junto con el botón “Finalizar”. (ver EX1)</p>
+<p class="tableblock">8. El recepcionista entrega el recibo al huésped y confirma en el sistema con botón “Finalizar”.</p>
+<p class="tableblock">9. El sistema muestra el mensaje “Check-out realizado exitosamente”.</p>
+<p class="tableblock">10. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FA 4.1</strong> El recepcionista cancela el proceso de la búsqueda de reserva</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Cancelar”.</p>
+<p class="tableblock">2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.</p>
+<p class="tableblock">3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.</p>
+<p class="tableblock">4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 3 del flujo normal.</p>
+<p class="tableblock"><strong>FA 5.1</strong> La reserva fue de prepago</p>
+<p class="tableblock">1. Continúa al paso 7 del flujo normal.</p>
+<p class="tableblock"><strong>FA 6.1</strong> El recepcionista procede a completar el cobro.</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Cobrar ahora”.</p>
+<p class="tableblock">2. El flujo normal continúa en el CU09 - Completar cobro</p>
+<p class="tableblock">3. Termina el caso de uso</p>
+<p class="tableblock"><strong>FA 6.2</strong> El recepcionista procede a completar el cobro.</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Regresar”.</p>
+<p class="tableblock">2. Regresa al paso 5 del flujo normal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3.Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. La habitación se marca como “Disponible”.</p>
+<p class="tableblock">POST-2. El huésped queda registrado como salida finalizada.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu09_completar_cobro">CU09 - Completar cobro</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU09 - Completar cobro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista realiza el cobro al huésped una vez terminada su estancia en el hotel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. Deben existir cargos pendientes por pagar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra la ventana con el monto total y con el botón “Procesar pago”.</p>
+<p class="tableblock">2. El recepcionista da clic en “Procesar pago”.</p>
+<p class="tableblock">3. El sistema envía solicitud a pasarela de pagos, y muestra en pantalla el mensaje “La transacción se realizó correctamente” junto con el botón “Aceptar”. (ver EX1)</p>
+<p class="tableblock">4. El recepcionista observa el resultado en pantalla y confirma con el botón “Aceptar”.</p>
+<p class="tableblock">5. El sistema registra la transacción en la base de datos, muestra el mensaje “Pago completado exitosamente” junto al botón “Aceptar”  y genera comprobante impreso. (ver EX2)</p>
+<p class="tableblock">6. El recepcionista da clic en “Aceptar” y entrega comprobante impreso al huésped.</p>
+<p class="tableblock">7. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la pasarela de pagos</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Ha ocurrido un error al realizar el pago, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3. Termina el caso de uso.</p>
+<p class="tableblock"><strong>EX2.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. El pago queda registrado en el sistema.</p>
+<p class="tableblock">POST-2. Se genera comprobante impreso.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu10_registrar_consumo_de_servicios">CU10 - Registrar consumo de servicios</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU10 - Registrar consumo de servicios</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista registra consumos adicionales del huésped durante su instancia (desayuno, consumo de productos, lavandería, etc.)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. El huésped debe tener una estancia activa.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra la ventana “Registro de consumo”, solicitando los datos del huésped y número de habitación junto al botón “Buscar”.</p>
+<p class="tableblock">2. El recepcionista ingresa los datos solicitados y  da clic en “Buscar”.</p>
+<p class="tableblock">3. El sistema consulta la base de datos y muestra la cuenta activa de dicha habitación, el campo para introducir el nuevo servicio y los botones “Agregar servicio” y “Regresar”. (ver EX1)</p>
+<p class="tableblock">4. El recepcionista ingresa el tipo de servicio consumido, cantidad y costo y da clic en “Agregar servicio”. (ver FA 4.1)</p>
+<p class="tableblock">5. El sistema actualiza la cuenta de la habitación y muestra el mensaje “El servicio se agregó correctamente” con el botón “Aceptar”. (ver EX1)</p>
+<p class="tableblock">6. El recepcionista da clic en “Aceptar”.</p>
+<p class="tableblock">7. Termina el caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FA 4.1</strong> El recepcionista decide regresar</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Regresar”.</p>
+<p class="tableblock">2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.</p>
+<p class="tableblock">3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.</p>
+<p class="tableblock">4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 3 del flujo normal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. El consumo queda registrado en la cuenta del huésped.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu11_gestionar_cambio_de_habitación">CU11 - Gestionar cambio de habitación</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU11 - Gestionar cambio de habitación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista cambia al huésped de habitación de acuerdo a la disponibilidad y respetando tarifas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. El huésped tiene una estancia activa.</p>
+<p class="tableblock">PRE-2. Debe haber habitaciones disponibles.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra la ventana “Cambio de habitación” solicitando el nombre del huésped y el botón “Buscar”.</p>
+<p class="tableblock">2. El recepcionista ingresa los datos y presiona “Buscar”.</p>
+<p class="tableblock">3. El sistema muestra una lista de habitaciones con disponibilidad con el botón “Asignar”. (ver EX2)</p>
+<p class="tableblock">4. El recepcionista selecciona una habitación y da clic en el botón “Asignar”.</p>
+<p class="tableblock">5. El sistema muestra la habitación actual a la izquierda y la habitación nueva seleccionada a la izquierda y muestra el cargo a cobrar por el cambio y el botón “Pagar en efectivo” “Pagar con tarjeta de crédito” “Regresar”.</p>
+<p class="tableblock">6. El recepcionista da clic en “Pagar con tarjeta de crédito”. (ver FA 6.1) (ver FA 6.2)</p>
+<p class="tableblock">7. El sistema muestra una ventana con campos a llenar para realizar el cargo en la tarjeta de crédito del huésped y los botones “Realizar cobro” y “Cancelar”.</p>
+<p class="tableblock">8. El recepcionista solicita la tarjeta de crédito del huésped y llena los campos solicitados y da clic en el botón “Realizar cobro”. (ver FA 8.1)</p>
+<p class="tableblock">9. El sistema envía solicitud a pasarela de pagos, y muestra en pantalla el mensaje “La transacción se realizó correctamente” junto con el botón “Aceptar”. (ver EX1)</p>
+<p class="tableblock">10. El recepcionista observa el resultado en pantalla y confirma con el botón “Aceptar”.</p>
+<p class="tableblock">11. El sistema registra la transacción en la base de datos, muestra el mensaje “Pago completado exitosamente” junto al botón “Aceptar”, también cambia el estado de las habitaciones, la anterior a “Disponible” y la actualizada a “Ocupada” y genera comprobante impreso. (ver EX2)</p>
+<p class="tableblock">12. El recepcionista da clic en “Aceptar” y entrega comprobante impreso al huésped.</p>
+<p class="tableblock">13. Termina el caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FA 6.1</strong> El huésped decide pagar en efectivo</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Pagar en efectivo”.</p>
+<p class="tableblock">2. El sistema muestra en la ventana la cantidad a cobrar y el campo para introducir la cantidad pagada desbloquea la caja registradora.</p>
+<p class="tableblock">3. El recepcionista introduce la cantidad a cobrar en la caja y escribe en el campo la cantidad introducida.</p>
+<p class="tableblock">4. El sistema realiza la resta y muestra en pantalla el cambio que se debe regresar.</p>
+<p class="tableblock">5. El recepcionista toma el dinero de cambio y cierra la caja.</p>
+<p class="tableblock">6. El sistema genera el comprobante impreso, y registra la transacción en la base de datos, y muestra el mensaje “Pago completado exitosamente” junto al botón “Aceptar”. (ver EX2)</p>
+<p class="tableblock">7. El recepcionista da clic en el botón “Aceptar” y entrega el comprobante impreso al huésped.</p>
+<p class="tableblock">8. Termina el caso de uso.</p>
+<p class="tableblock"><strong>FA 6.2</strong> El recepcionista decide regresar</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Regresar”.</p>
+<p class="tableblock">2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.</p>
+<p class="tableblock">3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.</p>
+<p class="tableblock">4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 5 del flujo normal.</p>
+<p class="tableblock"><strong>FA 8.1</strong> El recepcionista decide cancelar</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Cancelar”.</p>
+<p class="tableblock">2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.</p>
+<p class="tableblock">3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.</p>
+<p class="tableblock">4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 7 del flujo normal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la pasarela de pagos</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Ha ocurrido un error al realizar el pago, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3. Termina el caso de uso.</p>
+<p class="tableblock"><strong>EX2.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. La reserva se actualiza con la nueva habitación.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu12_gestionar_bloqueos_de_habitaciones">CU12 - Gestionar bloqueos de habitaciones</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU12 - Gestionar bloqueos de habitaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista marca una habitación como fuera de servicio por determinado motivo (mantenimiento o limpieza) impidiendo su reserva</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. La habitación debe existir en el sistema.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra la ventana “Bloqueo de habitación” solicitando el número de habitación, junto al botón “Continuar”.</p>
+<p class="tableblock">2. El recepcionista introduce el número de habitación a bloquear.</p>
+<p class="tableblock">3. El sistema verifica que la habitación no esté en estado “Ocupada” y muestra en la ventana un cuadro combinado para seleccionar el motivo junto a los botones “Bloquear” y “Cancelar”. (ver EX1)</p>
+<p class="tableblock">4. El recepcionista selecciona del cuadro combinado una opción y da clic en “Bloquear”. (ver FA 4.1)</p>
+<p class="tableblock">5. El sistema cambia el estado de la habitación a “Fuera de servicio” y muestra el mensaje “La habitación se ha bloqueado correctamente” con el botón “Aceptar”. (ver EX1)</p>
+<p class="tableblock">6. El recepcionista da clic en el botón “Aceptar”.</p>
+<p class="tableblock">7. Termina el caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FA 8.1</strong> El recepcionista decide cancelar el proceso</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Cancelar”.</p>
+<p class="tableblock">2. El sistema muestra la ventana de confirmación con el mensaje “¿Está seguro que quiere salir?” con los botones “Aceptar” y “Cancelar”.</p>
+<p class="tableblock">3. Si el recepcionista da clic en el botón “Aceptar”, termina el caso de uso.</p>
+<p class="tableblock">4. Si el recepcionista da clic en el botón “Cancelar”, regresa al paso 7 del flujo normal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3.Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. La habitación queda en estado “Fuera de servicio”.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu13_cancelar_reserva_a_petición_del_cliente_en_recepción">CU13 - Cancelar reserva a petición del cliente en recepción</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">CU13 - Cancelar reserva a petición del cliente en recepción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción (AC02)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista cancela la reserva directamente en el hotel si el cliente lo solicita</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-1. El huésped debe tener una reserva activa.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. El sistema muestra la ventana “Cancelar reserva” con campos a llenar de los datos del huésped junto al botón “Buscar”.</p>
+<p class="tableblock">2. El recepcionista ingresa los datos solicitados y da clic en “Buscar”.</p>
+<p class="tableblock">3. El sistema consulta la base de datos y muestra los detalles de la reserva, y las políticas de cancelación junto al botón “Finalizar” y “Regresar”. (ver EX1)</p>
+<p class="tableblock">4. El recepcionista le explica las políticas al huésped, y da clic “Finalizar”. (ver FA 4.1)</p>
+<p class="tableblock">5. El sistema actualiza el estado de la reserva a “Cancelada” y muestra el mensaje “Reserva cancelada exitosamente” con el botón “Aceptar”. (ver EX1)</p>
+<p class="tableblock">6. El recepcionista da clic en  “Aceptar”.</p>
+<p class="tableblock">7. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FA 4.1</strong> El recepcionista decide regresar</p>
+<p class="tableblock">1. El recepcionista da clic en el botón “Regresar”.</p>
+<p class="tableblock">2. Regresa al paso 1 del flujo normal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EX1.</strong> El sistema no puede conectarse con la base de datos.</p>
+<p class="tableblock">1. El sistema muestra la ventana emergente de error y el mensaje “Error en la conexión con la base de datos, inténtalo más tarde” junto al botón “Aceptar”.</p>
+<p class="tableblock">2. El recepcionista da clic en el botón “Aceptar” para cerrar la ventana.</p>
+<p class="tableblock">3. Termina el caso de uso.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-1. La reserva queda cancelada</p>
+<p class="tableblock">POST-2. La habitación queda disponible.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ac03_administrador">2.4.3. AC03 - Administrador</h4>
+<div class="sect4">
+<h5 id="_cu14_gestionar_hoteles_de_la_cadena">CU14 - Gestionar hoteles de la cadena</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">Gestionar hoteles de la cadena</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrador</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El administrador mantiene la información de los hoteles de la cadena actualizada, permitiendo la adición de nuevas propiedades y la modificación de las existentes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-01 Se tienen los datos mínimos para el alta o la modificación</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">. El administrador selecciona la opción “Gestionar catálogo”
+. El sistema presenta la interfaz principal de gestión (incluye la lista de hoteles y la opción de “Registrar Nuevo Hotel”)
+. El administrador selecciona la opción “Registrar nuevo hotel” (ver FA 3.1)
+. El sistema presenta un formulario para ingresar la información del hotel (nombre, dirección, categoría, contacto, cantidad de habitaciones)
+. El administrador ingresa los datos obligatorios y confirma el registro
+. El sistema valida la información dada, crea el registro con los datos proporcionados, notifica el éxito de la operación y guarda los movimientos del administrador en una bitácora
+. Termina caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 3.1 Modificación de un Hotel Existente
+. El administrador busca y selecciona un hotel, da clic en “Modificar información”
+. El sistema recupera y muestra los datos actuales en el formulario de edición
+. El administrador modifica los campos requeridos y confirma la modificación
+. El sistema valida los cambios, actualiza el registro, notifica al administrador y guarda los movimientos del administrador en una bitácora
+. Termina caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX-1 Fallo al registrar movimiento en la bitácora
+. El sistema revierte la transacción para mantener la integridad entre los datos y la bitácora.
+. Además, notifica al administrador del fallo y vuelve al menú principal
+. Termina caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondición</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-01 Se crea un nuevo registro de hotel en el catálogo
+POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_cu15_gestionar_tipos_de_habitación">CU15 - Gestionar tipos de habitación</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">Configurar tipos de habitación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor(es)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrador</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Objetivo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El administrador define, actualiza y gestiona las categorías de habitaciones, sus amenidades y sus capacidades</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precondiciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRE-01 El hotel a quien se le asociará las habitaciones ya está registrado en sistema</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo normal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">. El administrador selecciona la opción “Configurar habitación”
+. El sistema presenta la interfaz para seleccionar el hotel al cuál se le van a configurar sus habitaciones.
+. El administrador selecciona el hotel y la opción “Registrar nuevo tipo” (ver FA 3.1) (ver FA 3.2)
+. El sistema presenta un formulario para ingresar la categorización, las capacidades y la lista de amenidades de la habitación
+. El administrador ingresa los datos, selecciona las amenidades y confirma la configuración
+. El sistema valida la información, guarda el registro, notifica al administrador y guarda sus movimientos en la bitácora
+. Termina caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flujo alterno</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FA 3.1 Modificación de un Hotel Existente
+. El administrador selecciona un hotel, da clic en “Modificar Configuración”
+. El sistema recupera y muestra los datos actuales de los tipos de habitación
+. El administrador actualiza los campos requeridos
+. El sistema valida los cambios, actualiza el registro, notifica al administrador sobre el éxito de la operación y guarda sus movimientos en la bitácora
+. Termina caso de uso
+FA 3.2 Dar de baja un tipo de habitación
+. El administrador selecciona un hotel, da clic en “Dar de baja el tipo”
+. El sistema verifica si existen habitaciones activas o reservas futuras asociadas con ese tipo de habitación
+. Después, pide la confirmación de baja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Excepción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EX-1 Fallo al registrar movimiento en la bitácora
+. El sistema revierte la transacción para mantener la integridad entre los datos y la bitácora.
+. Además, notifica al administrador del fallo y vuelve al menú principal
+. El administrador confirma la baja
+. El sistema cambia el estado de la habitación, notifica al administrador el éxito de la operación y guarda en la bitácora los movimientos de la operación
+. Termina caso de uso</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postcondición</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST-01 Se crea un nuevo registro de habitación en un hotel del catálogo
+POST-02 La habitación seleccionada de un hotel seleccionado se actualiza con los nuevos datos
+POST-03 La habitación seleccionada de un hotel seleccionado es dada de baja</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ac04_auditoría">2.4.4. AC04 - Auditoría</h4>
+
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_impulsores_arquitectónicos_asrs_y_priorización">3. Impulsores Arquitectónicos (ASRs) y Priorización</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_utility_tree">3.1. Utility Tree</h3>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/utilityTree.png" alt="Vista del Utility Tree" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_escenarios_de_atributos_de_calidad">3.2. Escenarios de atributos de calidad</h3>
+<div class="sect3">
+<h4 id="_rendimiento">3.2.1. Rendimiento</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-11 Huésped revisa todas las reservas pasadas y activas realizadas por él</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El huésped consulta su historial de reservas y el sistema debe responder rápidamente.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de consulta de reservas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta concurrencia (picos de demanda).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Módulo de reservas, base de datos transaccional.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema retorna la lista completa de reservas pasadas y activas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia ≤ 500 ms para P95 bajo 300 QPS</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-25 Administrador configura habitaciones disponibles mediante categorización, amenidades y capacidades</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El administrador gestiona la disponibilidad y características de habitaciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia del catálogo.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administración</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registro o actualización de habitaciones y sus atributos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Módulo de catálogo.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actualización reflejada en el sistema de manera inmediata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confirmación ≤ 2.5 s (P95)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-29 Administrador ajusta hasta el overbooking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El administrador define política de sobreventa hasta el 10% por tipo de habitación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Velocidad en la escritura de datos</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administración</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ajuste de parámetros de overbooking.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motor de reglas de disponibilidad.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema actualiza inmediatamente la política y la refleja en las reservas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia ≤ 2.5 s en la confirmación</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-31 Administrador consulta disponibilidad y ocupación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El administrador consulta el estado de ocupación de todas las habitaciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia de la consulta a la base de datos y latencia de la red</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administración</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Petición de reporte de ocupación/disponibilidad.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga media, con una media de 2000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motor de consultas de disponibilidad.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema retorna resultados precisos en tiempo real.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia ≤ 500 ms (P95) bajo 300 QPS</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-38 Genera un reporte para verificar que los pagos en línea se hayan procesado correctamente.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El auditor genera un reporte masivo sobre el estado de pagos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuellos de botella de la base de datos</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de reporte de conciliación de pagos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subsistema de pagos y motor de reportes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generación del reporte con todos los pagos confirmados y rechazados.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo de respuesta ≤ 4 s (P99)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-42 El auditor compara el estado de las habitaciones en el sistema con reportes físicos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El auditor solicita datos de ocupación registrados en el sistema.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rendimiento</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cuellos de botella de la base de datos</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de consulta histórica de habitaciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carga de auditoría con múltiples registros.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base de datos de reservas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Listado completo de habitaciones y su estado.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Consulta resuelta en ≤ 2 s bajo 200 QPS.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_disponibilidad">3.2.2. Disponibilidad</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_usabilidad">3.2.3. Usabilidad</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_seguridad">3.2.4. Seguridad</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-06 Huésped selecciona una habitación y confirma la reserva</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un huésped reserva una habitación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integridad de transacciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Huésped</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confirmación de la reserva con pago.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con alta concurrencia, con una media de 10,000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Módulo de reservas y pagos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema confirma una sola vez y asegura la transacción.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Incidentes de doble cobro = 0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-17 Recepcionista realiza el cobro al huésped terminada su estancia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El recepcionista realiza un cargo de consumos al finalizar la estancia.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integridad de transacciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recepción</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de pago final.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registro único del cobro.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% de consistencia en la transacción.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-27 Administrador define precios diarios, temporadas altas y promociones.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El administrador cambia tarifas y promociones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autenticación y autorización.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administración</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modificación de tarifas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sesión autenticada.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Módulo de catálogo de precios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solo usuarios autorizados pueden modificar precios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acceso no autorizado = 0.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-32 Un auditor busca reservas canceladas poco después de su creación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un auditor valida intentos sospechosos de cancelación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trazabilidad de operaciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Consulta de cancelaciones recientes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carga de auditoría.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log de operaciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mostrar todas las cancelaciones con marca de tiempo y usuario.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% de transacciones trazables.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-33 Un auditor rastrea cambios en el precio de una reserva después de confirmada.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditor revisa modificaciones de precios post-confirmación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integridad de precios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de historial de cambios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registro de precios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mostrar cada modificación con usuario y hora</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% de cambios registrados</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-35 El auditor sigue reembolsos y descuentos aplicados, asegurando que estén justificados.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un auditor valida descuentos y devoluciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autenticidad y justificación de descuentos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de reporte de reembolsos/descuentos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subsistema de pagos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registro completo de cada descuento con justificación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% de descuentos con registro válido.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-37 El auditor genera un reporte para verificar que los pagos en línea se hayan procesado correctamente.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditor valida pagos electrónicos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disponibilidad e integridad de los registros de pago.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de reporte de conciliación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pasarela de pagos.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generación de reporte con estatus de cada pago.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% de pagos procesados verificados</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">ID y descripción corta</th>
+<th class="tableblock halign-left valign-top">QAS-40 El auditor puede ver un registro de cada inicio de sesión y la actividad del personal.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Escenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El auditor revisa accesos al sistema.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preocupación del atributo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autenticidad y trazabilidad de usuarios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">Refinamiento del escenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fuente del estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auditoría</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estímulo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitud de logins del personal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ambiente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operación con carga normal, con una media de 1000 solicitudes simultáneas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artefacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sistema de autenticación.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lista completa de sesiones e interacciones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medida de la respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% de accesos registrados.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interesados_stakeholders">4. Interesados (Stakeholders)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(Aquí se describen los actores, usuarios y partes interesadas del sistema)</p>
+<p>Dentro de este proyecto nos encontraremos con los siguientes actores:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AC01 - Huésped</p>
+</li>
+<li>
+<p>AC02 - Recepcionista</p>
+</li>
+<li>
+<p>AC03 - Administrativo</p>
+</li>
+<li>
+<p>AC04 - Auditoría</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_contexto">2. Vista de Contexto</h2>
+<h2 id="_vista_de_contexto">5. Vista de Contexto</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe el sistema como una “caja negra” y cómo se relaciona con su entorno externo)</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="images/context.png" alt="Diagrama de Contexto" width="600">
+<img src="images/contextDiagramSistemaHoteleroLevel0.png" alt="Diagrama de Contexto" width="600">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_funcional">3. Vista Funcional</h2>
+<h2 id="_vista_funcional">6. Vista Funcional</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe las funcionalidades principales del sistema y cómo se organizan)</p>
@@ -503,7 +2594,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_información">4. Vista de Información</h2>
+<h2 id="_vista_de_información">7. Vista de Información</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe los modelos de datos, entidades, relaciones o flujos de información)</p>
@@ -516,7 +2607,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_concurrencia">5. Vista de Concurrencia</h2>
+<h2 id="_vista_de_concurrencia">8. Vista de Concurrencia</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Explica cómo el sistema maneja procesos/hilos simultáneos o concurrencia)</p>
@@ -529,7 +2620,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_despliegue">6. Vista de Despliegue</h2>
+<h2 id="_vista_de_despliegue">9. Vista de Despliegue</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Muestra la infraestructura, servidores, contenedores y cómo se despliega el sistema)</p>
@@ -542,7 +2633,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_desarrollo">7. Vista de Desarrollo</h2>
+<h2 id="_vista_de_desarrollo">10. Vista de Desarrollo</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe cómo está organizado el código, módulos, paquetes y capas del sistema)</p>
@@ -555,7 +2646,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_operacional">8. Vista Operacional</h2>
+<h2 id="_vista_operacional">11. Vista Operacional</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Explica cómo se opera y monitorea el sistema en producción: logs, métricas, alertas)</p>
@@ -568,7 +2659,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_atributos_de_calidad">9. Atributos de Calidad</h2>
+<h2 id="_atributos_de_calidad">12. Atributos de Calidad</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Aquí se documentan los atributos clave de calidad del sistema:
@@ -580,7 +2671,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_decisiones_arquitectónicas">10. Decisiones Arquitectónicas</h2>
+<h2 id="_decisiones_arquitectónicas">13. Decisiones Arquitectónicas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Se registran las decisiones importantes tomadas durante el diseño del sistema,
@@ -589,7 +2680,7 @@ ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="_apéndice">11. Apéndice</h2>
+<h2 id="_apéndice">14. Apéndice</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Material adicional, referencias, glosario, notas)</p>
@@ -599,7 +2690,7 @@ ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-20 11:00:28 -0600
+Last updated 2025-09-30 12:55:31 -0600
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
