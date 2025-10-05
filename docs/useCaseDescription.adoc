@@ -696,5 +696,138 @@ POST-03 La habitación seleccionada de un hotel seleccionado es dada de baja
 |===
 
 
+===== CU16 - Configurar Precios
+[cols="1,3", options="header"]
+|===
+|Nombre |Configurar Precios
+|Actor(es) |Administrador (AC03)
+|Objetivo |El sistema debe permitir al Administrador definir reglas complejas que determinen cuánto cuesta una habitación en cualquier momento dado.
+|Precondiciones |PRE-01 Se tienen los datos mínimos para el alta o la modificación
+|Disparador |El Administrador selecciona la opción “Gestión de Precios”
+|Flujo normal |
+. El sistema muestra una lista de las reglas y promociones existentes
+. El Administrador selecciona “Crear Nueva Regla/Promoción” (ver FA 2.1) (ver FA 2.2)
+. El sistema pide el alcance de la regla (si aplica a un hotel, a un tipo de habitación en específico)
+. El Administrador define el Periodo de Aplicación y el mecanismo de precio (tarifa fija, modificador de porcentaje o descuento promocional)
+. El sistema valida que la nueva regla no supere ni contradiga una regla existente con mayor prioridad y guarda la nueva regla en el catálogo
+. Termina el caso de uso
+|Flujo alterno |
+FA 2.1 Modificación de una Regla de Precio Existente
+. El administrador da clic en “Modificar Regla”
+. El sistema recupera las reglas activas y las presenta junto con herramientas de filtro (por hotel, tipo de hotel, rango de fechas)
+. El administrador busca y selecciona la regla que desea modificar
+. El sistema recupera y muestra los parámetros actuales de la regla en el formulario de edición
+. El administrador realiza los cambios necesarios y confirma la modificación
+. El sistema valida la nueva información y actualiza la regla en el catálogo (ver EX-1)
+. Termina caso de uso
+
+FA 2.2 Copiar Regla de Precio o Promoción a otro Periodo/Hotel
+. El administrador da clic en Duplicar regla
+. El sistema genera una copia de la regla y pide al Administrador que defina los nuevos parámetros (hotel, rango de fechas de aplicación)
+. El Administrador ingresa los nuevos parámetros y confirma la creación de la copia
+. El sistema valida la información, crea y guarda la nueva regla en el catálogo
+. Termina caso de uso
+|Excepción |
+EX-1 Conflicto de Reglas
+. El sistema detecta que la nueva promoción tiene un periodo que se superpone con otra promoción existente.
+. El sistema fuerza a ajustar los parámetros
+. Termina caso de uso
+|Postcondición |
+POST-01 Se registra una nueva regla de pago
+POST-02 Una regla de pago es modificada
+POST-03 Se copia una regla de pago en otro hotel
+|===
+
+
+
+===== CU17 - Configurar Políticas de Overbooking
+[cols="1,3", options="header"]
+|===
+|Nombre |Configurar Políticas de Overbooking
+|Actor(es) |Administrador (AC03)
+|Objetivo |El sistema permite que el administrador ajuste el umbral de riesgo aceptable para cada tipo de habitación
+|Precondiciones |PRE-01 Se tienen los datos mínimos para el alta o la modificación
+|Disparador |El Administrador selecciona la opción “Gestión de Overbooking”
+|Flujo normal |
+. El sistema muestra una lista de las políticas existentes
+. El Administrador selecciona la opción “Definir Nueva Política” (ver FA 2.1) (ver FA 2.2)
+. El sistema presenta la lista de hoteles y tipos de habitación
+. El Administrador selecciona el hotel, el tipo de habitación; define el Periodo de Aplicación de la política y el Porcentaje Máximo de Overbooking
+. El sistema valida que el porcentaje sea menor al 10% y que las fechas sean válidas, guarda la política y ajusta la disponibilidad
+. Termina caso de uso
+|Flujo alterno |
+FA 2.1 Modificación de una Política de Overbooking Existente
+. El administrador da clic en “Modificar Política Existente”
+. El sistema recupera el listado de las políticas activas y las presenta junto con herramientas de filtro (por hotel, tipo de hotel, rango de fechas)
+. El administrador busca y selecciona la política que desea modificar
+. El sistema recupera y muestra los parámetros actuales de la política en el formulario de edición
+. El administrador realiza los cambios necesarios y confirma la modificación
+. El sistema valida la nueva información y actualiza la política en el catálogo
+. Termina caso de uso
+
+FA 2.2 Dar de baja una política de Overbooking
+. El administrador selecciona la opción “Eliminar Política”
+. El sistema presenta el listado de políticas activas y pide la selección
+. El Administrador selecciona la política que desea eliminar
+. El sistema pide al Administrador la confirmación final de la eliminación
+. El Administrador confirma la eliminación
+. El sistema elimina la política del catálogo, volviendo la disponibilidad de esas habitaciones a su capacidad física real (ver EX-1)
+. Termina caso de uso
+|Excepción |
+EX-1 Fallo en la Actualización de Disponibilidad
+. El sistema falla al enviar la actualización de la disponibilidad efectiva al módulo de reservas
+. Se realiza una reversión de la transacción y se notifica al Administrador “Error crítico al actualizar el sistema de disponibilidad. La operación ha sido revertida y no está activa”
+. Termina caso de uso
+|Postcondición |
+POST-01 Se registra una nueva política de overbooking
+POST-02 Una política de overbooking es modificada
+POST-03 Se elimina una política de overbooking correctamente
+|===
+
+
+
+===== CU18 - Monitorear Inventario
+[cols="1,3", options="header"]
+|===
+|Identificación y nombre |CU18 - Monitorear inventario
+|Autor |Lizeth Guadalupe Bello Peralta
+|Actor principal |Administrador (AC03)
+|Actores secundarios |N/A
+|Descripción |El administrador obtiene una vista panorámica de cómo está el negocio para tomar decisiones estratégicas
+|Disparador |El administrador va al apartado de Consultar Inventario
+|Precondiciones |PRE-1 Existen hoteles registrados y accesibles dentro del sistema
+|Postcondiciones |POST-1 El Administrador tiene visibilidad del estado actual del inventario según los criterios especificados
+|Flujo normal |
+. El sistema solicita criterios de consulta como fecha, hotel, región y tipo de habitación
+. El administrador especifica los criterios de consulta (ver FA 2.1)
+. El sistema recupera la información del inventario que coincida con los criterios seleccionados, calcula métricas (% de ocupación, habitaciones disponibles y tendencias) y presenta el consolidado de disponibilidad y ocupación (ver FA 3.1) (ver EX-1) (ver EX-2)
+. Termina caso de uso
+|Flujo alterno |
+FA 2.1 El administrador cancela la consulta
+. El Administrador decide no continuar con la consulta
+. Termina caso de uso
+
+FA 3.1 El administrador modifica los criterios
+. El administrador decide cambiar los filtros de búsqueda
+. Regresa al paso 1
+|Excepciones |
+EX-1 Algún hotel no reporta información actualizada
+. El sistema presenta los datos disponibles e indica qué hoteles no tienen información actualizada
+. Termina caso de uso
+
+EX-2 No hay datos históricos suficientes para el periodo solicitado
+. El sistema muestra un mensaje para hacerle saber al Administrador que no se encontraron resultados con los criterios seleccionados
+. Termina caso de uso
+|Prioridad |Media
+|Reglas de negocio |N/A
+|Incluye |N/A
+|Extiende |N/A
+|===
+
+
+
+
+
+
 ==== AC04 - Auditoría
 
