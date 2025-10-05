@@ -151,7 +151,332 @@
 
 ==== Disponibilidad
 
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-03 Huésped consulta la disponibilidad de una habitación
+|Escenario | El sistema debe mantener la disponibilidad del servicio de consulta de habitaciones incluso ante fallos de base de datos
+|Atributo | Disponibilidad
 
+|Preocupación del atributo | Falla de la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped realiza una búsqueda de habitaciones disponibles
+
+|Ambiente | Operación con carga normal, con una media de 300 consultas por segundo
+
+|Artefacto | Módulo de consulta de disponibilidad y base de datos de inventario
+
+|Respuesta | El sistema responde con datos de disponibilidad, usando caché o réplicas si la base de datos principal no está disponible
+
+|Medida de la respuesta | Latencia P95 ≤ 500ms bajo carga de 300 QPS. Disponibilidad del servicio ≥ 99.9%. En caso de falla de BD principal, el sistema responde usando datos en caché con degradación máxima de 200ms adicionales
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-05 Huésped selecciona una habitación y confirma la reserva
+|Escenario | El huésped selecciona una habitación y procede a confirmar la reserva de la misma
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped hace clic en "Confirmar reserva"
+
+|Ambiente | Carga de trabajo media a alta, con múltiples transacciones simultáneas, con una media de 5000 solicitudes a la vez
+
+|Artefacto | Módulo de reservaciones y módulo de inventario
+
+|Respuesta | El sistema muestra una página de confirmación con los detalles de la reserva y un mensaje claro para el huésped. El sistema debe garantizar que cada intento de cobro sea único
+
+|Medida de la respuesta | 99.9% de disponibilidad del servicio, con un tiempo de procesamiento menor a 3 segundos. Solo un huésped obtiene confirmación; el otro recibe un rechazo en <= 1s. El inventario retenido para una reserva fallida debe liberarse automáticamente en <= 500 ms
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-08 Huésped modifica alguna característica de su reserva
+|Escenario | El sistema debe gestionar cambios en una reserva, actualizando el inventario de habitaciones
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Huésped
+
+|Estímulo | El huésped navega a la sección de "Mis reservas" y selecciona la opción para modificar una reserva
+
+|Ambiente | El sistema opera con carga normal con una media de 1000 solicitudes a la vez
+
+|Artefacto | Módulo de modificación de reservas e inventario de habitaciones
+
+|Respuesta | El sistema presenta un formulario pre-llenado que permite al huésped cambiar los campos editables y muestra un resumen de los posibles cargos adicionales. Al final, libera la habitación original y, si la nueva habitación está disponible, la asigna, actualizando el inventario
+
+|Medida de la respuesta | La actualización de disponibilidad de la habitación original debe ser efectiva en menos de 200ms después de la confirmación de modificación
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-13 Recepcionista registra la entrada del huésped
+|Escenario | El sistema registra el check-in de un huésped y refleja el cambio en el estado de la habitación
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos, sincronización de datos e integridad de la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista ejecuta la función de check-in para la reserva de un huésped
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de check-in y módulo de gestión de habitaciones
+
+|Respuesta | El sistema cambia el estado de la habitación de "reservada" a "ocupada"
+
+|Medida de la respuesta | El estado de la habitación debe actualizarse en el sistema en menos de 200ms después de que el recepcionista complete el check-in. La información de ocupación debe ser visible de inmediato para otros recepcionistas
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-15 Recepcionista registra la salida del huésped
+|Escenario | El sistema debe marcar una habitación como desocupada y disponible para la siguiente reserva después de que un huésped se marche
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista ejecuta la función de check-out para una reserva
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de check-out y módulo de gestión de habitaciones
+
+|Respuesta | La habitación ocupada se marca como "limpieza necesaria" o "disponible" de inmediato, lo que la hace visible para futuras asignaciones
+
+|Medida de la respuesta | El estado de la habitación debe actualizarse en el sistema en menos de 200 ms después de la confirmación del check-out. El 100% de las habitaciones deben reflejar su estado correcto
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-18 Recepcionista realiza el cobro al huésped terminada su estancia
+|Escenario | El sistema debe permitir el cobro final, incluyendo consumos adicionales, manteniendo la disponibilidad del servicio incluso ante fallos en la pasarela de pago
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Fallo en el servicio de un sistema externo
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista inicia y procesa un pago final para una reserva
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de pagos y facturación
+
+|Respuesta | El sistema registra el intento de pago y emite la factura. Si la pasarela de pago falla, el sistema reintenta automáticamente o permite completar el proceso manualmente. La disponibilidad de la habitación se actualiza solo después del check-out exitoso
+
+|Medida de la respuesta | El sistema debe procesar el cobro en menos de 500ms. En caso de fallo de la pasarela, el sistema reintenta hasta 3 veces con backoff exponencial. La disponibilidad del módulo de pagos debe ser ≥ 99.5%
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-19 Recepcionista registra consumos adicionales del huésped
+|Escenario | El sistema debe permitir al recepcionista añadir cargos a la cuenta de un huésped sin afectar la disponibilidad de su habitación
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos ante concurrencia
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista selecciona la reserva y añade un nuevo consumo
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de consumos
+
+|Respuesta | El sistema registra el consumo en la cuenta del huésped sin bloquear otras operaciones sobre la misma reserva
+
+|Medida de la respuesta | El registro del consumo debe ser exitoso en menos de 200ms. El estado de la habitación debe permanecer como "ocupado". El sistema debe manejar múltiples registros de consumo concurrentes sin pérdida de datos
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-21 Recepcionista cambia al huésped de habitación
+|Escenario | El sistema debe gestionar el cambio de habitación, liberando la original y asignando una nueva
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Falla de la base de datos y tolerancia a fallos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista ejecuta la función de cambio de habitación, seleccionando una nueva habitación disponible
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de gestión de habitaciones y reservas
+
+|Respuesta | El sistema bloquea ambas habitaciones, realiza la reasignación, actualiza la reserva con la nueva habitación y libera la habitación original
+
+|Medida de la respuesta | La transacción completa debe realizarse en menos de 500ms. La habitación original no debe estar disponible para nuevas reservas hasta que la nueva asignación esté confirmada
+|===
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-22 Recepcionista marca una habitación como fuera de servicio
+|Escenario | El sistema debe excluir una habitación del inventario disponible para reservas
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Falla de la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista cambia el estado de una habitación a "fuera de servicio"
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de gestión de habitaciones
+
+|Respuesta | La habitación es removida de todas las listas de disponibilidad
+
+|Medida de la respuesta | Actualización del estado en menos de 100ms
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-23 Recepcionista cancela la reserva del huésped
+|Escenario | El sistema debe liberar la habitación de una reserva cancelada, haciéndola disponible nuevamente
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Falla de la base de datos y tolerancia a fallos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Recepcionista
+
+|Estímulo | El recepcionista ejecuta la función de cancelación de reserva
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de cancelación de reservas y módulo de inventario
+
+|Respuesta | El sistema cancela la reserva y la habitación es regresada al inventario disponible
+
+|Medida de la respuesta | La habitación debe estar disponible para nuevas reservas en menos de 500 ms
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-24 Administrador realiza altas y modificaciones de hoteles
+|Escenario | El sistema debe permitir al administrador agregar nuevos hoteles o modificar la información de los existentes, y reflejar el cambio en la disponibilidad general
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Falla de la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administrador
+
+|Estímulo | El administrador envía una solicitud para dar de alta o modificar la información de un hotel
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de administración de hoteles
+
+|Respuesta | El sistema registra el nuevo hotel o actualiza los datos del existente, y su inventario de habitaciones se hace visible y disponible para su gestión
+
+|Medida de la respuesta | La información del hotel debe ser persistida en menos de 2 segundos. La disponibilidad de las habitaciones debe reflejarse correctamente en el sistema de forma inmediata
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-26 Administrador configura habitaciones disponibles mediante categorización, amenidades y capacidades
+|Escenario | El sistema debe permitir al administrador configurar los tipos de habitaciones, sus amenidades y sus capacidades, y hacerlas visibles para la reserva
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos ante actualizaciones concurrentes
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administrador
+
+|Estímulo | El administrador envía una solicitud para configurar las características de un tipo de habitación
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de administración de habitaciones
+
+|Respuesta | El sistema actualiza la base de datos con la nueva configuración, haciendo que la disponibilidad de esas habitaciones se muestre con las características correctas en la interfaz del cliente
+
+|Medida de la respuesta | Los cambios deben reflejarse en las interfaces de reserva en menos de 100 ms. La información de capacidad y amenidades debe ser 100% precisa
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-27 Administrador define precios diarios, temporadas altas y promociones
+|Escenario | El sistema debe permitir al administrador definir precios por día, temporadas altas y promociones que afecten la disponibilidad
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Tolerancia a fallos ante actualizaciones concurrentes
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administrador
+
+|Estímulo | El administrador introduce las nuevas reglas de precios y promociones
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de gestión de tarifas
+
+|Respuesta | El sistema aplica las nuevas reglas de precios y promociones a las habitaciones disponibles, haciendo que se muestren en el sistema de reservas
+
+|Medida de la respuesta | La actualización de precios y promociones debe ser efectiva en menos de 200 ms. El sistema debe aplicar las reglas de precios correctamente en el 100% de los casos
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QAS-30 Administrador ajusta hasta el overbooking
+|Escenario | El sistema debe permitir al administrador configurar los límites de overbooking de habitaciones para maximizar la ocupación
+|Atributo | Disponibilidad
+
+|Preocupación del atributo | Fallo en la base de datos
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Administrador
+
+|Estímulo | El administrador modifica la política de overbooking para un tipo de habitación
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas
+
+|Artefacto | Módulo de gestión de overbooking
+
+|Respuesta | El sistema permite que se realicen reservas por encima del número de habitaciones físicas disponibles, hasta el límite definido
+
+|Medida de la respuesta | La política de overbooking debe ser activada en el sistema en menos de 100 ms después de su configuración. El sistema no debe permitir que las reservas superen el límite de overbooking establecido
+|===
 
 
 
