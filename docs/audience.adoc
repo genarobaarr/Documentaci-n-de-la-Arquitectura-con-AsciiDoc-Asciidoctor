@@ -1,4 +1,21 @@
 === Audiencia
 
-(Aquí va la audiencia del documento)
+Este documento está dirigido a todas las partes interesadas involucradas en el diseño, desarrollo, implementación y mantenimiento del Sistema Hotelero. En particular, está destinado a:
+
+- Equipo de desarrollo: Ingenieros de software, programadores y diseñadores responsables de implementar la arquitectura y los componentes descritos.
+
+
+- Analistas: Encargados de validar que los requisitos funcionales y no funcionales se reflejen correctamente en el diseño propuesto.
+
+
+- Equipo de pruebas: Para comprender la estructura del sistema, los módulos clave y las interacciones entre componentes al momento de diseñar y ejecutar pruebas.
+
+
+- Arquitectos de software: Para verificar la coherencia del diseño con las decisiones arquitectónicas tomadas y asegurar la calidad del modelo final.
+
+
+- Académico: Responsable de evaluar la correcta aplicación de principios de diseño, patrones y tácticas en el proyecto.
+
+
+- Usuarios internos de recepción, administración y gestión hotelera: Aunque no se espera que lean el documento completo, podrían consultarlo parcialmente para comprender cómo el sistema satisface sus necesidades funcionales.
 

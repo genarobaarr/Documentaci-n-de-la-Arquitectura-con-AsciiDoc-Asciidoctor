@@ -41,7 +41,6 @@ include::useCaseDescription.adoc[]
 include::views/utilityTree.adoc[]
 include::qualityAttributeScenarios.adoc[]
 
-include::stakeholders.adoc[]
 include::views/context.adoc[]
 include::views/functional.adoc[]
 include::views/information.adoc[]
