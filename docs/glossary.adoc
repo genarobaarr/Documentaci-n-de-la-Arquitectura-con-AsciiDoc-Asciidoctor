@@ -9,6 +9,105 @@
 | *Acceso al sistema*
 | Proceso mediante el cual un usuario inicia sesión en el sistema utilizando sus credenciales (usuario y contraseña) para realizar tareas según su rol. Incluye controles sobre gestión de accesos (autenticación, privilegios mínimos, gestión de identidades, control de contraseñas, sesiones).
 | ISO/IEC 27001 Seguridad de la Información
+| *Atomicidad*
+| Propiedad de una transacción (especialmente la Reserva) que garantiza que esta se ejecuta completamente o no se ejecuta en absoluto. Es esencial para el requisito de "Confianza y consistencia en la reserva".
+| Principio ACID / Arquitectura Distribuida
+| *ASR (Architecturally Significant Requirement)*
+| Requisito que tiene un impacto profundo en la estructura del código y es de alto valor para el negocio. Generalmente capturados como Escenarios de Calidad (QAS).
+| Marco ADD
+
 3+^| B
+| *Baja Latencia*
+| Requisito de rendimiento que exige que las operaciones críticas (consulta de Disponibilidad, confirmación de Pago) se completen en un tiempo muy corto, medido en milisegundos (ej. < 500 ms en QAS-03).
+| Atributo de Calidad (Rendimiento)
+
+3+^| C
+| *Concurrencia*
+| Capacidad del sistema para manejar múltiples solicitudes de reserva o consulta simultáneamente (por varios Huéspedes y Recepcionistas) sin comprometer la integridad de los datos de Inventario.
+| Atributo de Calidad (Rendimiento)
+| *Confianza y Consistencia*
+| Objetivo de Negocio primordial que se traduce en el requisito de tasa de incidentes de dobles cobros o dobles reservas de cero.
+| Objetivo de Negocio
+
+3+^| D
+| *Desacoplamiento*
+| Principio de diseño que busca reducir la dependencia entre los módulos del sistema (Microservicios) y entre el SRC y los sistemas externos, facilitando la Mantenibilidad.
+| Principio de Diseño
+| *Disponibilidad*
+| Atributo de Calidad que mide la proporción de tiempo que el sistema o una función crítica (ej. consulta de disponibilidad) está operativa y accesible.
+| ISO/IEC 25010
+
+3+^| E
+| *Escalabilidad*
+| Capacidad del SRC para manejar un aumento significativo en la carga de trabajo (más de 5,000 hoteles y 1,000,000 de habitaciones) sin degradar el Rendimiento o la Latencia.
+| Atributo de Calidad
+
+3+^| I
+| *Idempotencia*
+| Táctica de seguridad y diseño que garantiza que una operación de cobro, si se repite accidentalmente, solo se procesará una vez. Es clave para evitar dobles cobros.
+| Principio de Diseño / Seguridad
+| *Inventario*
+| La colección de recursos vendibles del hotel, principalmente las Habitaciones, junto con sus estados (Disponible, Bloqueada, Reservada).
+| Entidad de Negocio
+
+3+^| L
+| *Log Inmutable*
+| Almacén de datos de solo escritura que registra todos los eventos críticos de seguridad y transacción para garantizar la trazabilidad y el no repudio.
+| Táctica de Seguridad
+
+3+^| M
+| *Microservicios*
+| Patrón Arquitectónico seleccionado que estructura la aplicación como una colección de servicios pequeños, desacoplados, autónomos y que pueden escalarse independientemente (ej. Módulo de Venta, Módulo de Recepción).
+| Patrón Arquitectónico
+| *Mantenibilidad*
+| Atributo de Calidad que describe la facilidad con la que el sistema puede ser modificado, corregido y actualizado, un impulsor clave para la adopción de Microservicios.
+| ISO/IEC 25010
+
+3+^| O
+| *Observabilidad*
+| La capacidad del sistema para entender su estado interno a partir de datos externos, esencial para monitorear el Rendimiento y diagnosticar fallas en un sistema de Microservicios.
+| Atributo de Calidad
+| *Overbooking*
+| Política estratégica de gestión de inventario que permite la sobreventa controlada de Habitaciones, basándose en la probabilidad histórica de cancelaciones para maximizar los ingresos.
+| Regla de Negocio
+
+3+^| P
+| *Pasarela de Pagos*
+| Sistema externo con el que el SRC se comunica para procesar y autorizar transacciones financieras (Cobro y reembolso). Se encuentra out-of-scope.
+| Entidad Externa
+| *PCI-DSS*
+| Estándar de seguridad obligatorio para cualquier entidad que procese, almacene o transmita datos de tarjetas de crédito. Cumplimiento delegado a la Pasarela de Pagos.
+| Estándar de Seguridad
+
+3+^| Q
+| *QAS (Escenario de Calidad)*
+| Descripción formal de una prueba de diseño que evalúa un Atributo de Calidad específico bajo ciertas condiciones (ej. QAS-03 evalúa la Disponibilidad bajo Falla de DB).
+| Herramienta de Arquitectura
+
+3+^| R
+| *Rendimiento*
+| Atributo de Calidad que mide la velocidad y eficiencia del sistema bajo carga, incluyendo métricas como latencia y capacidad de respuesta.
+| ISO/IEC 25010
+| *Reserva*
+| La entidad central de negocio que representa el acuerdo contractual entre el Hotel y el Huésped, su ciclo de vida es el corazón del SRC.
+| Entidad de Negocio
+
+3+^| S
+| *SR (Sistema de Reservaciones)*
+| Objeto principal de diseño de este proyecto. Plataforma unificada y robusta que reemplaza las soluciones locales de los hoteles.
+| Contexto del Sistema
+
+3+^| T
+| *Trazabilidad*
+| Requisito de Seguridad y Auditoría que exige que cada evento crítico tenga un rastro documentado, inmutable y verificable.
+| Atributo de Calidad (Seguridad)
+| *Táctica*
+| Una decisión de diseño específica y concreta utilizada para controlar o asegurar un atributo de calidad, sirviendo como bloque constructivo para un Patrón Arquitectónico (ej. "Usar caché" es una Táctica para Rendimiento).
+| Concepto de Arquitectura
+
+3+^| U
+| *Usabilidad*
+| Atributo de Calidad clave para el módulo de recepción que mide la facilidad de uso del sistema, con el objetivo de reducir el tiempo de entrenamiento de los recepcionistas novatos.
+| ISO/IEC 25010
 |===
 
