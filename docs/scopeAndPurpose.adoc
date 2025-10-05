@@ -1,4 +1,85 @@
 === Alcance y propósito del diseño
 
-(Hacer aquí el alcance y propósito del diseño)
+El presente apartado tiene como finalidad formalizar las fronteras del diseño arquitectónico del Sistema Hotelero, estableciendo los límites conceptuales, técnicos y organizacionales dentro de los cuales se desarrollará la solución de software. Su propósito es definir con precisión qué aspectos del sistema serán abordados por el diseño, quiénes participan en el proceso arquitectónico y cuáles son sus preocupaciones principales, las cuales funcionarán como base para la definición de los impulsores arquitectónicos (Architectural Significant Requirements, ASRs) que guiarán las decisiones técnicas posteriores.
+
+El diseño arquitectónico traduce los requerimientos funcionales y no funcionales en una estructura coherente, organizada y justificable, donde cada decisión responde a una necesidad o atributo de calidad identificado. Por ello, este apartado delimita lo que el sistema debe hacer (qué casos de uso y funcionalidades cubre) frente a cómo será diseñado para hacerlo posible (qué estilos, tácticas, componentes y patrones implementará).
+
+==== Propósito del diseño arquitectónico
+
+El propósito del diseño arquitectónico es proporcionar una representación estructurada del sistema que permita entender su organización interna, interacción de componentes, flujo de información y comportamiento en ejecución, asegurando que cumpla con los objetivos del negocio y los atributos de calidad priorizados: usabilidad, disponibilidad, seguridad y rendimiento.
+
+Este diseño actúa como un lenguaje común entre los distintos interesados del proyecto (analistas, desarrolladores, evaluadores y usuarios), estableciendo una visión compartida de cómo la solución técnica materializa los requisitos del sistema.
+
+En particular, este documento busca:
+
+- Establecer las fronteras técnicas del diseño, indicando qué capas, módulos, clases e interfaces son parte de esta versión.
+
+- Identificar los stakeholders que influyen en las decisiones arquitectónicas.
+
+- Documentar sus preocupaciones (concerns), que servirán como base para definir los impulsores arquitectónicos.
+
+- Garantizar la trazabilidad entre las necesidades de los interesados y las decisiones técnicas que las atienden.
+
+- Proporcionar un marco de referencia para el método de diseño ADD (Attribute Driven Design).
+
+==== Fronteras del diseño
+
+Dentro de las fronteras del diseño se incluyen:
+
+- Las capas internas del sistema: presentación, lógica de negocio y persistencia de datos.
+
+- Los casos de uso de huésped, recepción, administración y auditoría, que representan la funcionalidad principal del sistema.
+
+- Los modelos de datos relacionados con habitaciones, reservas, clientes, servicios y transacciones.
+
+- Las decisiones arquitectónicas fundamentales (estilos, patrones, tácticas y restricciones).
+
+Fuera de las fronteras del diseño se consideran:
+
+- Los sistemas externos no implementados directamente (pasarelas reales de pago, contabilidad o facturación).
+
+- Los mecanismos avanzados de auditoría o analítica.
+
+==== Stakeholders (interesados)
+
+El diseño arquitectónico del Sistema Hotelero debe responder a las necesidades, expectativas y responsabilidades de los distintos interesados (stakeholders) involucrados en su desarrollo, operación y evaluación. Cada uno de ellos influye directa o indirectamente en las decisiones arquitectónicas al aportar requisitos funcionales o atributos de calidad que condicionan el diseño.
+
+[cols="1,2,2", options="header"]
+|===
+|Stakeholder | Rol / Interés | Responsabilidad dentro del diseño
+| Huésped | Usuario final del servicio hotelero. Realiza reservas, consultas y cancelaciones a través del recepcionista o de interfaces de atención. | Indirectamente define las necesidades de usabilidad, confiabilidad y seguridad de los datos personales y pagos. Sus expectativas de rapidez y claridad influyen en el diseño de la interfaz y los tiempos de respuesta.
+|Recepcionista | Usuario operativo del sistema. Gestiona el check-in, check-out, reservas y cobros. | Su trabajo diario orienta los requerimientos de usabilidad, eficiencia operativa y disponibilidad continua. Las decisiones de interfaz, validación y retroalimentación se fundamentan en sus flujos de trabajo.
+|Administrador del hotel | Supervisa la operación general, controla la disponibilidad de habitaciones, tarifas y reportes financieros. | Su enfoque está en la confiabilidad, precisión e integridad de la información, así como en la seguridad de las transacciones y la trazabilidad de los procesos de cobro y auditoría.
+|Auditor | Encargado de verificar la veracidad de la información contable y operativa registrada en el sistema. | Requiere trazabilidad, seguridad y consistencia de datos. Sus expectativas impulsan tácticas de auditoría, registro de logs y control de acceso a la información.
+|Equipo de desarrollo | Conforma a los estudiantes encargados de construir el sistema conforme al diseño arquitectónico. | Implementa los componentes, interfaces y módulos definidos en el diseño, asegurando que cumplan con los atributos de calidad establecidos (usabilidad, seguridad, rendimiento, disponibilidad).
+|Analista de sistemas | Define los casos de uso y valida que el diseño cubra los requerimientos funcionales. | Garantiza la coherencia entre los requerimientos capturados y la estructura del diseño, facilitando la trazabilidad entre necesidades y soluciones técnicas.
+|Académico asesor | Evaluador académico y supervisor técnico del proyecto. | Verifica que la arquitectura cumpla criterios de corrección técnica, consistencia interna y justificación de decisiones conforme al método ADD.
+|===
+
+==== Concers (preocupaciones)
+
+Las preocupaciones (concerns) representan las inquietudes técnicas, operativas y de calidad que los interesados esperan que la arquitectura resuelva. A continuación las preocupaciones principales:
+
+- Huéspedes: desean rapidez, exactitud en los cobros y protección de su información personal.
+
+- Recepcionistas: necesitan una interfaz intuitiva, rápida y tolerante a errores.
+
+- Administradores: buscan disponibilidad continua, integridad de pagos y confiabilidad en los reportes.
+
+- Auditores: requieren trazabilidad completa de operaciones y datos verificables.
+
+- Equipo técnico y docente: se enfocan en la mantenibilidad, modularidad y alineación del diseño con los atributos de calidad definidos.
+
+==== Función del diseño como base para impulsores arquitectónicos
+
+Cada uno de los concerns anteriores servirá como entrada directa para definir los impulsores arquitectónicos (ASRs) que guiarán las decisiones de diseño.
+Por ejemplo:
+
+- Los concerns de usabilidad impulsarán decisiones sobre diseño de interfaz, validación y retroalimentación visual.
+
+- Los concerns de disponibilidad determinarán tácticas de replicación, rollback y manejo de errores.
+
+- Los concerns de seguridad orientarán la aplicación de mecanismos de autenticación y auditoría.
+
+- Los concerns de rendimiento guiarán la selección de patrones de concurrencia, caching y optimización de consultas.
 
