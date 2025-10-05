@@ -43,6 +43,8 @@ Lizeth Guadalupe Bello Peralta
 | 17 de septiembre de 2025
 | Genaro Alejandro Barradas Sánchez
 
+Omar Morales García
+
 Lizeth Guadalupe Bello Peralta
 | Se identificaron y plasmaron los QAs del sistema con sus respectivos escenarios y trazabilidad
 
@@ -119,5 +121,20 @@ Omar Morales García
 | 03 de octubre de 2025
 | Omar Morales García
 | Se añadió la visión y alcance del sistema
+
+| 0.5.6
+| 04 de octubre de 2025
+| Omar Morales García
+| Se añadió el diagrama DFD de nivel 1.
+
+| 0.5.7
+| 04 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se añadió la audiencia del documento
+
+| 0.5.8
+| 04 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se añadió el alcance y el propósito del documento
 |===
 

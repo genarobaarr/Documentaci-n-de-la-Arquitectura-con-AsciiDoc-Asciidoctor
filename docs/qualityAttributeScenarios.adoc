@@ -592,3 +592,126 @@
 |Medida de la respuesta | 100% de accesos registrados.
 |===
 
+
+==== Confiabilidad
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QA34 - El auditor compara ingresos de servicios adicionales con registros de venta.
+|Escenario | Conciliar ingresos por servicios adicionales
+|Atributo | Confiabilidad
+
+|Preocupación del atributo | Consistencia de datos.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de conciliación de registros de venta.
+
+|Ambiente | Operación con carga normal.
+
+|Artefacto | Subsistema de contabilidad
+
+|Respuesta | El sistema compara automáticamente los datos de ingresos con los registros de venta y genera un informe de discrepancias.
+
+|Medida de la respuesta | Menos del 0.5% de discrepancia entre los registros.
+|===
+
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QA36 - El auditor sigue reembolsos y descuentos aplicados, asegurando que estén justificados.
+|Escenario | Auditor revisa reembolsos y descuentos.
+|Atributo | Confiabilidad
+
+|Preocupación del atributo | Precisión de los resultados.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de reporte de reembolsos/descuentos.
+
+|Ambiente | Operación con carga normal, con media de 1000 solicitudes simultáneas.
+
+|Artefacto | Subsistema de pagos.
+
+|Respuesta | El sistema genera un reporte detallado que asocia cada descuento o reembolso con su justificación documentada.
+
+|Medida de la respuesta | 100% de los descuentos y reembolsos en el reporte tienen un registro válido de justificación.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QA39 - Genera un reporte para verificar que los pagos en línea se hayan procesado correctamente.
+|Escenario | Auditor valida pagos electrónicos.
+|Atributo | Confiabilidad
+
+|Preocupación del atributo | Veracidad de los datos.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de reporte de conciliación de pagos en línea.
+
+|Ambiente | Operación con carga normal, con una media de 1000 solicitudes simultáneas.
+
+|Artefacto | Pasarela de pagos.
+
+|Respuesta | El sistema concilia los pagos registrados en la base de datos interna con los de la pasarela de pagos
+
+|Medida de la respuesta | 100% de los pagos procesados son verificados y coinciden con la pasarela de pagos.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QA41 - El auditor compara el estado de las habitaciones en el sistema con reportes físicos
+|Escenario | Auditor verifica el inventario.
+|Atributo | Confiabilidad
+
+|Preocupación del atributo | Consistencia de datos.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de un informe de estado de habitaciones.
+
+|Ambiente | Operación con carga baja.
+
+|Artefacto | Subsistema de gestión de habitaciones.
+
+|Respuesta | El sistema genera un informe detallado que puede ser comparado con el conteo físico, mostrando el estado de cada habitación (ocupada, limpia, fuera de servicio)
+|Medida de la respuesta | 100% de los registros en el sistema concuerdan con los reportes físicos.
+|===
+
+
+[cols="1,3", options="header"]
+|===
+|ID y descripción corta | QA43 - El auditor compara tarifas y políticas entre hoteles de diferentes regiones
+|Escenario | Auditor valida uniformidad de precios
+|Atributo | Confiabilidad
+
+|Preocupación del atributo | Veracidad de los datos.
+
+2+^| Refinamiento del escenario
+
+|Fuente del estímulo | Auditoría
+
+|Estímulo | Solicitud de un informe de precios y políticas por región.
+
+|Ambiente | Operación con carga baja.
+
+|Artefacto | Módulo de administración.
+
+|Respuesta | El sistema genera un reporte consolidado que lista los precios y las políticas de los hoteles, agrupados por región.
+
+|Medida de la respuesta | El reporte refleja con precisión los precios y políticas de todos los hoteles en cada región.
+|===
+
