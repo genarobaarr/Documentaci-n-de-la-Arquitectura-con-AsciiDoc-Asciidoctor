@@ -180,6 +180,29 @@ EX2: Error en cancelación de la reserva.
 |===
 
 
+===== CU06 - Consultar historial de reserva
+[cols="1,3", options="header"]
+|===
+|Nombre | CU06 - Consultar historial de reservas
+|Actor(es) | Huésped (AC01)
+|Objetivo | El HUÉSPED revisa todas las reservas pasadas, activas y canceladas asociadas a su cuenta.
+|Precondiciones | El sistema cuenta con reservas registradas por el HUÉSPED.
+|Flujo normal |
+1. El sistema recupera de la base de datos las reservas activas, concluidas y canceladas del HUÉSPED, mostrando los resultados con opciones de filtro (Activas, Pasadas, Canceladas) y el botón “Cancelar”.
+2. El HUÉSPED visualiza la lista de reservas y selecciona una para ver el detalle.
+3. El sistema muestra la información completa de la reserva seleccionada con los botones “Modificar reserva” (si está activa), “Cancelar reserva” (si está activa) y “Cancelar”.
+4. El HUÉSPED selecciona “Cancelar”.
+5. Termina el caso de uso.
+|Flujo alterno |
+FA 2.1: El HUÉSPED da clic en “Salir”. El sistema muestra confirmación y finaliza.
+FA 4.1: El flujo continúa en CU04 - Modificar reserva.
+FA 4.2: El flujo continúa en CU05 - Cancelar reserva.
+|Excepción |
+EX1: El sistema no puede conectarse con la base de datos. Muestra mensaje de error y finaliza.
+|Postcondiciones | El HUÉSPED visualiza el historial de sus reservaciones.
+|===
+
+
 ==== AC02 - Recepción
 
 ===== CU07 - Registrar check-in
