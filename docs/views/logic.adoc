@@ -1,0 +1,13 @@
+=== Vista lógica
+
+(HITO 2)
+
+image::classDiagram.png[Diagrama de Clases, width=600, align=center]
+
+image::objectDiagram.png[Diagrama de Objetos, width=600, align=center]
+
+Diagramas UML: de Clases y/o Paquetes. Diagrama de Objetos o de Estructura Compuesta si ayudan a clarificar un punto específico.
+
+Texto Explicativo: Texto breve, aprox. 1 página (450–900 palabras) que explique la estructura mostrada en el diagrama, justificando cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los atributos de calidad (QAS) más relevantes para esta vista.
+El diagrama debe reflejar la estructura conforme al estilo arquitectónico seleccionado.   El estilo arquitectónico debe estar basado en los atributos de calidad que el sistema debe cumplir, mismos que deben corresponder a los escenarios.
+

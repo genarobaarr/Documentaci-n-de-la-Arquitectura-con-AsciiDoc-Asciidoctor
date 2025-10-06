@@ -1,0 +1,8 @@
+=== Método de diseño
+
+
+(HITO 2)
+
+Texto de 2-3 páginas (900–1350 palabras) que explique el proceso ADD y CBSE seguido. Describir el objetivo de las iteraciones de diseño y cómo las decisiones tomadas (tácticas, patrones) responden a los drivers (QAS, restricciones).
+Cada iteración debe cerrar con Drivers atendidos y decisiones registradas en el documento (no es obligatorio ADR por separado).
+

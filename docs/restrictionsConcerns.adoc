@@ -1,0 +1,13 @@
+=== Restricciones y preocupaciones
+
+
+(HITO 2)
+
+1. Lista de Restricciones:
+- Enumerar cada restricción con un identificador (ej. CON-1, CON-2).
+- Indicar su origen (ej. Negocio, Técnico, Legal).
+
+2. Lista de Preocupaciones (Concerns):
+- Enumerar cada punto de interés con un identificador (ej. CRN-1, CRN-2).
+- Describir brevemente el objetivo.
+
