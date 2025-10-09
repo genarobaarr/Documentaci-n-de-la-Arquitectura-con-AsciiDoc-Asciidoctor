@@ -40,7 +40,16 @@ include::useCaseDescription.adoc[]
 == Impulsores Arquitectónicos (ASRs) y Priorización
 include::views/utilityTree.adoc[]
 include::qualityAttributeScenarios.adoc[]
+include::restrictionsConcerns.adoc[]
 
+== Método de diseño
+include::designMethod.adoc[]
+
+== Arquitectura
+include::views/logic.adoc[]
+include::views/businessConceptModel.adoc[]
+
+== TBD
 include::views/context.adoc[]
 include::views/functional.adoc[]
 include::views/information.adoc[]
