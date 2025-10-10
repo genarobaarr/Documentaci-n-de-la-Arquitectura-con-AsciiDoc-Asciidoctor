@@ -55,6 +55,9 @@ El sistema adopta el estilo arquitectónico en capas cliente-servidor, que propo
 - Confiabilidad: las operaciones se canalizan a través de managers que garantizan integridad y consistencia en las transacciones.
 
 
-image::objectDiagram.png[Diagrama de Objetos, width=600, align=center]
+image::componentsDiagramSistemaHotelero.png[Diagrama de Componentes, width=600, align=center]
+
+
+image::objectDiagramSistemaHotelero.png[Diagrama de Objetos, width=600, align=center]
 
 
