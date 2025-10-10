@@ -1,13 +1,50 @@
 === Restricciones y preocupaciones
 
+==== Restricciones (Constraints)
 
-(HITO 2)
+Dentro de las restricciones del sistema podemos encontrarnos con las siguientes:
 
-1. Lista de Restricciones:
-- Enumerar cada restricción con un identificador (ej. CON-1, CON-2).
-- Indicar su origen (ej. Negocio, Técnico, Legal).
+[cols="1,3,2", options="header"]
+|===
+| Identificador | Descripción | Origen
 
-2. Lista de Preocupaciones (Concerns):
-- Enumerar cada punto de interés con un identificador (ej. CRN-1, CRN-2).
-- Describir brevemente el objetivo.
+| CON-1 | El sistema de reservación no debe almacenar, procesar y transmitir directamente datos sensibles de tarjetas de crédito. Esta responsabilidad debe ser delegada completamente por una Pasarela de Pagos externa certificada. | Legal / Negocio
+
+| CON-2 | El sistema debe cumplir con las regulaciones de protección de datos personales aplicables en las geografías donde opera la cadena hotelera. | Legal / Negocio
+
+| CON-3 | Para cumplir con la trazabilidad y auditoría financiera, los accesos al sistema de eventos críticos (cobros, cancelaciones) deben ser almacenados en un almacén de datos *append-only* (solo escritura, sin modificación) para garantizar el no repudio. | Técnico
+|===
+
+==== Concers (preocupaciones)
+
+Las preocupaciones representan las inquietudes técnicas, operativas y de calidad que los interesados esperan que la arquitectura resuelva. Además, podemos encontrarnos que, cada actor cuenta con preocupaciones, las cuales deben ser implementadas, como lo pueden ser:
+
+- Huéspedes: desean rapidez, exactitud en los cobros y protección de su información personal.
+
+- Recepcionistas: necesitan una interfaz intuitiva, rápida y tolerante a errores.
+
+- Administradores: buscan disponibilidad continua, integridad de pagos y confiabilidad en los reportes.
+
+- Auditores: requieren trazabilidad completa de operaciones y datos verificables.
+
+- Equipo técnico y docente: se enfocan en la mantenibilidad, modularidad y alineación del diseño con los atributos de calidad definidos.
+
+Con esto podemos decir que las preocupaciones principales son:
+
+[cols="1,3,2", options="header"]
+|===
+| Identificador | Descripción | Objetivo
+
+| CRN-1 | Garantizar que cada módulo pueda ser probado y desplegado a producción de forma autónoma, sin causar interrupciones en otros servicios. | Extensibilidad / Testabilidad
+
+| CRN-2 | Hacer uso eficiente de recursos de cómputo y bases de datos optimizadas para mantener bajos costos operativos y de infraestructura. | Portabilidad
+
+| CRN-3 | Implementar patrones de diseño que hagan de los componentes críticos altamente testeables de forma aislada. | Testabilidad
+
+| CRN-4 | Estandarizar la experiencia del usuario en todos los módulos para reducir la curva de aprendizaje. | Usabilidad
+
+| CRN-5 | Contar con un diseño modular, es decir, microservidores, que facilite el desarrollo de nuevas funcionalidades. | Extensibilidad / Mantenibilidad
+
+| CRN-6 | No acumular deuda técnica que comprometa la mantenibilidad del sistema. | Mantenibilidad
+|===
 
