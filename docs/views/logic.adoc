@@ -1,13 +1,60 @@
 === Vista lógica
 
-(HITO 2)
+La vista lógica del Sistema Hotelero representa la organización estática del sistema y la distribución de responsabilidades funcionales a través de una arquitectura cliente-servidor en capas. Esta vista permite comprender cómo se estructura el software internamente, cómo se comunican sus componentes y cómo cada elemento contribuye a los atributos de calidad definidos en los escenarios arquitectónicos.
 
-image::classDiagram.png[Diagrama de Clases, width=600, align=center]
+La estructura general está organizada en dos grandes nodos —Cliente y Servidor— cada uno dividido en subcapas que separan las responsabilidades de presentación, lógica de negocio y persistencia de datos. Este enfoque refleja el estilo arquitectónico en capas combinado con el patrón cliente-servidor, donde las dependencias fluyen de manera unidireccional, desde las interfaces gráficas hacia la base de datos, promoviendo la modularidad y la mantenibilidad.
+
+image::structuralClassDiagram.png[Diagrama de Clases, width=600, align=center]
+
+*Capa Cliente*
+
+En el extremo izquierdo del diagrama se encuentra la capa de presentación, compuesta por las clases LoginUI, ReservaUI, HabitacionUI, PagoUI y ReporteUI. Estas clases representan las ventanas o pantallas del sistema utilizadas por los diferentes actores (recepcionista, administrador y auditor). Cada interfaz de usuario es responsable de mostrar información y capturar entradas, actuando como punto de contacto directo con el usuario final.
+
+Estas clases dependen de sus respectivos controladores (LoginController, ReservaController, HabitacionController, PagoController, ReporteController), que implementan el patrón Model-View-Controller (MVC) dentro del cliente. Los controladores gestionan la lógica de interacción y validaciones básicas, delegando la comunicación con el servidor a los objetos ClientService.
+
+Las clases LoginClientService, ReservaClientService, HabitacionClientService, PagoClientService y ReporteClientService encapsulan las llamadas remotas al servidor. Estas clases dependen de las interfaces de servicio (ILoginService, IReservaService, IHabitacionService, IPagoService, IReporteService) mediante relaciones de dependencia UML << use >>. Este diseño asegura que el cliente permanezca desacoplado de la implementación concreta del servidor, permitiendo modificar la lógica del lado servidor sin afectar el código cliente.
+
+Desde la perspectiva de los atributos de calidad, esta separación mejora la usabilidad, ya que las interfaces gráficas pueden evolucionar independientemente de la lógica interna, y favorece la seguridad, pues las operaciones críticas se ejecutan exclusivamente del lado servidor.
+
+*Capa Servidor*
+
+El servidor implementa las interfaces anteriores mediante clases concretas (LoginServiceImp, ReservaServiceImp, HabitacionServiceImp, PagoServiceImp y ReporteServiceImp) que realizan las interfaces definidas (<< realize >>). Estas implementaciones representan la lógica de aplicación, coordinando la ejecución de operaciones complejas y validando las reglas de negocio.
+
+Cada servicio mantiene una dependencia hacia su correspondiente Manager, como ReservaManager, HabitacionManager, PagoManager, LoginManager y ReporteManager. Los managers encapsulan la lógica de negocio específica de cada subsistema:
+
+- ReservaManager gestiona la asignación y modificación de reservas.
+
+- HabitacionManager controla disponibilidad y mantenimiento.
+
+- PagoManager administra las transacciones económicas.
+
+- LoginManager verifica credenciales y controla accesos.
+
+- ReporteManager integra datos de distintos DAO para generar informes de auditoría y desempeño.
+
+Esta capa media cumple un papel esencial en la confiabilidad y consistencia del sistema, ya que asegura que todas las operaciones sigan un flujo uniforme.
+
+*Capa de base de datos*
+
+La capa de acceso a datos está conformada por las clases ReservaDAO, HabitacionDAO, PagoDAO, ReporteDAO y LoginDAO (o UsuarioDAO), todas asociadas a la clase ConexionDB, que representa el componente de conexión a la base de datos. Cada DAO es responsable de las operaciones CRUD sobre una entidad específica (Reserva, Habitacion, Pago, Reporte, Usuario).
+
+Las asociaciones entre DAO y POJOs (Reserva, Habitacion, Pago, Reporte, Usuario) muestran una relación de uno a muchos, donde un DAO puede gestionar múltiples instancias de su entidad correspondiente. La clase ConexionDB se modela como una asociación compartida (1 a 1) para representar una conexión única o gestionada mediante un patrón Singleton, lo cual contribuye directamente a la eficiencia y rendimiento del sistema al evitar conexiones redundantes.
+
+*Justificación del estilo arquitéctonico*
+
+El sistema adopta el estilo arquitectónico en capas cliente-servidor, que proporciona una separación clara entre responsabilidades: presentación, lógica de negocio, servicios y persistencia. Esta estructura favorece la modularidad, la escalabilidad y la facilidad de mantenimiento, atributos esenciales en sistemas transaccionales como los de gestión hotelera.
+
+- Usabilidad: las capas de presentación son independientes, permitiendo rediseñar interfaces sin modificar la lógica interna.
+
+- Disponibilidad: la separación entre cliente y servidor facilita el despliegue en diferentes máquinas, permitiendo recuperación ante fallos y operación continua.
+
+- Seguridad: el control de acceso y autenticación se centraliza en los servicios del servidor, minimizando riesgos en el cliente.
+
+- Rendimiento: la conexión única a la base de datos y la delegación de procesamiento al servidor optimizan el uso de recursos.
+
+- Confiabilidad: las operaciones se canalizan a través de managers que garantizan integridad y consistencia en las transacciones.
+
 
 image::objectDiagram.png[Diagrama de Objetos, width=600, align=center]
 
-Diagramas UML: de Clases y/o Paquetes. Diagrama de Objetos o de Estructura Compuesta si ayudan a clarificar un punto específico.
-
-Texto Explicativo: Texto breve, aprox. 1 página (450–900 palabras) que explique la estructura mostrada en el diagrama, justificando cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los atributos de calidad (QAS) más relevantes para esta vista.
-El diagrama debe reflejar la estructura conforme al estilo arquitectónico seleccionado.   El estilo arquitectónico debe estar basado en los atributos de calidad que el sistema debe cumplir, mismos que deben corresponder a los escenarios.
 
