@@ -1,8 +1,158 @@
 === Método de diseño
 
 
-(HITO 2)
+El diseño arquitectónico del Sistema Hotelero se desarrolló siguiendo el método Attribute-Driven Design (ADD) complementado con el enfoque Component-Based Software Engineering (CBSE) descrito por Cheesman & Daniels.
+Este método garantiza que la arquitectura resultante no sea producto de decisiones arbitrarias, sino una respuesta racional, trazable y justificada a los impulsores arquitectónicos identificados (drivers), entre los cuales se incluyen los atributos de calidad priorizados —usabilidad, disponibilidad, seguridad y rendimiento—, además de las restricciones y preocupaciones del proyecto.
 
-Texto de 2-3 páginas (900–1350 palabras) que explique el proceso ADD y CBSE seguido. Describir el objetivo de las iteraciones de diseño y cómo las decisiones tomadas (tácticas, patrones) responden a los drivers (QAS, restricciones).
-Cada iteración debe cerrar con Drivers atendidos y decisiones registradas en el documento (no es obligatorio ADR por separado).
+El propósito del método fue traducir los escenarios de calidad y casos de uso en una estructura arquitectónica modular, capaz de sostener las operaciones críticas del sistema, asegurar la mantenibilidad y facilitar la validación futura del diseño mediante vistas y diagramas coherentes.
+
+
+==== Enfoque general del proceso ADD
+
+El proceso ADD se basa en construir la arquitectura a partir de los atributos de calidad y no exclusivamente de las funcionalidades.
+El diseño se desarrolla en iteraciones donde cada ciclo busca satisfacer un conjunto de drivers arquitectónicos priorizados, refinando el modelo con nuevas decisiones estructurales o tácticas.
+
+El procedimiento aplicado constó de las siguientes fases:
+
+*Identificación de drivers arquitectónicos:*
+Se elaboró un backlog que incluía los Casos de Uso, los escenarios de atributos de calidad (QAS) y las restricciones técnicas.
+Los atributos priorizados fueron:
+
+- *Usabilidad*: facilidad de uso, simplicidad de interfaz y eficiencia operativa.
+
+- *Disponibilidad*: tolerancia a fallos y continuidad del servicio.
+
+- *Seguridad*: autenticación, integridad de pagos y trazabilidad.
+
+- *Rendimiento*: latencia reducida y optimización de consultas.
+
+*Selección de los drivers para la iteración inicial:*
+En la primera iteación se atendieron los drivers usabilidad y disponibilidad, enfocados en la interacción con el usuario y la robustez operativa.
+Después, se atendieron los drivers de seguridad y rendimiento, para garantizar la operación confiable del sistema.
+
+*Descomposición del sistema en elementos lógicos:*
+Se definió la arquitectura cliente-servidor en capas, separando responsabilidades de presentación, lógica de negocio y persistencia.
+Este estilo fue elegido por su alineación con los QAS y por ofrecer un marco modular y escalable.
+
+*Asignación de responsabilidades a componentes:*
+Cada caso de uso fue analizado para identificar las operaciones de sistema requeridas, las clases participantes y las interfaces involucradas.
+Las responsabilidades fueron distribuidas jerárquicamente desde las interfaces de usuario hasta las entidades de datos.
+
+*Evaluación de suficiencia (“suficiente”):*
+Cada iteración se cerró cuando las decisiones arquitectónicas satisfacían adecuadamente los escenarios de calidad sin introducir complejidad innecesaria.
+Esto permitió mantener un equilibrio entre funcionalidad y mantenibilidad.
+
+
+==== Iteraciones del proceso ADD
+
+===== Iteración 1: Usabilidad
+
+*Drivers atendidos:*
+
+QAS de usabilidad (simplicidad de interfaz, eficiencia operativa).
+
+Concern de capacitación mínima del usuario.
+
+*Decisiones tomadas:*
+
+Se aplicó el patrón MVC (Model-View-Controller) en el cliente, dividiendo la presentación (UI), el control (Controller) y la comunicación (ClientService).
+
+Las interfaces gráficas se diseñarían con flujos directos y mensajes claros, reduciendo la carga cognitiva del usuario.
+
+Se crearían controladores especializados por caso de uso (ReservaController, PagoController, etc.), facilitando así la localización y mantenimiento del código.
+
+*Resultado:*
+La arquitectura resultante mejora la experiencia del usuario final, permitiendo que el cliente, el personal de recepción y administración operen el sistema con una curva de aprendizaje mínima.
+La separación entre vista y lógica también incrementó la mantenibilidad y la capacidad de evolución del software.
+
+
+===== Iteración 2: Disponibilidad y confiabilidad
+
+*Drivers atendidos:*
+
+QAS de disponibilidad (continuidad del servicio, recuperación ante fallos).
+
+QAS de confiabilidad (consistencia de datos, precisión de resultados).
+
+*Decisiones tomadas:*
+
+Se establecería un manejo controlado de excepciones en todas las capas, permitiendo la recuperación ante errores sin comprometer la integridad de los datos.
+
+Los Managers se consolidaron como capa de negocio, controlando la secuencia de operaciones y validarían los estados de las entidades antes de realizar transacciones.
+
+Se implementó el patrón Service Layer, donde los servicios (*ServiceImp) encapsulan los flujos de negocio expuestos al cliente.
+
+*Resultado:*
+La arquitectura asegura una disponibilidad estable mediante la separación de responsabilidades y una capa de control bien definida.
+La confiabilidad del sistema se ve reforzada por la validación de datos y la trazabilidad de las operaciones críticas.
+
+
+===== Iteración 3: Seguridad y rendimiento
+
+*Drivers atendidos:*
+
+QAS de seguridad (autenticación, trazabilidad, integridad de pagos).
+
+QAS de rendimiento (latencia y eficiencia de consultas).
+
+*Decisiones tomadas:*
+
+Se estableció el patrón cliente-servidor distribuido, separando la lógica de negocio de la interfaz gráfica.
+
+Se definieron los servicios remotos (interfaces) (ILoginService, IReservaService, etc.) y sus implementaciones en el servidor, reduciendo la exposición de datos y mejorando el control de acceso.
+
+Se diseñaría la clase ConexionDB bajo el patrón Singleton, asegurando una única conexión activa y mejorando así la eficiencia en la gestión de recursos.
+
+Se adoptó el patrón DAO (Data Access Object) para encapsular la lógica de persistencia, minimizando el acoplamiento entre la lógica de negocio y la base de datos.
+
+*Resultado:*
+El sistema alcanzó un nivel de seguridad controlada mediante autenticación y una capa de datos aislada, junto con rendimiento optimizado por la reutilización de conexiones y consultas específicas.
+
+
+===== Iteración 4: Integración de reportes y trazabilidad
+
+*Drivers atendidos:*
+
+QAS de seguridad (trazabilidad de operaciones, integridad de registros).
+
+QAS de disponibilidad (acceso consolidado a información histórica).
+
+*Decisiones tomadas:*
+
+Se agregó la clase ReporteManager con dependencias hacia ReservaDAO, PagoDAO y HabitacionDAO, integrando información de distintas fuentes.
+
+Se definió el servicio IReporteService y su implementación (ReporteServiceImp) para permitir la generación remota de reportes por parte del administrador o auditor.
+
+Se garantizó que los reportes se basaran en datos consistentes y verificables, fortaleciendo la integridad del sistema.
+
+*Resultado:*
+El sistema logra visibilidad total sobre su operación, habilitando auditorías y revisiones de desempeño sin afectar la disponibilidad ni el rendimiento del sistema principal.
+
+
+==== Enfoque CBSE (Cheesman & Daniels)
+
+El método Component-Based Software Engineering (CBSE) se aplicó en paralelo al ADD para formalizar la especificación de componentes e interfaces.
+El proceso siguió tres fases:
+
+*Identificación:*
+A partir de los casos de uso y del modelo de conceptos de negocio, se identificaron los componentes principales del dominio: Reserva, Habitación, Pago, Usuario y Reporte.
+Cada uno fue representado como un componente lógico con responsabilidades bien definidas.
+
+*Interacción:*
+Se desarrollaron diagramas del sistema para refinar cómo los componentes colaboran entre sí.
+Por ejemplo, la operación “Registrar Reserva” implica la interacción entre ReservaServiceImp, ReservaManager, ReservaDAO y HabitacionDAO.
+Este análisis permitió definir las interfaces provistas y requeridas entre componentes.
+
+*Especificación:*
+Las interfaces IReservaService, IPagoService, etc., representan las interfaces provistas del sistema, mientras que los DAO y Managers actúan como componentes requeridos dentro de la especificación.
+
+El resultado del CBSE fue una arquitectura orientada a componentes reutilizables y sustituibles, con fronteras bien definidas y bajo acoplamiento entre capas.
+
+
+==== Cierre del proceso
+
+El método ADD garantizó que cada iteración atendiera drivers específicos, mientras que CBSE proporcionó la estructura técnica para documentar las decisiones tomadas y formalizar las interfaces entre componentes.
+Los criterios de “suficiente” se aplicaron cuando los escenarios de atributos de calidad fueron satisfechos sin comprometer simplicidad o mantenibilidad.
+
+En conjunto, ambos métodos produjeron una arquitectura robusta, trazable y alineada con los impulsores arquitectónicos, permitiendo que cada vista del documento se derive lógicamente del proceso de diseño y no de decisiones improvisadas.
 
