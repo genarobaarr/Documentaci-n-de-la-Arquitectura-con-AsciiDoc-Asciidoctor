@@ -462,18 +462,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_utility_tree">3.1. Utility Tree</a></li>
 <li><a href="#_escenarios_de_atributos_de_calidad">3.2. Escenarios de atributos de calidad</a></li>
+<li><a href="#_restricciones_y_preocupaciones">3.3. Restricciones y preocupaciones</a></li>
 </ul>
 </li>
-<li><a href="#_vista_de_contexto">4. Vista de Contexto</a></li>
-<li><a href="#_vista_funcional">5. Vista Funcional</a></li>
-<li><a href="#_vista_de_información">6. Vista de Información</a></li>
-<li><a href="#_vista_de_concurrencia">7. Vista de Concurrencia</a></li>
-<li><a href="#_vista_de_despliegue">8. Vista de Despliegue</a></li>
-<li><a href="#_vista_de_desarrollo">9. Vista de Desarrollo</a></li>
-<li><a href="#_vista_operacional">10. Vista Operacional</a></li>
-<li><a href="#_atributos_de_calidad">11. Atributos de Calidad</a></li>
-<li><a href="#_decisiones_arquitectónicas">12. Decisiones Arquitectónicas</a></li>
-<li><a href="#_apéndice">13. Apéndice</a></li>
+<li><a href="#_método_de_diseño">4. Método de diseño</a>
+<ul class="sectlevel2">
+<li><a href="#_método_de_diseño_2">4.1. Método de diseño</a></li>
+</ul>
+</li>
+<li><a href="#_arquitectura">5. Arquitectura</a>
+<ul class="sectlevel2">
+<li><a href="#_vista_lógica">5.1. Vista lógica</a></li>
+<li><a href="#_modelo_de_conceptos_de_negocio">5.2. Modelo de conceptos de negocio</a></li>
+</ul>
+</li>
+<li><a href="#_tbd">6. TBD</a></li>
+<li><a href="#_vista_de_contexto">7. Vista de Contexto</a></li>
+<li><a href="#_vista_funcional">8. Vista Funcional</a></li>
+<li><a href="#_vista_de_información">9. Vista de Información</a></li>
+<li><a href="#_vista_de_concurrencia">10. Vista de Concurrencia</a></li>
+<li><a href="#_vista_de_despliegue">11. Vista de Despliegue</a></li>
+<li><a href="#_vista_de_desarrollo">12. Vista de Desarrollo</a></li>
+<li><a href="#_vista_operacional">13. Vista Operacional</a></li>
+<li><a href="#_atributos_de_calidad">14. Atributos de Calidad</a></li>
+<li><a href="#_decisiones_arquitectónicas">15. Decisiones Arquitectónicas</a></li>
+<li><a href="#_apéndice">16. Apéndice</a></li>
 </ul>
 </div>
 </div>
@@ -1193,32 +1206,7 @@ Este módulo es esencial para los requisitos de seguridad y confiabilidad del si
 </table>
 </div>
 <div class="sect3">
-<h4 id="_concers_preocupaciones">2.2.4. Concers (preocupaciones)</h4>
-<div class="paragraph">
-<p>Las preocupaciones (concerns) representan las inquietudes técnicas, operativas y de calidad que los interesados esperan que la arquitectura resuelva. A continuación las preocupaciones principales:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Huéspedes: desean rapidez, exactitud en los cobros y protección de su información personal.</p>
-</li>
-<li>
-<p>Recepcionistas: necesitan una interfaz intuitiva, rápida y tolerante a errores.</p>
-</li>
-<li>
-<p>Administradores: buscan disponibilidad continua, integridad de pagos y confiabilidad en los reportes.</p>
-</li>
-<li>
-<p>Auditores: requieren trazabilidad completa de operaciones y datos verificables.</p>
-</li>
-<li>
-<p>Equipo técnico y docente: se enfocan en la mantenibilidad, modularidad y alineación del diseño con los atributos de calidad definidos.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_función_del_diseño_como_base_para_impulsores_arquitectónicos">2.2.5. Función del diseño como base para impulsores arquitectónicos</h4>
+<h4 id="_función_del_diseño_como_base_para_impulsores_arquitectónicos">2.2.4. Función del diseño como base para impulsores arquitectónicos</h4>
 <div class="paragraph">
 <p>Cada uno de los concerns anteriores servirá como entrada directa para definir los impulsores arquitectónicos (ASRs) que guiarán las decisiones de diseño.
 Por ejemplo:</p>
@@ -5443,10 +5431,474 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_restricciones_y_preocupaciones">3.3. Restricciones y preocupaciones</h3>
+<div class="sect3">
+<h4 id="_restricciones_constraints">3.3.1. Restricciones (Constraints)</h4>
+<div class="paragraph">
+<p>Dentro de las restricciones del sistema podemos encontrarnos con las siguientes:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Identificador</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+<th class="tableblock halign-left valign-top">Origen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CON-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema de reservación no debe almacenar, procesar y transmitir directamente datos sensibles de tarjetas de crédito. Esta responsabilidad debe ser delegada completamente por una Pasarela de Pagos externa certificada.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Legal / Negocio</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CON-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El sistema debe cumplir con las regulaciones de protección de datos personales aplicables en las geografías donde opera la cadena hotelera.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Legal / Negocio</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CON-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Para cumplir con la trazabilidad y auditoría financiera, los accesos al sistema de eventos críticos (cobros, cancelaciones) deben ser almacenados en un almacén de datos <strong>append-only</strong> (solo escritura, sin modificación) para garantizar el no repudio.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Técnico</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_concers_preocupaciones">3.3.2. Concers (preocupaciones)</h4>
+<div class="paragraph">
+<p>Las preocupaciones representan las inquietudes técnicas, operativas y de calidad que los interesados esperan que la arquitectura resuelva. Además, podemos encontrarnos que, cada actor cuenta con preocupaciones, las cuales deben ser implementadas, como lo pueden ser:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Huéspedes: desean rapidez, exactitud en los cobros y protección de su información personal.</p>
+</li>
+<li>
+<p>Recepcionistas: necesitan una interfaz intuitiva, rápida y tolerante a errores.</p>
+</li>
+<li>
+<p>Administradores: buscan disponibilidad continua, integridad de pagos y confiabilidad en los reportes.</p>
+</li>
+<li>
+<p>Auditores: requieren trazabilidad completa de operaciones y datos verificables.</p>
+</li>
+<li>
+<p>Equipo técnico y docente: se enfocan en la mantenibilidad, modularidad y alineación del diseño con los atributos de calidad definidos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Con esto podemos decir que las preocupaciones principales son:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Identificador</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+<th class="tableblock halign-left valign-top">Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Garantizar que cada módulo pueda ser probado y desplegado a producción de forma autónoma, sin causar interrupciones en otros servicios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extensibilidad / Testabilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hacer uso eficiente de recursos de cómputo y bases de datos optimizadas para mantener bajos costos operativos y de infraestructura.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Portabilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementar patrones de diseño que hagan de los componentes críticos altamente testeables de forma aislada.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Testabilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estandarizar la experiencia del usuario en todos los módulos para reducir la curva de aprendizaje.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contar con un diseño modular, es decir, microservidores, que facilite el desarrollo de nuevas funcionalidades.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extensibilidad / Mantenibilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No acumular deuda técnica que comprometa la mantenibilidad del sistema.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mantenibilidad</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_contexto">4. Vista de Contexto</h2>
+<h2 id="_método_de_diseño">4. Método de diseño</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_método_de_diseño_2">4.1. Método de diseño</h3>
+<div class="paragraph">
+<p>El diseño arquitectónico del Sistema Hotelero se desarrolló siguiendo el método Attribute-Driven Design (ADD) complementado con el enfoque Component-Based Software Engineering (CBSE) descrito por Cheesman &amp; Daniels.
+Este método garantiza que la arquitectura resultante no sea producto de decisiones arbitrarias, sino una respuesta racional, trazable y justificada a los impulsores arquitectónicos identificados (drivers), entre los cuales se incluyen los atributos de calidad priorizados —usabilidad, disponibilidad, seguridad y rendimiento—, además de las restricciones y preocupaciones del proyecto.</p>
+</div>
+<div class="paragraph">
+<p>El propósito del método fue traducir los escenarios de calidad y casos de uso en una estructura arquitectónica modular, capaz de sostener las operaciones críticas del sistema, asegurar la mantenibilidad y facilitar la validación futura del diseño mediante vistas y diagramas coherentes.</p>
+</div>
+<div class="sect3">
+<h4 id="_enfoque_general_del_proceso_add">4.1.1. Enfoque general del proceso ADD</h4>
+<div class="paragraph">
+<p>El proceso ADD se basa en construir la arquitectura a partir de los atributos de calidad y no exclusivamente de las funcionalidades.
+El diseño se desarrolla en iteraciones donde cada ciclo busca satisfacer un conjunto de drivers arquitectónicos priorizados, refinando el modelo con nuevas decisiones estructurales o tácticas.</p>
+</div>
+<div class="paragraph">
+<p>El procedimiento aplicado constó de las siguientes fases:</p>
+</div>
+<div class="paragraph">
+<p><strong>Identificación de drivers arquitectónicos:</strong>
+Se elaboró un backlog que incluía los Casos de Uso, los escenarios de atributos de calidad (QAS) y las restricciones técnicas.
+Los atributos priorizados fueron:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Usabilidad</strong>: facilidad de uso, simplicidad de interfaz y eficiencia operativa.</p>
+</li>
+<li>
+<p><strong>Disponibilidad</strong>: tolerancia a fallos y continuidad del servicio.</p>
+</li>
+<li>
+<p><strong>Seguridad</strong>: autenticación, integridad de pagos y trazabilidad.</p>
+</li>
+<li>
+<p><strong>Rendimiento</strong>: latencia reducida y optimización de consultas.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Selección de los drivers para la iteración inicial:</strong>
+En la primera iteación se atendieron los drivers usabilidad y disponibilidad, enfocados en la interacción con el usuario y la robustez operativa.
+Después, se atendieron los drivers de seguridad y rendimiento, para garantizar la operación confiable del sistema.</p>
+</div>
+<div class="paragraph">
+<p><strong>Descomposición del sistema en elementos lógicos:</strong>
+Se definió la arquitectura cliente-servidor en capas, separando responsabilidades de presentación, lógica de negocio y persistencia.
+Este estilo fue elegido por su alineación con los QAS y por ofrecer un marco modular y escalable.</p>
+</div>
+<div class="paragraph">
+<p><strong>Asignación de responsabilidades a componentes:</strong>
+Cada caso de uso fue analizado para identificar las operaciones de sistema requeridas, las clases participantes y las interfaces involucradas.
+Las responsabilidades fueron distribuidas jerárquicamente desde las interfaces de usuario hasta las entidades de datos.</p>
+</div>
+<div class="paragraph">
+<p><strong>Evaluación de suficiencia (“suficiente”):</strong>
+Cada iteración se cerró cuando las decisiones arquitectónicas satisfacían adecuadamente los escenarios de calidad sin introducir complejidad innecesaria.
+Esto permitió mantener un equilibrio entre funcionalidad y mantenibilidad.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_iteraciones_del_proceso_add">4.1.2. Iteraciones del proceso ADD</h4>
+<div class="sect4">
+<h5 id="_iteración_1_usabilidad">Iteración 1: Usabilidad</h5>
+<div class="paragraph">
+<p><strong>Drivers atendidos:</strong></p>
+</div>
+<div class="paragraph">
+<p>QAS de usabilidad (simplicidad de interfaz, eficiencia operativa).</p>
+</div>
+<div class="paragraph">
+<p>Concern de capacitación mínima del usuario.</p>
+</div>
+<div class="paragraph">
+<p><strong>Decisiones tomadas:</strong></p>
+</div>
+<div class="paragraph">
+<p>Se aplicó el patrón MVC (Model-View-Controller) en el cliente, dividiendo la presentación (UI), el control (Controller) y la comunicación (ClientService).</p>
+</div>
+<div class="paragraph">
+<p>Las interfaces gráficas se diseñarían con flujos directos y mensajes claros, reduciendo la carga cognitiva del usuario.</p>
+</div>
+<div class="paragraph">
+<p>Se crearían controladores especializados por caso de uso (ReservaController, PagoController, etc.), facilitando así la localización y mantenimiento del código.</p>
+</div>
+<div class="paragraph">
+<p><strong>Resultado:</strong>
+La arquitectura resultante mejora la experiencia del usuario final, permitiendo que el cliente, el personal de recepción y administración operen el sistema con una curva de aprendizaje mínima.
+La separación entre vista y lógica también incrementó la mantenibilidad y la capacidad de evolución del software.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_iteración_2_disponibilidad_y_confiabilidad">Iteración 2: Disponibilidad y confiabilidad</h5>
+<div class="paragraph">
+<p><strong>Drivers atendidos:</strong></p>
+</div>
+<div class="paragraph">
+<p>QAS de disponibilidad (continuidad del servicio, recuperación ante fallos).</p>
+</div>
+<div class="paragraph">
+<p>QAS de confiabilidad (consistencia de datos, precisión de resultados).</p>
+</div>
+<div class="paragraph">
+<p><strong>Decisiones tomadas:</strong></p>
+</div>
+<div class="paragraph">
+<p>Se establecería un manejo controlado de excepciones en todas las capas, permitiendo la recuperación ante errores sin comprometer la integridad de los datos.</p>
+</div>
+<div class="paragraph">
+<p>Los Managers se consolidaron como capa de negocio, controlando la secuencia de operaciones y validarían los estados de las entidades antes de realizar transacciones.</p>
+</div>
+<div class="paragraph">
+<p>Se implementó el patrón Service Layer, donde los servicios (*ServiceImp) encapsulan los flujos de negocio expuestos al cliente.</p>
+</div>
+<div class="paragraph">
+<p><strong>Resultado:</strong>
+La arquitectura asegura una disponibilidad estable mediante la separación de responsabilidades y una capa de control bien definida.
+La confiabilidad del sistema se ve reforzada por la validación de datos y la trazabilidad de las operaciones críticas.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_iteración_3_seguridad_y_rendimiento">Iteración 3: Seguridad y rendimiento</h5>
+<div class="paragraph">
+<p><strong>Drivers atendidos:</strong></p>
+</div>
+<div class="paragraph">
+<p>QAS de seguridad (autenticación, trazabilidad, integridad de pagos).</p>
+</div>
+<div class="paragraph">
+<p>QAS de rendimiento (latencia y eficiencia de consultas).</p>
+</div>
+<div class="paragraph">
+<p><strong>Decisiones tomadas:</strong></p>
+</div>
+<div class="paragraph">
+<p>Se estableció el patrón cliente-servidor distribuido, separando la lógica de negocio de la interfaz gráfica.</p>
+</div>
+<div class="paragraph">
+<p>Se definieron los servicios remotos (interfaces) (ILoginService, IReservaService, etc.) y sus implementaciones en el servidor, reduciendo la exposición de datos y mejorando el control de acceso.</p>
+</div>
+<div class="paragraph">
+<p>Se diseñaría la clase ConexionDB bajo el patrón Singleton, asegurando una única conexión activa y mejorando así la eficiencia en la gestión de recursos.</p>
+</div>
+<div class="paragraph">
+<p>Se adoptó el patrón DAO (Data Access Object) para encapsular la lógica de persistencia, minimizando el acoplamiento entre la lógica de negocio y la base de datos.</p>
+</div>
+<div class="paragraph">
+<p><strong>Resultado:</strong>
+El sistema alcanzó un nivel de seguridad controlada mediante autenticación y una capa de datos aislada, junto con rendimiento optimizado por la reutilización de conexiones y consultas específicas.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_iteración_4_integración_de_reportes_y_trazabilidad">Iteración 4: Integración de reportes y trazabilidad</h5>
+<div class="paragraph">
+<p><strong>Drivers atendidos:</strong></p>
+</div>
+<div class="paragraph">
+<p>QAS de seguridad (trazabilidad de operaciones, integridad de registros).</p>
+</div>
+<div class="paragraph">
+<p>QAS de disponibilidad (acceso consolidado a información histórica).</p>
+</div>
+<div class="paragraph">
+<p><strong>Decisiones tomadas:</strong></p>
+</div>
+<div class="paragraph">
+<p>Se agregó la clase ReporteManager con dependencias hacia ReservaDAO, PagoDAO y HabitacionDAO, integrando información de distintas fuentes.</p>
+</div>
+<div class="paragraph">
+<p>Se definió el servicio IReporteService y su implementación (ReporteServiceImp) para permitir la generación remota de reportes por parte del administrador o auditor.</p>
+</div>
+<div class="paragraph">
+<p>Se garantizó que los reportes se basaran en datos consistentes y verificables, fortaleciendo la integridad del sistema.</p>
+</div>
+<div class="paragraph">
+<p><strong>Resultado:</strong>
+El sistema logra visibilidad total sobre su operación, habilitando auditorías y revisiones de desempeño sin afectar la disponibilidad ni el rendimiento del sistema principal.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enfoque_cbse_cheesman_daniels">4.1.3. Enfoque CBSE (Cheesman &amp; Daniels)</h4>
+<div class="paragraph">
+<p>El método Component-Based Software Engineering (CBSE) se aplicó en paralelo al ADD para formalizar la especificación de componentes e interfaces.
+El proceso siguió tres fases:</p>
+</div>
+<div class="paragraph">
+<p><strong>Identificación:</strong>
+A partir de los casos de uso y del modelo de conceptos de negocio, se identificaron los componentes principales del dominio: Reserva, Habitación, Pago, Usuario y Reporte.
+Cada uno fue representado como un componente lógico con responsabilidades bien definidas.</p>
+</div>
+<div class="paragraph">
+<p><strong>Interacción:</strong>
+Se desarrollaron diagramas del sistema para refinar cómo los componentes colaboran entre sí.
+Por ejemplo, la operación “Registrar Reserva” implica la interacción entre ReservaServiceImp, ReservaManager, ReservaDAO y HabitacionDAO.
+Este análisis permitió definir las interfaces provistas y requeridas entre componentes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Especificación:</strong>
+Las interfaces IReservaService, IPagoService, etc., representan las interfaces provistas del sistema, mientras que los DAO y Managers actúan como componentes requeridos dentro de la especificación.</p>
+</div>
+<div class="paragraph">
+<p>El resultado del CBSE fue una arquitectura orientada a componentes reutilizables y sustituibles, con fronteras bien definidas y bajo acoplamiento entre capas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cierre_del_proceso">4.1.4. Cierre del proceso</h4>
+<div class="paragraph">
+<p>El método ADD garantizó que cada iteración atendiera drivers específicos, mientras que CBSE proporcionó la estructura técnica para documentar las decisiones tomadas y formalizar las interfaces entre componentes.
+Los criterios de “suficiente” se aplicaron cuando los escenarios de atributos de calidad fueron satisfechos sin comprometer simplicidad o mantenibilidad.</p>
+</div>
+<div class="paragraph">
+<p>En conjunto, ambos métodos produjeron una arquitectura robusta, trazable y alineada con los impulsores arquitectónicos, permitiendo que cada vista del documento se derive lógicamente del proceso de diseño y no de decisiones improvisadas.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arquitectura">5. Arquitectura</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_vista_lógica">5.1. Vista lógica</h3>
+<div class="paragraph">
+<p>La vista lógica del Sistema Hotelero representa la organización estática del sistema y la distribución de responsabilidades funcionales a través de una arquitectura cliente-servidor en capas. Esta vista permite comprender cómo se estructura el software internamente, cómo se comunican sus componentes y cómo cada elemento contribuye a los atributos de calidad definidos en los escenarios arquitectónicos.</p>
+</div>
+<div class="paragraph">
+<p>La estructura general está organizada en dos grandes nodos —Cliente y Servidor— cada uno dividido en subcapas que separan las responsabilidades de presentación, lógica de negocio y persistencia de datos. Este enfoque refleja el estilo arquitectónico en capas combinado con el patrón cliente-servidor, donde las dependencias fluyen de manera unidireccional, desde las interfaces gráficas hacia la base de datos, promoviendo la modularidad y la mantenibilidad.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/structuralClassDiagram.png" alt="Diagrama de Clases" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Capa Cliente</strong></p>
+</div>
+<div class="paragraph">
+<p>En el extremo izquierdo del diagrama se encuentra la capa de presentación, compuesta por las clases LoginUI, ReservaUI, HabitacionUI, PagoUI y ReporteUI. Estas clases representan las ventanas o pantallas del sistema utilizadas por los diferentes actores (recepcionista, administrador y auditor). Cada interfaz de usuario es responsable de mostrar información y capturar entradas, actuando como punto de contacto directo con el usuario final.</p>
+</div>
+<div class="paragraph">
+<p>Estas clases dependen de sus respectivos controladores (LoginController, ReservaController, HabitacionController, PagoController, ReporteController), que implementan el patrón Model-View-Controller (MVC) dentro del cliente. Los controladores gestionan la lógica de interacción y validaciones básicas, delegando la comunicación con el servidor a los objetos ClientService.</p>
+</div>
+<div class="paragraph">
+<p>Las clases LoginClientService, ReservaClientService, HabitacionClientService, PagoClientService y ReporteClientService encapsulan las llamadas remotas al servidor. Estas clases dependen de las interfaces de servicio (ILoginService, IReservaService, IHabitacionService, IPagoService, IReporteService) mediante relaciones de dependencia UML &lt;&lt; use &gt;&gt;. Este diseño asegura que el cliente permanezca desacoplado de la implementación concreta del servidor, permitiendo modificar la lógica del lado servidor sin afectar el código cliente.</p>
+</div>
+<div class="paragraph">
+<p>Desde la perspectiva de los atributos de calidad, esta separación mejora la usabilidad, ya que las interfaces gráficas pueden evolucionar independientemente de la lógica interna, y favorece la seguridad, pues las operaciones críticas se ejecutan exclusivamente del lado servidor.</p>
+</div>
+<div class="paragraph">
+<p><strong>Capa Servidor</strong></p>
+</div>
+<div class="paragraph">
+<p>El servidor implementa las interfaces anteriores mediante clases concretas (LoginServiceImp, ReservaServiceImp, HabitacionServiceImp, PagoServiceImp y ReporteServiceImp) que realizan las interfaces definidas (&lt;&lt; realize &gt;&gt;). Estas implementaciones representan la lógica de aplicación, coordinando la ejecución de operaciones complejas y validando las reglas de negocio.</p>
+</div>
+<div class="paragraph">
+<p>Cada servicio mantiene una dependencia hacia su correspondiente Manager, como ReservaManager, HabitacionManager, PagoManager, LoginManager y ReporteManager. Los managers encapsulan la lógica de negocio específica de cada subsistema:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ReservaManager gestiona la asignación y modificación de reservas.</p>
+</li>
+<li>
+<p>HabitacionManager controla disponibilidad y mantenimiento.</p>
+</li>
+<li>
+<p>PagoManager administra las transacciones económicas.</p>
+</li>
+<li>
+<p>LoginManager verifica credenciales y controla accesos.</p>
+</li>
+<li>
+<p>ReporteManager integra datos de distintos DAO para generar informes de auditoría y desempeño.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esta capa media cumple un papel esencial en la confiabilidad y consistencia del sistema, ya que asegura que todas las operaciones sigan un flujo uniforme.</p>
+</div>
+<div class="paragraph">
+<p><strong>Capa de base de datos</strong></p>
+</div>
+<div class="paragraph">
+<p>La capa de acceso a datos está conformada por las clases ReservaDAO, HabitacionDAO, PagoDAO, ReporteDAO y LoginDAO (o UsuarioDAO), todas asociadas a la clase ConexionDB, que representa el componente de conexión a la base de datos. Cada DAO es responsable de las operaciones CRUD sobre una entidad específica (Reserva, Habitacion, Pago, Reporte, Usuario).</p>
+</div>
+<div class="paragraph">
+<p>Las asociaciones entre DAO y POJOs (Reserva, Habitacion, Pago, Reporte, Usuario) muestran una relación de uno a muchos, donde un DAO puede gestionar múltiples instancias de su entidad correspondiente. La clase ConexionDB se modela como una asociación compartida (1 a 1) para representar una conexión única o gestionada mediante un patrón Singleton, lo cual contribuye directamente a la eficiencia y rendimiento del sistema al evitar conexiones redundantes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Justificación del estilo arquitéctonico</strong></p>
+</div>
+<div class="paragraph">
+<p>El sistema adopta el estilo arquitectónico en capas cliente-servidor, que proporciona una separación clara entre responsabilidades: presentación, lógica de negocio, servicios y persistencia. Esta estructura favorece la modularidad, la escalabilidad y la facilidad de mantenimiento, atributos esenciales en sistemas transaccionales como los de gestión hotelera.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Usabilidad: las capas de presentación son independientes, permitiendo rediseñar interfaces sin modificar la lógica interna.</p>
+</li>
+<li>
+<p>Disponibilidad: la separación entre cliente y servidor facilita el despliegue en diferentes máquinas, permitiendo recuperación ante fallos y operación continua.</p>
+</li>
+<li>
+<p>Seguridad: el control de acceso y autenticación se centraliza en los servicios del servidor, minimizando riesgos en el cliente.</p>
+</li>
+<li>
+<p>Rendimiento: la conexión única a la base de datos y la delegación de procesamiento al servidor optimizan el uso de recursos.</p>
+</li>
+<li>
+<p>Confiabilidad: las operaciones se canalizan a través de managers que garantizan integridad y consistencia en las transacciones.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentsDiagramSistemaHotelero.png" alt="Diagrama de Componentes" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/objectDiagramSistemaHotelero.png" alt="Diagrama de Objetos" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modelo_de_conceptos_de_negocio">5.2. Modelo de conceptos de negocio</h3>
+<div class="paragraph">
+<p>(HITO 2)</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/businessClassDiagram.png" alt="Diagrama de Clases del negocio" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Diagrama de Clases UML mostrando solo los conceptos de negocio y sus relaciones (asociaciones, herencia). Sin métodos ni detalles de implementación. Mantenerlo conceptual (sin métodos; atributos sólo si agregan significado). Es la fuente de verdad para la identificación CBSE y la vista de datos.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tbd">6. TBD</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vista_de_contexto">7. Vista de Contexto</h2>
 <div class="sectionbody">
 <div class="imageblock text-center">
 <div class="content">
@@ -5461,7 +5913,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_funcional">5. Vista Funcional</h2>
+<h2 id="_vista_funcional">8. Vista Funcional</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe las funcionalidades principales del sistema y cómo se organizan)</p>
@@ -5474,7 +5926,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_información">6. Vista de Información</h2>
+<h2 id="_vista_de_información">9. Vista de Información</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe los modelos de datos, entidades, relaciones o flujos de información)</p>
@@ -5487,7 +5939,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_concurrencia">7. Vista de Concurrencia</h2>
+<h2 id="_vista_de_concurrencia">10. Vista de Concurrencia</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Explica cómo el sistema maneja procesos/hilos simultáneos o concurrencia)</p>
@@ -5500,7 +5952,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_despliegue">8. Vista de Despliegue</h2>
+<h2 id="_vista_de_despliegue">11. Vista de Despliegue</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Muestra la infraestructura, servidores, contenedores y cómo se despliega el sistema)</p>
@@ -5513,7 +5965,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_desarrollo">9. Vista de Desarrollo</h2>
+<h2 id="_vista_de_desarrollo">12. Vista de Desarrollo</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Describe cómo está organizado el código, módulos, paquetes y capas del sistema)</p>
@@ -5526,7 +5978,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_operacional">10. Vista Operacional</h2>
+<h2 id="_vista_operacional">13. Vista Operacional</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Explica cómo se opera y monitorea el sistema en producción: logs, métricas, alertas)</p>
@@ -5539,7 +5991,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_atributos_de_calidad">11. Atributos de Calidad</h2>
+<h2 id="_atributos_de_calidad">14. Atributos de Calidad</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Aquí se documentan los atributos clave de calidad del sistema:
@@ -5551,7 +6003,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_decisiones_arquitectónicas">12. Decisiones Arquitectónicas</h2>
+<h2 id="_decisiones_arquitectónicas">15. Decisiones Arquitectónicas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Se registran las decisiones importantes tomadas durante el diseño del sistema,
@@ -5560,7 +6012,7 @@ ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)</p
 </div>
 </div>
 <div class="sect1">
-<h2 id="_apéndice">13. Apéndice</h2>
+<h2 id="_apéndice">16. Apéndice</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Material adicional, referencias, glosario, notas)</p>
@@ -5570,7 +6022,7 @@ ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-04 18:34:12 -0600
+Last updated 2025-10-06 07:35:06 -0600
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
