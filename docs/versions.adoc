@@ -136,5 +136,10 @@ Omar Morales García
 | 04 de octubre de 2025
 | Genaro Alejandro Barradas Sánchez
 | Se añadió el alcance y el propósito del documento
+
+|0.5.9
+|15 de octubre de 2025
+|Lizeth Guadalupe Bello Peralta
+|Se añadió el diagrama de conceptos del negocio
 |===
 
