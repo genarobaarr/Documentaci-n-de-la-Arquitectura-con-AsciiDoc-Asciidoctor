@@ -1,9 +1,4 @@
 === Modelo de conceptos de negocio
 
-
-(HITO 2)
-
 image::businessClassDiagram.png[Diagrama de Clases del negocio, width=600, align=center]
-
-Diagrama de Clases UML mostrando solo los conceptos de negocio y sus relaciones (asociaciones, herencia). Sin métodos ni detalles de implementación. Mantenerlo conceptual (sin métodos; atributos sólo si agregan significado). Es la fuente de verdad para la identificación CBSE y la vista de datos.
 

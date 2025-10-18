@@ -4,6 +4,8 @@ La vista lógica del Sistema Hotelero representa la organización estática del 
 
 La estructura general está organizada en dos grandes nodos —Cliente y Servidor— cada uno dividido en subcapas que separan las responsabilidades de presentación, lógica de negocio y persistencia de datos. Este enfoque refleja el estilo arquitectónico en capas combinado con el patrón cliente-servidor, donde las dependencias fluyen de manera unidireccional, desde las interfaces gráficas hacia la base de datos, promoviendo la modularidad y la mantenibilidad.
 
+==== Diagrama de Clases
+
 image::structuralClassDiagram.png[Diagrama de Clases, width=600, align=center]
 
 *Capa Cliente*
@@ -54,9 +56,11 @@ El sistema adopta el estilo arquitectónico en capas cliente-servidor, que propo
 
 - Confiabilidad: las operaciones se canalizan a través de managers que garantizan integridad y consistencia en las transacciones.
 
+==== Diagrama de Componentes
 
 image::componentsDiagramSistemaHotelero.png[Diagrama de Componentes, width=600, align=center]
 
+==== Diagrama de Objetos
 
 image::objectDiagramSistemaHotelero.png[Diagrama de Objetos, width=600, align=center]
 
