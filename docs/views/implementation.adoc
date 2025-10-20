@@ -1,0 +1,32 @@
+=== Vista de Implementación
+
+(HITO 3 e HITO 4)
+
+(Esta vista muestra los componentes que integran el sistema. Este apartado consiste en:)
+
+==== Diagrama de especificación
+
+(HITO 3 e HITO 4)
+
+(Definir cada componente como una unidad de software reemplazable y con un contrato claro. Es la base para el desarrollo y las pruebas unitarias/de integración.)
+
+(Un Diagrama de Componentes UML por cada componente (serán varios diagramas), usando el estereotipo << comp spec >>. Mostrar las interfaces provistas y requeridas identificadas durante el proceso de diseño. Ver figura 7.9. del libro de Cheesman & Daniels.)
+
+==== Diagramas de especificación de interfaces
+
+(HITO 3 e HITO 4)
+
+(Formalizar el contrato de cada interfaz. Define qué operaciones ofrece un componente y qué se espera de ellas, permitiendo el desarrollo en paralelo.)
+
+(Un Diagrama de Clases UML por cada interfaz, usando el estereotipo << interface type >> que contiene las operaciones de la interfaz con una relación de composición al modelo de información de dicha interfaz (diagrama de clases). Se incluyen los diagramas de interfaces de sistema y de interfaces de negocio. Ver figuras 7.4 y 7.6 del libro de Cheesman & Daniels. Las operaciones de cada interfaz deben llevar firma.)
+
+(A continuación de cada diagrama deben especificarse las pre y pos-condiciones de manera clara.)
+
+==== Interacción de componente
+
+(HITO 3 e HITO 4)
+
+(Demostrar cómo los componentes colaboran para realizar una funcionalidad específica. Valida que las interfaces definidas son suficientes y correctas.)
+
+(Diagramas de Comunicación UML de las operaciones de sistema que ayudó a identificar las operaciones de las interfaces de negocio. Se elabora uno por cada operación de la interfaz de sistema. Muestra las instancias de los componentes y los mensajes que intercambian.)
+

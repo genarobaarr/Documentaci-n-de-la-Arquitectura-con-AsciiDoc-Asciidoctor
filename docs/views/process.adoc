@@ -1,0 +1,14 @@
+=== Vista de Proceso
+
+image::secuenceDiagram.png[Diagrama de Secuencia UML, width=600, align=center]
+
+(HITO 5)
+
+(Mostrar el comportamiento del sistema en ejecución para satisfacer rendimiento y disponibilidad. Se enfoca en concurrencia, comunicación y sincronización.)
+
+(Diagrama de Secuencia UML (alternativas: Sequence, Communication, Activity, Timing, Interaction Overview) para 2-3 flujos críticos. El texto debe explicar el modelo de concurrencia y los patrones de interacción.)
+
+(Indicar qué se ejecuta en paralelo, qué llamadas son sincrónicas / asíncronas, tiempos objetivo/timeout y reintentos, y dónde empieza/termina la transacción con la política de consistencia aplicada (fuerte/eventual)”.)
+
+(Texto explicativo: 450–900 palabras. Explica la estructura mostrada en el diagrama, justifica cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los escenarios de atributos de calidad relevantes para esta vista.)
+

@@ -1,0 +1,18 @@
+== Trazabilidad
+
+(HITO 4 e HITO 5)
+
+(Verificar la coherencia y completitud del diseño, demostrando cómo cada ASR se materializa en decisiones y artefactos concretos a lo largo del documento. Esta matriz es la evidencia final de que la arquitectura responde directamente a los requisitos. Ayuda a asegurar que no haya decisiones de diseño "huérfanas" (sin justificación) o requisitos importantes que no hayan sido atendidos en el diseño.)
+
+(Una única Matriz de Trazabilidad en formato de tabla. Columnas Requeridas:)
+
+(1. Driver (ID y Tipo) — {CU, QAS, CON, CRN})
+
+(2. Decisión de Diseño (Táctica / Patrón))
+
+(4. Artefactos Afectados (añadir referencia a Vistas/Elementos))
+
+(5. Estado (Cumple / Parcial / Pendiente))
+
+(Nota: Un mismo driver puede aparecer en varias filas si fue atendido en iteraciones distintas.)
+

@@ -48,15 +48,10 @@ include::designMethod.adoc[]
 == Arquitectura
 include::views/logic.adoc[]
 include::views/businessConceptModel.adoc[]
+include::views/process.adoc[]
+include::views/implementation.adoc[]
 
 == TBD
 include::views/context.adoc[]
-include::views/functional.adoc[]
-include::views/information.adoc[]
-include::views/concurrency.adoc[]
-include::views/deployment.adoc[]
-include::views/development.adoc[]
-include::views/operational.adoc[]
-include::qualities.adoc[]
-include::decisions.adoc[]
+include::traceability.adoc[]
 include::appendix.adoc[]
