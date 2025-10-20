@@ -1,6 +1,0 @@
-== Vista Operacional
-
-(Explica cómo se opera y monitorea el sistema en producción: logs, métricas, alertas)
-
-image::operational.png[Vista Operacional, width=600, align=center]
-

@@ -1,6 +1,0 @@
-== Vista Funcional
-
-(Describe las funcionalidades principales del sistema y cómo se organizan)
-
-image::functional.png[Diagrama Funcional, width=600, align=center]
-

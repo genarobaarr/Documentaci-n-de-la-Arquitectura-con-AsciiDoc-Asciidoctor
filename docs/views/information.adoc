@@ -1,6 +1,0 @@
-== Vista de Información
-
-(Describe los modelos de datos, entidades, relaciones o flujos de información)
-
-image::information.png[Modelo de Información, width=600, align=center]
-
