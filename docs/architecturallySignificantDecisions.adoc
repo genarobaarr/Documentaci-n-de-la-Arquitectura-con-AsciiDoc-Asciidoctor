@@ -1,0 +1,4 @@
+== Registro de decisiones arquitectónicas
+
+include::adr/0001-record-architecture-decisions.md[]
+

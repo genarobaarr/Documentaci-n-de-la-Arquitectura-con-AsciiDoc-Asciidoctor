@@ -53,5 +53,8 @@ include::views/implementation.adoc[]
 
 == TBD
 include::views/context.adoc[]
+
+include::architecturallySignificantDecisions.adoc[]
+
 include::traceability.adoc[]
 include::appendix.adoc[]
