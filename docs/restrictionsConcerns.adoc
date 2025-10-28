@@ -43,7 +43,7 @@ Con esto podemos decir que las preocupaciones principales son:
 
 | CRN-4 | Estandarizar la experiencia del usuario en todos los módulos para reducir la curva de aprendizaje. | Usabilidad
 
-| CRN-5 | Contar con un diseño modular, es decir, microservidores, que facilite el desarrollo de nuevas funcionalidades. | Extensibilidad / Mantenibilidad
+| CRN-5 | Contar con un diseño modular, es decir, cliente-servidor y capas, que facilite el desarrollo de nuevas funcionalidades. | Extensibilidad / Mantenibilidad
 
 | CRN-6 | No acumular deuda técnica que comprometa la mantenibilidad del sistema. | Mantenibilidad
 |===

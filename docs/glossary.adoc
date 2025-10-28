@@ -31,7 +31,7 @@
 
 3+^| D
 | *Desacoplamiento*
-| Principio de diseño que busca reducir la dependencia entre los módulos del sistema (Microservicios) y entre el SRC y los sistemas externos, facilitando la Mantenibilidad.
+| Principio de diseño que busca reducir la dependencia entre los módulos del sistema (Cliente-Servidor) y entre el cliente y los sistemas del servidor, facilitando la Mantenibilidad.
 | Principio de Diseño
 | *Disponibilidad*
 | Atributo de Calidad que mide la proporción de tiempo que el sistema o una función crítica (ej. consulta de disponibilidad) está operativa y accesible.
@@ -56,16 +56,13 @@
 | Táctica de Seguridad
 
 3+^| M
-| *Microservicios*
-| Patrón Arquitectónico seleccionado que estructura la aplicación como una colección de servicios pequeños, desacoplados, autónomos y que pueden escalarse independientemente (ej. Módulo de Venta, Módulo de Recepción).
-| Patrón Arquitectónico
 | *Mantenibilidad*
-| Atributo de Calidad que describe la facilidad con la que el sistema puede ser modificado, corregido y actualizado, un impulsor clave para la adopción de Microservicios.
+| Atributo de Calidad que describe la facilidad con la que el sistema puede ser modificado, corregido y actualizado, un impulsor clave para la adopción de un sistema Cliente-Servidor.
 | ISO/IEC 25010
 
 3+^| O
 | *Observabilidad*
-| La capacidad del sistema para entender su estado interno a partir de datos externos, esencial para monitorear el Rendimiento y diagnosticar fallas en un sistema de Microservicios.
+| La capacidad del sistema para entender su estado interno a partir de datos externos, esencial para monitorear el Rendimiento y diagnosticar fallas en un sistema Cliente-Servidor.
 | Atributo de Calidad
 | *Overbooking*
 | Política estratégica de gestión de inventario que permite la sobreventa controlada de Habitaciones, basándose en la probabilidad histórica de cancelaciones para maximizar los ingresos.
