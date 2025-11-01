@@ -1,10 +1,6 @@
 === Vista de Implementación
 
-(HITO 3 e HITO 4)
-
-(Esta vista muestra los componentes que integran el sistema. Este apartado consiste en:)
-
-==== Diagrama de especificación
+==== Diagramas de especificación de componentes
 
 (HITO 3 e HITO 4)
 
@@ -24,9 +20,74 @@
 
 ==== Interacción de componente
 
-(HITO 3 e HITO 4)
+===== Servicio de Acceso al Sistema
 
-(Demostrar cómo los componentes colaboran para realizar una funcionalidad específica. Valida que las interfaces definidas son suficientes y correctas.)
+image::communicationDiagramServicioDeAccesoAlSistemaDarDeBajaAdministrador.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Dar De Baja Administrador, width=600, align=center]
 
-(Diagramas de Comunicación UML de las operaciones de sistema que ayudó a identificar las operaciones de las interfaces de negocio. Se elabora uno por cada operación de la interfaz de sistema. Muestra las instancias de los componentes y los mensajes que intercambian.)
+image::communicationDiagramServicioDeAccesoAlSistemaDarDeBajaAuditor.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Dar De Baja Auditor, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaDarDeBajaHuesped.png[Diagrama de Comunicación Servicio Servicio De Acceso Al Sistema Dar De Baja Huesped, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaDarDeBajaRecepcionista.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Dar De Baja Recepcionista, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaIniciarSesion.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Iniciar Sesion, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaRegistrarAdministrador.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Administrador, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaRegistrarAuditor.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Auditor, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaRegistrarHuesped.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Huesped, width=600, align=center]
+
+image::communicationDiagramServicioDeAccesoAlSistemaRegistrarRecepcionista.png[Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Recepcionista, width=600, align=center]
+
+===== Servicio de Auditoría
+
+
+===== Servicio de Configuración
+
+
+===== Servicio de Estancia
+
+image::communicationDiagramServicioDeEstanciaAgregarServicioExtra.png[Diagrama de Comunicación Servicio De Estancia Agregar Servicio Extra, width=600, align=center]
+
+image::communicationDiagramServicioDeEstanciaCheckIn.png[Diagrama de Comunicación Servicio De Estancia Check In, width=600, align=center]
+
+image::communicationDiagramServicioDeEstanciaCheckOut.png[Diagrama de Comunicación Servicio De Estancia Check Out, width=600, align=center]
+
+===== Servicio de Inventario
+
+image::communicationDiagramServicioDeInventarioActualizarHabitacion.png[Diagrama de Comunicación Servicio De Inventario Actualizar Habitacion, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioActualizarHotel.png[Diagrama de Comunicación Servicio De Inventario Actualizar Hotel, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioActualizarTipoHabitacion.png[Diagrama de Comunicación Servicio De Inventario Actualizar Tipo Habitacion, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioAltaHabitacion.png[Diagrama de Comunicación Servicio De Inventario Alta Habitacion, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioAltaServicioDeHotel.png[Diagrama de Comunicación Servicio De Inventario Alta Servicio De Hotel, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioBajaHabitacion.png[Diagrama de Comunicación Servicio De Inventario Baja Habitacion, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioConsultarHabitacion.png[Diagrama de Comunicación Servicio De Inventario Consultar Habitacion, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioConsultarInformacionDeHotel.png[Diagrama de Comunicación Servicio De Inventario Consultar Informacion De Hotel, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioEliminarTipoDeHabitacion.png[Diagrama de Comunicación Servicio De Inventario Eliminar Tipo De Habitacion, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioRegistrarHotel.png[Diagrama de Comunicación Servicio De Inventario Registrar Hotel, width=600, align=center]
+
+image::communicationDiagramServicioDeInventarioRegistrarTipoDeHabitacion.png[Diagrama de Comunicación Servicio De Inventario Registrar Tipo De Habitacion, width=600, align=center]
+
+===== Servicio de Pago
+
+
+===== Servicio de Reservas
+
+image::communicationDiagramServicioDeReservasCancelarReserva.png[Diagrama de Comunicación Servicio De Reservas Cancelar Reserva, width=600, align=center]
+
+image::communicationDiagramServicioDeReservasConsultarDisponibilidad.png[Diagrama de Comunicación Servicio De Reservas Consultar Disponibilidad, width=600, align=center]
+
+image::communicationDiagramServicioDeReservasConsultarReserva.png[Diagrama de Comunicación Servicio De Reservas Consultar Reserva, width=600, align=center]
+
+image::communicationDiagramServicioDeReservasRegistrarReserva.png[Diagrama de Comunicación Servicio De Reservas Registrar Reserva, width=600, align=center]
 

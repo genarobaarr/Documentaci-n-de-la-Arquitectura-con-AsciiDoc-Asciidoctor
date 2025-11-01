@@ -176,5 +176,30 @@ Omar Morales García
 | 18 de octubre de 2025
 | Genaro Alejandro Barradas Sánchez
 | Se corrigen errores menores en nombrado de imágenes y texto
+
+| 0.1.7
+| 23 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se añadió apartado para ADR
+
+| 0.1.8
+| 30 de octubre de 2025
+| Omar Morales García
+| Se agregaron diagramas de componentes
+
+| 0.1.8.1
+| 31 de octubre de 2025
+| Omar Morales García
+| Correciones a diagramas de componentes
+
+| 0.1.9
+| 30 de octubre de 2025
+| Omar Morales García
+| Se agregaron diagramas de comunicación
+
+| 0.1.9.1
+| 30 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se agregaron diagramas de comunicación
 |===
 
