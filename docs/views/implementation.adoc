@@ -42,6 +42,12 @@ image::communicationDiagramServicioDeAccesoAlSistemaRegistrarRecepcionista.png[D
 
 ===== Servicio de Auditoría
 
+image::ConsultarInicioSesion_SAuditoria.png[Diagrama de Comunicación Servicio De Auditoría Consultar Inicio de Sesion, width=600, align=center]
+
+image::ConsultarPeticiones_SAuditoria.png[Diagrama de Comunicación Servicio De Auditoría Consultar Peticiones, width=600, align=center]
+
+image::ConsultarReportes_SAuditoria.png[Diagrama de Comunicación Servicio De Auditoría Consultar Reportes, width=600, align=center]
+
 
 ===== Servicio de Configuración
 
