@@ -86,6 +86,7 @@ image::communicationDiagramServicioDeInventarioRegistrarTipoDeHabitacion.png[Dia
 
 ===== Servicio de Pago
 
+image::PagoTarjeta_SPago.png[Diagrama de Comunicación Servicio De Pago Pago con Tarjeta, width=600, align=center]
 
 ===== Servicio de Reservas
 
