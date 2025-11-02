@@ -51,6 +51,23 @@ image::ConsultarReportes_SAuditoria.png[Diagrama de Comunicación Servicio De Au
 
 ===== Servicio de Configuración
 
+image::ActualizarDescuento_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Descuento, width=600, align=center]
+
+image::ActualizarPolitica_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Politica, width=600, align=center]
+
+image::ActualizarPrecio_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Precio, width=600, align=center]
+
+image::ConsultarInfo_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Consultar Información, width=600, align=center]
+
+image::EliminarPolitica_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Eliminar Politica, width=600, align=center]
+
+image::EliminarDescuento_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Eliminar Descuento, width=600, align=center]
+
+image::RegistrarDesceunto_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Registrar Descuento, width=600, align=center]
+
+image::RegistrarPolitica_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Registrar Politica, width=600, align=center]
+
+image::RegistrarPrecio_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Registrar Precio, width=600, align=center]
 
 ===== Servicio de Estancia
 
