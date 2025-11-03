@@ -2,21 +2,167 @@
 
 ==== Diagramas de especificación de componentes
 
-(HITO 3 e HITO 4)
+===== AdministradorMgt
 
-(Definir cada componente como una unidad de software reemplazable y con un contrato claro. Es la base para el desarrollo y las pruebas unitarias/de integración.)
+image::componentDiagramAdministradorMgt.png[Diagrama de Componentes, width=300, align=center]
 
-(Un Diagrama de Componentes UML por cada componente (serán varios diagramas), usando el estereotipo << comp spec >>. Mostrar las interfaces provistas y requeridas identificadas durante el proceso de diseño. Ver figura 7.9. del libro de Cheesman & Daniels.)
+===== AuditorMgt
+
+image::componentDiagramAuditorMgt.png[Diagrama de Componentes, width=300, align=center]
+
+===== HotelMgt
+
+image::componentDiagramHotelMgt.png[Diagrama de Componentes, width=300, align=center]
+
+===== HuéspedMgt
+
+image::componentDiagramHuéspedMgt.png[Diagrama de Componentes, width=300, align=center]
+
+===== PagoMgt
+
+image::componentDiagramPagoMgt.png[Diagrama de Componentes, width=300, align=center]
+
+===== RecepcionistaMgt
+
+image::componentDiagramRecepcionistaMgt.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de acceso al sistema
+
+image::componentDiagramServicioDeAccesoAlSistema.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de acceso al sistema (interacciones)
+
+image::componentDiagramInteractionsServicioDeAccesoAlSistema.png[Diagrama de Componentes, width=400, align=center]
+
+===== Servicio de auditoría
+
+image::componentDiagramServicioDeAuditoria.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de auditoría (interacciones)
+
+image::componentDiagramInteractionsServicioDeAuditoria.png[Diagrama de Componentes, width=400, align=center]
+
+===== Servicio de configuración
+
+image::componentDiagramServicioDeConfiguracion.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de configuración (interacciones)
+
+image::componentDiagramInteractionsServicioDeConfiguracion.png[Diagrama de Componentes, width=400, align=center]
+
+===== Servicio de estancia
+
+image::componentDiagramServicioDeEstancia.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de estancia (interacciones)
+
+image::componentDiagramInteractionsServicioDeEstancia.png[Diagrama de Componentes, width=400, align=center]
+
+===== Servicio de inventario
+
+image::componentDiagramServicioDeInventario.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de inventario (interacciones)
+
+image::componentDiagramInteractionsServicioDeInventario.png[Diagrama de Componentes, width=400, align=center]
+
+===== Servicio de pago
+
+image::componentDiagramServicioDePago.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de pago (interacciones)
+
+image::componentDiagramInteractionsServicioDePago.png[Diagrama de Componentes, width=400, align=center]
+
+===== Servicio de reservas
+
+image::componentDiagramServicioDeReservas.png[Diagrama de Componentes, width=300, align=center]
+
+===== Servicio de reservas (interacciones)
+
+image::componentDiagramInteractionsServicioDeReservas.png[Diagrama de Componentes, width=400, align=center]
 
 ==== Diagramas de especificación de interfaces
 
-(HITO 3 e HITO 4)
+===== Interfaz de Habitación
 
-(Formalizar el contrato de cada interfaz. Define qué operaciones ofrece un componente y qué se espera de ellas, permitiendo el desarrollo en paralelo.)
+image::interfaceSpecHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Habitación, width=300, align=center]
 
-(Un Diagrama de Clases UML por cada interfaz, usando el estereotipo << interface type >> que contiene las operaciones de la interfaz con una relación de composición al modelo de información de dicha interfaz (diagrama de clases). Se incluyen los diagramas de interfaces de sistema y de interfaces de negocio. Ver figuras 7.4 y 7.6 del libro de Cheesman & Daniels. Las operaciones de cada interfaz deben llevar firma.)
+*Precondiciones:*
 
-(A continuación de cada diagrama deben especificarse las pre y pos-condiciones de manera clara.)
+Las fechas deben ser válidas (fechaInicio ≤ fechaFin).
+
+La habitación debe existir en el registro del sistema.
+
+*Postcondiciones:*
+
+Si se actualiza el estado, este cambio se refleja en la base de datos.
+
+Las consultas retornan listas no nulas (pueden ser vacías si no hay resultados).
+
+===== Interfaz de Login
+
+image::interfaceSpecLogin.png[Diagrama de Especificación de interfaces de Interfaz Login, width=300, align=center]
+
+*Precondiciones:*
+
+El nombre de usuario y contraseña no deben ser nulos ni vacíos.
+
+El sistema debe estar conectado a la base de datos (ConexionDB activa).
+
+*Postcondiciones:*
+
+Si las credenciales son válidas, retorna true y carga el objeto Usuario asociado.
+
+Si las credenciales son incorrectas, retorna false sin alterar el estado del sistema.
+
+===== Interfaz de Pago
+
+image::interfaceSpecPago.png[Diagrama de Especificación de interfaces de Interfaz Pago, width=400, align=center]
+
+*Precondiciones:*
+
+El usuario debe tener una reserva confirmada.
+
+Los datos de pago deben ser válidos (método, monto, referencia).
+
+*Postcondiciones:*
+
+Si el pago se procesa correctamente, se genera un registro en la base de datos y se actualiza el estado de la reserva.
+
+Si el pago falla, no se generan registros ni cambios de estado.
+
+===== Interfaz de Reporte
+
+image::interfaceSpecReporte.png[Diagrama de Especificación de interfaces de Interfaz Reporte, width=500, align=center]
+
+*Precondiciones:*
+
+El usuario solicitante debe tener rol de administrador o auditor.
+
+Las fechas ingresadas deben ser válidas y pertenecer a un rango cronológico coherente.
+
+*Postcondiciones:*
+
+El sistema devuelve una lista de reportes generados dinámicamente con base en los datos actuales.
+
+Los reportes se guardan o actualizan en la tabla de historial (ReporteDAO).
+
+===== Interfaz de Reserva
+
+image::interfaceSpecReserva.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=400, align=center]
+
+*Precondiciones:*
+
+La habitación debe estar disponible en las fechas solicitadas.
+
+El usuario debe estar autenticado en el sistema.
+
+*Postcondiciones:*
+
+Si la reserva es válida, se almacena en la base de datos y se actualiza el estado de la habitación.
+
+Si se cancela, la habitación vuelve a estado “disponible” y la reserva pasa a estado “cancelada”.
 
 ==== Interacción de componente
 

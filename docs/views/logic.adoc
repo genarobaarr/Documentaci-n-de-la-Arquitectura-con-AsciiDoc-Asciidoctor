@@ -58,7 +58,7 @@ El sistema adopta el estilo arquitectónico en capas cliente-servidor, que propo
 
 ==== Diagrama de Componentes
 
-image::componentsDiagramSistemaHotelero.png[Diagrama de Componentes, width=600, align=center]
+image::componentDiagramComponents.png[Diagrama de Componentes, width=600, align=center]
 
 ==== Diagrama de Objetos
 
