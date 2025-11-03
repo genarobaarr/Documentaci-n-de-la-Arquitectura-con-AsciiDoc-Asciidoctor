@@ -474,19 +474,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_vista_lógica">5.1. Vista lógica</a></li>
 <li><a href="#_modelo_de_conceptos_de_negocio">5.2. Modelo de conceptos de negocio</a></li>
+<li><a href="#_vista_de_proceso">5.3. Vista de Proceso</a></li>
+<li><a href="#_vista_de_implementación">5.4. Vista de Implementación</a></li>
 </ul>
 </li>
 <li><a href="#_tbd">6. TBD</a></li>
 <li><a href="#_vista_de_contexto">7. Vista de Contexto</a></li>
-<li><a href="#_vista_funcional">8. Vista Funcional</a></li>
-<li><a href="#_vista_de_información">9. Vista de Información</a></li>
-<li><a href="#_vista_de_concurrencia">10. Vista de Concurrencia</a></li>
-<li><a href="#_vista_de_despliegue">11. Vista de Despliegue</a></li>
-<li><a href="#_vista_de_desarrollo">12. Vista de Desarrollo</a></li>
-<li><a href="#_vista_operacional">13. Vista Operacional</a></li>
-<li><a href="#_atributos_de_calidad">14. Atributos de Calidad</a></li>
-<li><a href="#_decisiones_arquitectónicas">15. Decisiones Arquitectónicas</a></li>
-<li><a href="#_apéndice">16. Apéndice</a></li>
+<li><a href="#_registro_de_decisiones_arquitectónicas">8. Registro de decisiones arquitectónicas</a>
+<ul class="sectlevel2">
+<li><a href="#_record_architecture_decisions">8.1. Record architecture decisions</a></li>
+</ul>
+</li>
+<li><a href="#_trazabilidad">9. Trazabilidad</a></li>
+<li><a href="#_apéndice">10. Apéndice</a></li>
 </ul>
 </div>
 </div>
@@ -739,6 +739,36 @@ Morales García Omar || <a href="mailto:zs23014039@estudiantes.uv.mx">zs23014039
 <td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Se corrigen errores menores en nombrado de imágenes y texto</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">23 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió apartado para ADR</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se agregaron diagramas de componentes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.8.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">31 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correciones a diagramas de componentes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se agregaron diagramas de comunicación</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.9.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de octubre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se agregaron diagramas de comunicación</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -970,7 +1000,7 @@ Este módulo es esencial para los requisitos de seguridad y confiabilidad del si
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Desacoplamiento</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Principio de diseño que busca reducir la dependencia entre los módulos del sistema (Microservicios) y entre el SRC y los sistemas externos, facilitando la Mantenibilidad.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Principio de diseño que busca reducir la dependencia entre los módulos del sistema (Cliente-Servidor) y entre el cliente y los sistemas del servidor, facilitando la Mantenibilidad.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Principio de Diseño</p></td>
 </tr>
 <tr>
@@ -1011,13 +1041,8 @@ Este módulo es esencial para los requisitos de seguridad y confiabilidad del si
 <td class="tableblock halign-center valign-top" colspan="3"><p class="tableblock">M</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Microservicios</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Patrón Arquitectónico seleccionado que estructura la aplicación como una colección de servicios pequeños, desacoplados, autónomos y que pueden escalarse independientemente (ej. Módulo de Venta, Módulo de Recepción).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Patrón Arquitectónico</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mantenibilidad</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo de Calidad que describe la facilidad con la que el sistema puede ser modificado, corregido y actualizado, un impulsor clave para la adopción de Microservicios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Atributo de Calidad que describe la facilidad con la que el sistema puede ser modificado, corregido y actualizado, un impulsor clave para la adopción de un sistema Cliente-Servidor.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ISO/IEC 25010</p></td>
 </tr>
 <tr>
@@ -1025,7 +1050,7 @@ Este módulo es esencial para los requisitos de seguridad y confiabilidad del si
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Observabilidad</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La capacidad del sistema para entender su estado interno a partir de datos externos, esencial para monitorear el Rendimiento y diagnosticar fallas en un sistema de Microservicios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La capacidad del sistema para entender su estado interno a partir de datos externos, esencial para monitorear el Rendimiento y diagnosticar fallas en un sistema Cliente-Servidor.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Atributo de Calidad</p></td>
 </tr>
 <tr>
@@ -5581,7 +5606,7 @@ POST-02 El registro del hotel seleccionado se actualiza con los nuevos datos</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CRN-5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Contar con un diseño modular, es decir, microservidores, que facilite el desarrollo de nuevas funcionalidades.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contar con un diseño modular, es decir, cliente-servidor y capas, que facilite el desarrollo de nuevas funcionalidades.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Extensibilidad / Mantenibilidad</p></td>
 </tr>
 <tr>
@@ -5919,7 +5944,7 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 <h4 id="_diagrama_de_componentes">5.1.2. Diagrama de Componentes</h4>
 <div class="imageblock text-center">
 <div class="content">
-<img src="images/componentsDiagramSistemaHotelero.png" alt="Diagrama de Componentes" width="600">
+<img src="images/componentDiagramComponents.png" alt="Diagrama de Componentes" width="600">
 </div>
 </div>
 </div>
@@ -5937,6 +5962,552 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 <div class="imageblock text-center">
 <div class="content">
 <img src="images/businessClassDiagram.png" alt="Diagrama de Clases del negocio" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_vista_de_proceso">5.3. Vista de Proceso</h3>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/secuenceDiagram.png" alt="Diagrama de Secuencia UML" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>(HITO 5)</p>
+</div>
+<div class="paragraph">
+<p>(Mostrar el comportamiento del sistema en ejecución para satisfacer rendimiento y disponibilidad. Se enfoca en concurrencia, comunicación y sincronización.)</p>
+</div>
+<div class="paragraph">
+<p>(Diagrama de Secuencia UML (alternativas: Sequence, Communication, Activity, Timing, Interaction Overview) para 2-3 flujos críticos. El texto debe explicar el modelo de concurrencia y los patrones de interacción.)</p>
+</div>
+<div class="paragraph">
+<p>(Indicar qué se ejecuta en paralelo, qué llamadas son sincrónicas / asíncronas, tiempos objetivo/timeout y reintentos, y dónde empieza/termina la transacción con la política de consistencia aplicada (fuerte/eventual)”.)</p>
+</div>
+<div class="paragraph">
+<p>(Texto explicativo: 450–900 palabras. Explica la estructura mostrada en el diagrama, justifica cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los escenarios de atributos de calidad relevantes para esta vista.)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_vista_de_implementación">5.4. Vista de Implementación</h3>
+<div class="sect3">
+<h4 id="_diagramas_de_especificación_de_componentes">5.4.1. Diagramas de especificación de componentes</h4>
+<div class="sect4">
+<h5 id="_administradormgt">AdministradorMgt</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramAdministradorMgt.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_auditormgt">AuditorMgt</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramAuditorMgt.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_hotelmgt">HotelMgt</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramHotelMgt.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_huéspedmgt">HuéspedMgt</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramHuéspedMgt.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_pagomgt">PagoMgt</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramPagoMgt.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_recepcionistamgt">RecepcionistaMgt</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramRecepcionistaMgt.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_acceso_al_sistema">Servicio de acceso al sistema</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDeAccesoAlSistema.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_acceso_al_sistema_interacciones">Servicio de acceso al sistema (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDeAccesoAlSistema.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_auditoría">Servicio de auditoría</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDeAuditoria.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_auditoría_interacciones">Servicio de auditoría (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDeAuditoria.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_configuración">Servicio de configuración</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDeConfiguracion.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_configuración_interacciones">Servicio de configuración (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDeConfiguracion.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_estancia">Servicio de estancia</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDeEstancia.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_estancia_interacciones">Servicio de estancia (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDeEstancia.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_inventario">Servicio de inventario</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDeInventario.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_inventario_interacciones">Servicio de inventario (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDeInventario.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_pago">Servicio de pago</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDePago.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_pago_interacciones">Servicio de pago (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDePago.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_reservas">Servicio de reservas</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramServicioDeReservas.png" alt="Diagrama de Componentes" width="300">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_reservas_interacciones">Servicio de reservas (interacciones)</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/componentDiagramInteractionsServicioDeReservas.png" alt="Diagrama de Componentes" width="400">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_diagramas_de_especificación_de_interfaces">5.4.2. Diagramas de especificación de interfaces</h4>
+<div class="sect4">
+<h5 id="_interfaz_de_habitación">Interfaz de Habitación</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/interfaceSpecHabitacion.png" alt="Diagrama de Especificación de interfaces de Interfaz Habitación" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Precondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>Las fechas deben ser válidas (fechaInicio ≤ fechaFin).</p>
+</div>
+<div class="paragraph">
+<p>La habitación debe existir en el registro del sistema.</p>
+</div>
+<div class="paragraph">
+<p><strong>Postcondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>Si se actualiza el estado, este cambio se refleja en la base de datos.</p>
+</div>
+<div class="paragraph">
+<p>Las consultas retornan listas no nulas (pueden ser vacías si no hay resultados).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_interfaz_de_login">Interfaz de Login</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/interfaceSpecLogin.png" alt="Diagrama de Especificación de interfaces de Interfaz Login" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Precondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>El nombre de usuario y contraseña no deben ser nulos ni vacíos.</p>
+</div>
+<div class="paragraph">
+<p>El sistema debe estar conectado a la base de datos (ConexionDB activa).</p>
+</div>
+<div class="paragraph">
+<p><strong>Postcondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>Si las credenciales son válidas, retorna true y carga el objeto Usuario asociado.</p>
+</div>
+<div class="paragraph">
+<p>Si las credenciales son incorrectas, retorna false sin alterar el estado del sistema.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_interfaz_de_pago">Interfaz de Pago</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/interfaceSpecPago.png" alt="Diagrama de Especificación de interfaces de Interfaz Pago" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Precondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>El usuario debe tener una reserva confirmada.</p>
+</div>
+<div class="paragraph">
+<p>Los datos de pago deben ser válidos (método, monto, referencia).</p>
+</div>
+<div class="paragraph">
+<p><strong>Postcondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>Si el pago se procesa correctamente, se genera un registro en la base de datos y se actualiza el estado de la reserva.</p>
+</div>
+<div class="paragraph">
+<p>Si el pago falla, no se generan registros ni cambios de estado.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_interfaz_de_reporte">Interfaz de Reporte</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/interfaceSpecReporte.png" alt="Diagrama de Especificación de interfaces de Interfaz Reporte" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Precondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>El usuario solicitante debe tener rol de administrador o auditor.</p>
+</div>
+<div class="paragraph">
+<p>Las fechas ingresadas deben ser válidas y pertenecer a un rango cronológico coherente.</p>
+</div>
+<div class="paragraph">
+<p><strong>Postcondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>El sistema devuelve una lista de reportes generados dinámicamente con base en los datos actuales.</p>
+</div>
+<div class="paragraph">
+<p>Los reportes se guardan o actualizan en la tabla de historial (ReporteDAO).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_interfaz_de_reserva">Interfaz de Reserva</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/interfaceSpecReserva.png" alt="Diagrama de Especificación de interfaces de Interfaz Reserva" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Precondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>La habitación debe estar disponible en las fechas solicitadas.</p>
+</div>
+<div class="paragraph">
+<p>El usuario debe estar autenticado en el sistema.</p>
+</div>
+<div class="paragraph">
+<p><strong>Postcondiciones:</strong></p>
+</div>
+<div class="paragraph">
+<p>Si la reserva es válida, se almacena en la base de datos y se actualiza el estado de la habitación.</p>
+</div>
+<div class="paragraph">
+<p>Si se cancela, la habitación vuelve a estado “disponible” y la reserva pasa a estado “cancelada”.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_interacción_de_componente">5.4.3. Interacción de componente</h4>
+<div class="sect4">
+<h5 id="_servicio_de_acceso_al_sistema_2">Servicio de Acceso al Sistema</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaDarDeBajaAdministrador.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Dar De Baja Administrador" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaDarDeBajaAuditor.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Dar De Baja Auditor" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaDarDeBajaHuesped.png" alt="Diagrama de Comunicación Servicio Servicio De Acceso Al Sistema Dar De Baja Huesped" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaDarDeBajaRecepcionista.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Dar De Baja Recepcionista" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaIniciarSesion.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Iniciar Sesion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaRegistrarAdministrador.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Administrador" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaRegistrarAuditor.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Auditor" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaRegistrarHuesped.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Huesped" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeAccesoAlSistemaRegistrarRecepcionista.png" alt="Diagrama de Comunicación Servicio De Acceso Al Sistema Registrar Recepcionista" width="600">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_auditoría_2">Servicio de Auditoría</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ConsultarInicioSesion_SAuditoria.png" alt="Diagrama de Comunicación Servicio De Auditoría Consultar Inicio de Sesion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ConsultarPeticiones_SAuditoria.png" alt="Diagrama de Comunicación Servicio De Auditoría Consultar Peticiones" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ConsultarReportes_SAuditoria.png" alt="Diagrama de Comunicación Servicio De Auditoría Consultar Reportes" width="600">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_configuración_2">Servicio de Configuración</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ActualizarDescuento_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Actualizar Descuento" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ActualizarPolitica_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Actualizar Politica" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ActualizarPrecio_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Actualizar Precio" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/ConsultarInfo_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Consultar Información" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/EliminarPolitica_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Eliminar Politica" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/EliminarDescuento_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Eliminar Descuento" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/RegistrarDesceunto_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Registrar Descuento" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/RegistrarPolitica_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Registrar Politica" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/RegistrarPrecio_SConfig.png" alt="Diagrama de Comunicación Servicio De Configuracion Registrar Precio" width="600">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_estancia_2">Servicio de Estancia</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeEstanciaAgregarServicioExtra.png" alt="Diagrama de Comunicación Servicio De Estancia Agregar Servicio Extra" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeEstanciaCheckIn.png" alt="Diagrama de Comunicación Servicio De Estancia Check In" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeEstanciaCheckOut.png" alt="Diagrama de Comunicación Servicio De Estancia Check Out" width="600">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_inventario_2">Servicio de Inventario</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioActualizarHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Actualizar Habitacion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioActualizarHotel.png" alt="Diagrama de Comunicación Servicio De Inventario Actualizar Hotel" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioActualizarTipoHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Actualizar Tipo Habitacion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioAltaHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Alta Habitacion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioAltaServicioDeHotel.png" alt="Diagrama de Comunicación Servicio De Inventario Alta Servicio De Hotel" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioBajaHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Baja Habitacion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioConsultarHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Consultar Habitacion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioConsultarInformacionDeHotel.png" alt="Diagrama de Comunicación Servicio De Inventario Consultar Informacion De Hotel" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioEliminarTipoDeHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Eliminar Tipo De Habitacion" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioRegistrarHotel.png" alt="Diagrama de Comunicación Servicio De Inventario Registrar Hotel" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeInventarioRegistrarTipoDeHabitacion.png" alt="Diagrama de Comunicación Servicio De Inventario Registrar Tipo De Habitacion" width="600">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_pago_2">Servicio de Pago</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/PagoTarjeta_SPago.png" alt="Diagrama de Comunicación Servicio De Pago Pago con Tarjeta" width="600">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_servicio_de_reservas_2">Servicio de Reservas</h5>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeReservasCancelarReserva.png" alt="Diagrama de Comunicación Servicio De Reservas Cancelar Reserva" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeReservasConsultarDisponibilidad.png" alt="Diagrama de Comunicación Servicio De Reservas Consultar Disponibilidad" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeReservasConsultarReserva.png" alt="Diagrama de Comunicación Servicio De Reservas Consultar Reserva" width="600">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/communicationDiagramServicioDeReservasRegistrarReserva.png" alt="Diagrama de Comunicación Servicio De Reservas Registrar Reserva" width="600">
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5964,106 +6535,71 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_funcional">8. Vista Funcional</h2>
+<h2 id="_registro_de_decisiones_arquitectónicas">8. Registro de decisiones arquitectónicas</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_record_architecture_decisions">8.1. Record architecture decisions</h3>
 <div class="paragraph">
-<p>(Describe las funcionalidades principales del sistema y cómo se organizan)</p>
+<p>Date: 2025-10-23</p>
 </div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/functional.png" alt="Diagrama Funcional" width="600">
+<div class="sect3">
+<h4 id="_status">8.1.1. Status</h4>
+<div class="paragraph">
+<p>Accepted</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_context">8.1.2. Context</h4>
+<div class="paragraph">
+<p>We need to record the architectural decisions made on this project.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_decision">8.1.3. Decision</h4>
+<div class="paragraph">
+<p>We will use Architecture Decision Records, as [described by Michael Nygard](<a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions" class="bare">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_consequences">8.1.4. Consequences</h4>
+<div class="paragraph">
+<p>See Michael Nygard&#8217;s article, linked above. For a lightweight ADR toolset, see Nat Pryce&#8217;s [adr-tools](<a href="https://github.com/npryce/adr-tools" class="bare">https://github.com/npryce/adr-tools</a>).</p>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_información">9. Vista de Información</h2>
+<h2 id="_trazabilidad">9. Trazabilidad</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(Describe los modelos de datos, entidades, relaciones o flujos de información)</p>
+<p>(HITO 4 e HITO 5)</p>
 </div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/information.png" alt="Modelo de Información" width="600">
+<div class="paragraph">
+<p>(Verificar la coherencia y completitud del diseño, demostrando cómo cada ASR se materializa en decisiones y artefactos concretos a lo largo del documento. Esta matriz es la evidencia final de que la arquitectura responde directamente a los requisitos. Ayuda a asegurar que no haya decisiones de diseño "huérfanas" (sin justificación) o requisitos importantes que no hayan sido atendidos en el diseño.)</p>
 </div>
+<div class="paragraph">
+<p>(Una única Matriz de Trazabilidad en formato de tabla. Columnas Requeridas:)</p>
+</div>
+<div class="paragraph">
+<p>(1. Driver (ID y Tipo) — {CU, QAS, CON, CRN})</p>
+</div>
+<div class="paragraph">
+<p>(2. Decisión de Diseño (Táctica / Patrón))</p>
+</div>
+<div class="paragraph">
+<p>(4. Artefactos Afectados (añadir referencia a Vistas/Elementos))</p>
+</div>
+<div class="paragraph">
+<p>(5. Estado (Cumple / Parcial / Pendiente))</p>
+</div>
+<div class="paragraph">
+<p>(Nota: Un mismo driver puede aparecer en varias filas si fue atendido en iteraciones distintas.)</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_concurrencia">10. Vista de Concurrencia</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Explica cómo el sistema maneja procesos/hilos simultáneos o concurrencia)</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/concurrency.png" alt="Vista de Concurrencia" width="600">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_vista_de_despliegue">11. Vista de Despliegue</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Muestra la infraestructura, servidores, contenedores y cómo se despliega el sistema)</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/deployment.png" alt="Diagrama de Despliegue" width="600">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_vista_de_desarrollo">12. Vista de Desarrollo</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Describe cómo está organizado el código, módulos, paquetes y capas del sistema)</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/development.png" alt="Vista de Desarrollo" width="600">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_vista_operacional">13. Vista Operacional</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Explica cómo se opera y monitorea el sistema en producción: logs, métricas, alertas)</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/operational.png" alt="Vista Operacional" width="600">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_atributos_de_calidad">14. Atributos de Calidad</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Aquí se documentan los atributos clave de calidad del sistema:
-- Rendimiento
-- Disponibilidad
-- Seguridad
-- Usabilidad)</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_decisiones_arquitectónicas">15. Decisiones Arquitectónicas</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Se registran las decisiones importantes tomadas durante el diseño del sistema,
-ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_apéndice">16. Apéndice</h2>
+<h2 id="_apéndice">10. Apéndice</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(Material adicional, referencias, glosario, notas)</p>
@@ -6073,7 +6609,7 @@ ejemplo: elección de base de datos, framework, estilo arquitectónico, etc.)</p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-06 07:35:06 -0600
+Last updated 2025-10-28 10:36:37 -0600
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
