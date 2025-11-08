@@ -84,9 +84,29 @@ image::componentDiagramInteractionsServicioDeReservas.png[Diagrama de Componente
 
 ==== Diagramas de especificación de interfaces
 
-===== Interfaz de Habitación
+===== Interfaz de Inventario
 
-image::interfaceSpecHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Habitación, width=300, align=center]
+image::IAltaHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IActualizarHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IBajaHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IConsultarHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IConsultarInformacionDeHotel.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IAltaServicioDeHotel.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IActualizarHotel.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IRegistrarHotel.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IRegistrarTipoDeHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IEliminarTipoDeHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
+
+image::IActualizarTipoHabitacion.png[Diagrama de Especificación de interfaces de Interfaz Inventario, width=300, align=center]
 
 *Precondiciones:*
 
@@ -98,11 +118,31 @@ La habitación debe existir en el registro del sistema.
 
 Si se actualiza el estado, este cambio se refleja en la base de datos.
 
+Se guarda dentro de la base de datos los cambios respecto a habitaciones.
+
 Las consultas retornan listas no nulas (pueden ser vacías si no hay resultados).
 
-===== Interfaz de Login
+===== Interfaz de Acceso al Sistema
 
-image::interfaceSpecLogin.png[Diagrama de Especificación de interfaces de Interfaz Login, width=300, align=center]
+image::IInicioDeSesion.png[Diagrama de Especificación de interfaces de Interfaz Acceso al sistema, width=300, align=center]
+
+image::IRegistrarAccesoAlSistema.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IRegistrarHuesped.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IDarDeBajaHuesped.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IRegistrarRecepcionista.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IDarDeBajaRecepcionista.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IRegistrarAuditor.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IDarDeBajaAuditor.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IRegistrarAdministrador.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
+
+image::IDarDeBajaAdministrador.png[Diagrama de Especificación de interfaces de Interfaz acceso al sistema, width=300, align=center]
 
 *Precondiciones:*
 
@@ -116,9 +156,11 @@ Si las credenciales son válidas, retorna true y carga el objeto Usuario asociad
 
 Si las credenciales son incorrectas, retorna false sin alterar el estado del sistema.
 
+El sistema guarda los cambios dentro de la base de datos referentes a usuarios nuevos, eliminados o actualizados.
+
 ===== Interfaz de Pago
 
-image::interfaceSpecPago.png[Diagrama de Especificación de interfaces de Interfaz Pago, width=400, align=center]
+image::IPagoConTarjeta.png[Diagrama de Especificación de interfaces de Interfaz Pago, width=400, align=center]
 
 *Precondiciones:*
 
@@ -132,25 +174,71 @@ Si el pago se procesa correctamente, se genera un registro en la base de datos y
 
 Si el pago falla, no se generan registros ni cambios de estado.
 
-===== Interfaz de Reporte
+===== Interfaz de Auditoría
 
-image::interfaceSpecReporte.png[Diagrama de Especificación de interfaces de Interfaz Reporte, width=500, align=center]
+image::IConsularReporte.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
+
+image::IConsularPeticiones.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
+
+image::IConsularInicioDeSesion.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
 
 *Precondiciones:*
 
-El usuario solicitante debe tener rol de administrador o auditor.
+El usuario debe acceder al sistema con un rol de Auditor.
 
 Las fechas ingresadas deben ser válidas y pertenecer a un rango cronológico coherente.
 
 *Postcondiciones:*
 
-El sistema devuelve una lista de reportes generados dinámicamente con base en los datos actuales.
+El sistema muestra los registros solicitados en función de los filtros aplicados.
 
-Los reportes se guardan o actualizan en la tabla de historial (ReporteDAO).
+===== Interfaz de Configuración
+
+image::IConsultarInformacionDeConfiguracion.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IRegistrarPrecio.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IActualizarPrecio.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IRegistrarDescuento.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IActualizarDescuento.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IEliminarDescuento.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IRegistrarPolitica.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IActualizarPolitica.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+image::IEliminarPolitica.png[Diagrama de Especificación de interfaces de Interfaz Configuracion, width=500, align=center]
+
+*Precondiciones:*
+
+El usuario solicitante debe tener rol de administrador.
+
+Las fechas ingresadas deben ser válidas y pertenecer a un rango cronológico coherente.
+
+*Postcondiciones:*
+
+El sistema registra, actualiza o elimina aspectos de la configuración del sistema dentro de la base de datos.
+
+Los datos añadidos (como descuentos) se guardan o actualizan en la tabla de historial (ReporteDAO).
 
 ===== Interfaz de Reserva
 
-image::interfaceSpecReserva.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=400, align=center]
+image::IAgregarServicioExtra.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=400, align=center]
+
+image::ICheckIn.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=400, align=center]
+
+image::ICheckOut.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=400, align=center]
+
+image::IConsultarDisponibilidad.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=300, align=center]
+
+image::IConsultarReserva.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=300, align=center]
+
+image::ICancelarReserva.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=300, align=center]
+
+image::IRegistrarReserva.png[Diagrama de Especificación de interfaces de Interfaz Reserva, width=300, align=center]
 
 *Precondiciones:*
 
@@ -188,32 +276,32 @@ image::communicationDiagramServicioDeAccesoAlSistemaRegistrarRecepcionista.png[D
 
 ===== Servicio de Auditoría
 
-image::ConsultarInicioSesion_SAuditoria.png[Diagrama de Comunicación Servicio De Auditoría Consultar Inicio de Sesion, width=600, align=center]
+image::communicationDiagramServicioDeAuditoriaConsultarInicioDeSesion.png[Diagrama de Comunicación Servicio De Auditoría Consultar Inicio de Sesion, width=600, align=center]
 
-image::ConsultarPeticiones_SAuditoria.png[Diagrama de Comunicación Servicio De Auditoría Consultar Peticiones, width=600, align=center]
+image::communicationDiagramServicioDeAuditoriaConsultarPeticiones.png[Diagrama de Comunicación Servicio De Auditoría Consultar Peticiones, width=600, align=center]
 
-image::ConsultarReportes_SAuditoria.png[Diagrama de Comunicación Servicio De Auditoría Consultar Reportes, width=600, align=center]
+image::communicationDiagramServicioDeAuditoriaConsultarReportes.png[Diagrama de Comunicación Servicio De Auditoría Consultar Reportes, width=600, align=center]
 
 
 ===== Servicio de Configuración
 
-image::ActualizarDescuento_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Descuento, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionActualizarDescuento.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Descuento, width=600, align=center]
 
-image::ActualizarPolitica_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Politica, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionActualizarPolitica.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Politica, width=600, align=center]
 
-image::ActualizarPrecio_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Precio, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionActualizarPrecio.png[Diagrama de Comunicación Servicio De Configuracion Actualizar Precio, width=600, align=center]
 
-image::ConsultarInfo_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Consultar Información, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionConsultarInformacionDeConfiguracion.png[Diagrama de Comunicación Servicio De Configuracion Consultar Información, width=600, align=center]
 
-image::EliminarPolitica_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Eliminar Politica, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionEliminarPolitica.png[Diagrama de Comunicación Servicio De Configuracion Eliminar Politica, width=600, align=center]
 
-image::EliminarDescuento_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Eliminar Descuento, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionEliminarDescuento.png[Diagrama de Comunicación Servicio De Configuracion Eliminar Descuento, width=600, align=center]
 
-image::RegistrarDesceunto_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Registrar Descuento, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionRegistrarDesceunto.png[Diagrama de Comunicación Servicio De Configuracion Registrar Descuento, width=600, align=center]
 
-image::RegistrarPolitica_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Registrar Politica, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionRegistrarPolitica.png[Diagrama de Comunicación Servicio De Configuracion Registrar Politica, width=600, align=center]
 
-image::RegistrarPrecio_SConfig.png[Diagrama de Comunicación Servicio De Configuracion Registrar Precio, width=600, align=center]
+image::communicationDiagramServicioDeConfiguracionRegistrarPrecio.png[Diagrama de Comunicación Servicio De Configuracion Registrar Precio, width=600, align=center]
 
 ===== Servicio de Estancia
 
@@ -249,7 +337,7 @@ image::communicationDiagramServicioDeInventarioRegistrarTipoDeHabitacion.png[Dia
 
 ===== Servicio de Pago
 
-image::PagoTarjeta_SPago.png[Diagrama de Comunicación Servicio De Pago Pago con Tarjeta, width=600, align=center]
+image::communicationDiagramServicioDePagoPagoConTarjeta.png[Diagrama de Comunicación Servicio De Pago Pago con Tarjeta, width=600, align=center]
 
 ===== Servicio de Reservas
 

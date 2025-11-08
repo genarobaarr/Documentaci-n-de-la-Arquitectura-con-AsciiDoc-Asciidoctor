@@ -887,12 +887,9 @@ POST-03 Se elimina una política de overbooking correctamente
 ===== CU18 - Monitorear Inventario
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU18 - Monitorear inventario
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Administrador (AC03)
-|Actores secundarios |N/A
-|Descripción |El administrador obtiene una vista panorámica de cómo está el negocio para tomar decisiones estratégicas
-|Disparador |El administrador va al apartado de Consultar Inventario
+|Nombre |CU18 - Monitorear inventario
+|Actor(es) |Administrador (AC03)
+|Objetivo |El administrador obtiene una vista panorámica de cómo está el negocio para tomar decisiones estratégicas
 |Precondiciones |PRE-1 Existen hoteles registrados y accesibles dentro del sistema
 |Postcondiciones |POST-1 El Administrador tiene visibilidad del estado actual del inventario según los criterios especificados
 |Flujo normal |
@@ -927,9 +924,6 @@ POST-03 Se elimina una política de overbooking correctamente
 1. El sistema muestra un mensaje para hacerle saber al Administrador que no se encontraron resultados con los criterios seleccionados
 
 2. Termina caso de uso
-|Prioridad |Media
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 ==== AC04 - Auditoría
@@ -937,12 +931,9 @@ POST-03 Se elimina una política de overbooking correctamente
 ===== CU19 - Generar Reporte de Anulaciones Sospechosas
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU19 - Generar Reporte de Anulaciones Sospechosas
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita detectar patrones sospechosos en las reservaciones
-|Disparador |El auditor necesita identificar patrones sospechosos en cancelaciones de reservas
+|Nombre |CU19 - Generar Reporte de Anulaciones Sospechosas
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita detectar patrones sospechosos en las reservaciones
 |Precondiciones |PRE-1. Existen reservas registradas y accesibles dentro del sistema.
 |Postcondiciones |POST-1 El Auditor tiene evidencia documentada para tomar acción de los movimientos sospechosos
 |Flujo normal |
@@ -976,20 +967,14 @@ POST-03 Se elimina una política de overbooking correctamente
 1. El sistema muestra un mensaje para hacerle saber al Auditor que no se encontraron resultados con los criterios de consulta seleccionados
 
 2. Regresa al flujo normal
-|Prioridad |Alta
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 ===== CU20 - Revisar ajustes de precios en reservas
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU20 - Revisar ajustes de precios en reservas
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita detectar si alguien modificó el precio de una reserva después de crearla
-|Disparador |El auditor busca detectar irregularidades en ajustes de precios
+|Nombre |CU20 - Revisar ajustes de precios en reservas
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita detectar si alguien modificó el precio de una reserva después de crearla
 |Precondiciones |PRE-1. Existen reservas registradas y accesibles dentro del sistema.
 |Postcondiciones |POST-1 El Auditor tiene evidencia documentada para tomar acción de los cambios sospechosos
 |Flujo normal |
@@ -1023,20 +1008,14 @@ POST-03 Se elimina una política de overbooking correctamente
 1. El sistema muestra un mensaje para hacerle saber al Auditor que no se encontraron resultados con los criterios de consulta seleccionados
 
 2. Regresa al paso 1 del flujo normal
-|Prioridad |Alta
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 ===== CU21 - Conciliar ingresos por servicios adicionales
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU21 - Conciliar ingresos por servicios adicionales
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita detectar alguna discrepancia entre los servicios registrados y los servicios reportados
-|Disparador |El auditor necesita verificar que los servicios consumidos se cobraron correctamente
+|Nombre |CU21 - Conciliar ingresos por servicios adicionales
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita detectar alguna discrepancia entre los servicios registrados y los servicios reportados
 |Precondiciones |PRE-1. Existen servicios registrados y accesibles dentro del sistema.
 |Postcondiciones |POST-1 El Auditor tiene visibilidad de inconsistencias entre servicios consumidos y cobrados
 |Flujo normal |
@@ -1077,27 +1056,21 @@ POST-03 Se elimina una política de overbooking correctamente
 1. El sistema informa que no existen registros de servicios para los criterios especificados
 
 2. Regresa al paso 1
-|Prioridad |Alta
 |Reglas de negocio |
 RN-1 Se considera una inconsistencia cuando:
 . Un servicio fue consumido pero no cobrado
 . Un servicio fue cobrado pero no hay registro de consumo
 . El monto cobrado no coincide con la tarifa del servicio
 . Hay servicios consumidos después de registrado el check-out
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 
 ===== CU22 - Rastrear reembolsos y descuentos
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU22 - Rastrear reembolsos y descuentos
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita verificar que cada reembolso y descuento tenga una justificación válida
-|Disparador |El auditor necesita verificar la validez de reembolsos y descuentos
+|Nombre |CU22 - Rastrear reembolsos y descuentos
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita verificar que cada reembolso y descuento tenga una justificación válida
 |Precondiciones |PRE-1. Existen reembolsos y/o descuentos registrados en el sistema
 |Postcondiciones |POST-1 El Auditor tiene evidencia documentada de reembolsos y descuentos para validar su justificación
 |Flujo normal |
@@ -1133,27 +1106,21 @@ RN-1 Se considera una inconsistencia cuando:
 1. El sistema informa que no existen registros de servicios para los criterios especificados
 
 2. Regresa al paso 1
-|Prioridad |Alta
 |Reglas de negocio |
 RN-1 Se considera sospechoso un reembolso/descuento que:
 . No tenga justificación documentada
 . No tiene autorización o fue autorizado por usuario sin permisos
 . No corresponde con las políticas vigentes
 . No tiene documentación de respaldo para montos altos
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 
 ===== CU23 - Validar cobros de pagos en línea
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU23 - Validar cobros de pagos en línea
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita conciliar que coincidan los registros del sistema, la pasarela de pago y el banco
-|Disparador |El auditor necesita conciliar los pagos en línea procesados
+|Nombre |CU23 - Validar cobros de pagos en línea
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita conciliar que coincidan los registros del sistema, la pasarela de pago y el banco
 |Precondiciones |PRE-1. Existen pagos en línea registrados en el sistema
 |Postcondiciones |POST-1 El Auditor tiene visibilidad de discrepancias entre los pagos registrados procesados y recibidos
 |Flujo normal |
@@ -1188,7 +1155,6 @@ RN-1 Se considera sospechoso un reembolso/descuento que:
 1. El sistema informa que no existen registros de pagos en línea para los criterios especificados
 
 2. Regresa al paso 1
-|Prioridad |Media
 |Reglas de negocio |
 RN-1 Se considera una inconsistencia cuando:
 . El sistema registra un pago como exitoso pero la pasarela lo tiene como rechazado o no existe
@@ -1197,20 +1163,15 @@ RN-1 Se considera una inconsistencia cuando:
 . Hay pagos duplicados
 
 RN-2 Para cada pago debe existir un ID de transacción único proporcionado por la pasarela de pago
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 
 ===== CU24 - Consultar bitácora de accesos del personal
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU24 - Consultar bitácora de accesos del personal
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita consultar el historial de accesos del personal al sistema para identificar actividades sospechosas
-|Disparador |El auditor necesita revisar la bitácora de accesos del personal
+|Nombre |CU24 - Consultar bitácora de accesos del personal
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita consultar el historial de accesos del personal al sistema para identificar actividades sospechosas
 |Precondiciones |PRE-1. El sistema registra automáticamente todos los accesos del personal
 |Postcondiciones |POST-1 El Auditor tiene visibilidad de los movimientos del personal en el sistema
 |Flujo normal |
@@ -1241,7 +1202,6 @@ RN-2 Para cada pago debe existir un ID de transacción único proporcionado por 
 1. El sistema informa que no existen registros de acceso para los criterios especificados
 
 2. Regresa al paso 1
-|Prioridad |Alta
 |Reglas de negocio |
 RN-1 Se considera actividad sospechosa cuando:
 . Hay acceso al sistema fuera del horario laboral sin justificación
@@ -1255,20 +1215,15 @@ RN-2 La bitácora debe registrar para cada acceso:
 . Acción realizada
 . Terminal desde donde accedió
 . Resultado
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 
 ===== CU25 - Consultar informe de inventario
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU25 - Consultar informe de inventario
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor necesita obtener un reporte del estado actual de las habitaciones en el sistema para verificarlos contra el estado físico real
-|Disparador |El auditor necesita consultar el inventario
+|Nombre |CU25 - Consultar informe de inventario
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor necesita obtener un reporte del estado actual de las habitaciones en el sistema para verificarlos contra el estado físico real
 |Precondiciones |PRE-1. Existen habitaciones y reservaciones registradas y accesibles en el sistema
 |Postcondiciones |POST-1 El Auditor tiene el reporte del estado del inventario en sistema para comparación manual
 |Flujo normal |
@@ -1297,27 +1252,21 @@ RN-2 La bitácora debe registrar para cada acceso:
 1. El sistema informa que no existen habitaciones registradas para los criterios especificados
 
 2. Regresa al paso 1
-|Prioridad |Media
 |Reglas de negocio |
 RN-1 El reporte debe incluir para cada habitación:
 . Número de habitación
 . Estado actual de la habitación
 . Tipo de habitación
 . Última actualización de estado
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 
 ===== CU26 - Validar uniformidad de políticas y precios por región
 [cols="1,3", options="header"]
 |===
-|Identificación y nombre |CU26 - Validar uniformidad de políticas y precios por región
-|Autor |Lizeth Guadalupe Bello Peralta
-|Actor principal |Auditor (AC04)
-|Actores secundarios |N/A
-|Descripción |El auditor genera reportes que comparan tarifas, políticas de cancelación y promociones aplicadas en diferentes hoteles, regiones o países para asegurar que sigan las directrices de la marca
-|Disparador |El auditor necesita verificar que las políticas y precios sean uniformes según las directrices de la marca
+|Nombre |CU26 - Validar uniformidad de políticas y precios por región
+|Actor(es) |Auditor (AC04)
+|Objetivo |El auditor genera reportes que comparan tarifas, políticas de cancelación y promociones aplicadas en diferentes hoteles, regiones o países para asegurar que sigan las directrices de la marca
 |Precondiciones |PRE-1. Existe políticas, tarifas y promociones registradas para los hoteles de la cadena
 |Postcondiciones |POST-1 El Auditor tiene el reporte de comparación entre diferentes hoteles o regiones
 |Flujo normal |
@@ -1352,7 +1301,6 @@ RN-1 El reporte debe incluir para cada habitación:
 1. El sistema presenta el reporte con los datos disponibles e indica qué hoteles no tienen información completa
 
 2. Continúa con paso 4
-|Prioridad |Alta
 |Reglas de negocio |
 RN-1 Se considera una discrepancia cuando:
 . Las tarifas base para el mismo tipo de habitación/hotel/región varían más de cierto porcentaje
@@ -1364,8 +1312,6 @@ RN-2 El reporte debe comparar:
 . Políticas de cancelación
 . Políticas de overbooking
 . Promociones activas
-|Incluye |N/A
-|Extiende |N/A
 |===
 
 

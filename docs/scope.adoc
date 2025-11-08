@@ -38,6 +38,13 @@ Este módulo es esencial para los requisitos de seguridad y confiabilidad del si
 * Reconciliación Financiera: Reportes para conciliar ingresos por servicios adicionales y validar que todos los cobros en línea se hayan procesado y registrado correctamente.
 * Validación de Políticas: Herramientas para asegurar la uniformidad de precios y políticas entre diferentes hoteles o regiones.
 
+. Módulo de acceso al sistema (Usuario en general)
+Este módulo se encargará de la gestión de usuarios y seguridad:
+
+* Conceder acceso al sistema: Se encargará de dar acceso a determinadas funcionalidades del sistema a usuarios válidos.
+* Seguridad: No permitirá el acceso a usuarios que no se encuentren registrados dentro del sistema.
+* Generación de reportes: Obtendrá datos sobre los inicios de sesión realizados dentro del sistema, así como las acciones que han realizado.
+
 ==== Funcionalidades Excluidas (Out-of-Scope)
 
 Las siguientes áreas funcionales no forman parte del alcance directo del Sistema de Reservas y se consideran responsabilidades de sistemas o servicios externos:
@@ -46,5 +53,4 @@ Las siguientes áreas funcionales no forman parte del alcance directo del Sistem
 * Gestión de Sistemas de Fidelización: El manejo de programas de puntos de lealtad, niveles de membresía o recompensas para huéspedes. El SRC solo notificará a un sistema externo el check-out para que este acredite los puntos.
 * Servicios de Limpieza y Mantenimiento: La gestión de la logística interna de las camareras o técnicos. El SRC solo actualizará el estado de la habitación a "Limpieza Necesaria" (L/N), pero no gestionará la asignación de tareas.
 * Marketing y CRM: Campañas de correo electrónico, gestión de relaciones con el cliente más allá del historial transaccional de reservas.
-* Autenticación de Terceros: La autenticación robusta del personal (Administradores/Recepcionistas) se delegará a un Sistema de Identidad Institucional existente. El SRC solo gestionará la Autorización (RBAC) basada en los roles recibidos.
 
