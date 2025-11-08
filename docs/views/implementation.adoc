@@ -180,7 +180,7 @@ image::IConsultarReporte.png[Diagrama de Especificación de interfaces de Interf
 
 image::IConsultarPeticiones.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
 
-image::IConsultarInicioDeSesion.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
+image::IConsultarIniciosDeSesion.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
 
 *Precondiciones:*
 
