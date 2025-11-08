@@ -188,7 +188,7 @@ Omar Morales García
 | Se agregaron diagramas de componentes
 
 | 0.1.8.1
-| 31 de octubre de 2025
+| 30 de octubre de 2025
 | Omar Morales García
 | Correciones a diagramas de componentes
 
@@ -201,5 +201,96 @@ Omar Morales García
 | 30 de octubre de 2025
 | Genaro Alejandro Barradas Sánchez
 | Se agregaron diagramas de comunicación
+
+| 0.1.9.2
+| 30 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se arreglaron diagramas
+
+| 0.2.0
+| 31 de octubre de 2025
+| Omar Morales García
+| Se realizaron cambios en el nombrado de diagramas
+
+| 0.2.0.1
+| 31 de octubre de 2025
+| Omar Morales García
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.2
+| 31 de octubre de 2025
+| Omar Morales García
+| Se realizaron cambios dentro de diagramas de comunicación
+
+| 0.2.0.3
+| 31 de octubre de 2025
+| Omar Morales García
+| Se realizaron cambios dentro de diagramas de componentes
+
+| 0.2.0.4
+| 31 de octubre de 2025
+| Omar Morales García
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.5
+| 31 de octubre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.6
+| 31 de octubre de 2025
+| Omar Morales García
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.7
+| 1 de noviembre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.8
+| 1 de noviembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.10
+| 2 de noviembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.11
+| 2 de noviembre de 2025
+| Lizeth Guadalupe Bello Peralta
+| Se agregaron diagramas de comunicación
+
+| 0.2.0.12
+| 2 de noviembre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Vinculación de diagramas de comunicación al texto
+
+| 0.2.0.13
+| 2 de noviembre de 2025
+| Omar Morales García
+| Vinculación de diagramas de comunicación al texto
+
+| 0.2.1
+| 4 de noviembre de 2025
+| Omar Morales García
+| Se agregaron diagramas de interfaz
+
+| 0.2.1.1
+| 5 de noviembre de 2025
+| Omar Morales García
+| Se agregaron diagramas de interfaz
+
+| 0.2.1.2
+| 6 de noviembre de 2025
+| Omar Morales García
+| Se agregaron diagramas de interfaz
+
+| 0.2.1.3
+| 6 de noviembre de 2025
+| Omar Morales García
+| Cambio dentro del nombrado de diagramas
+
 |===
 
