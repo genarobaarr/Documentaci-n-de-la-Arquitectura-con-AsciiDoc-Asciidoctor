@@ -176,11 +176,11 @@ Si el pago falla, no se generan registros ni cambios de estado.
 
 ===== Interfaz de Auditoría
 
-image::IConsularReporte.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
+image::IConsultarReporte.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
 
-image::IConsularPeticiones.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
+image::IConsultarPeticiones.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
 
-image::IConsularInicioDeSesion.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
+image::IConsultarInicioDeSesion.png[Diagrama de Especificación de interfaces de Interfaz Auditoria, width=400, align=center]
 
 *Precondiciones:*
 
