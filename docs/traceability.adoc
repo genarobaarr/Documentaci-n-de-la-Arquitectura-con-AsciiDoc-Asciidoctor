@@ -1,18 +1,99 @@
 == Trazabilidad
 
-(HITO 4 e HITO 5)
+[cols="1,2,2,1", options="header"]
+|===
+|Driver (ID y Tipo) |Decisión de Diseño |Artefactos Afectados |Estado
 
-(Verificar la coherencia y completitud del diseño, demostrando cómo cada ASR se materializa en decisiones y artefactos concretos a lo largo del documento. Esta matriz es la evidencia final de que la arquitectura responde directamente a los requisitos. Ayuda a asegurar que no haya decisiones de diseño "huérfanas" (sin justificación) o requisitos importantes que no hayan sido atendidos en el diseño.)
+| QAS-Usabilidad (QAS-01, QAS-04, QAS-12, QAS-14, QAS-16)
 
-(Una única Matriz de Trazabilidad en formato de tabla. Columnas Requeridas:)
+Tipo: Atributo de Calidad | Patrón Model-View-Controller (MVC) en Cliente
 
-(1. Driver (ID y Tipo) — {CU, QAS, CON, CRN})
+Controladores especializados por caso de uso. |Vista Lógica (5.1): Diagrama de Clases.
 
-(2. Decisión de Diseño (Táctica / Patrón))
+Elementos: Clases *UI (Ej. LoginUI), Clases *Controller (Ej. LoginController)| Cumple
 
-(4. Artefactos Afectados (añadir referencia a Vistas/Elementos))
+ | QAS-Disponibilidad (QAS-03, QAS-05, QAS-13, QAS-21)
 
-(5. Estado (Cumple / Parcial / Pendiente))
+ Tipo: Atributo de Calidad |Estilo Cliente-Servidor en Capas
 
-(Nota: Un mismo driver puede aparecer en varias filas si fue atendido en iteraciones distintas.)
+ Manejo controlado de excepciones
+
+ Patrón Service Layer| Vista Lógica (5.1): Diagrama de Clases (Separación Cliente/Servidor).
+
+Elementos: Clases *ServiceImp.
+
+Vista de Implementación (5.4): Diagramas de Componentes. | Cumple
+
+|QAS-Rendimiento (QAS-11, QAS-31, QAS-38, QAS-42)
+
+Tipo: Atributo de Calidad| Patrón Singleton para ConexionDB (reducir conexiones).
+
+Patrón Data Access Object (DAO) (optimizar consultas)| Vista Lógica (5.1): Diagrama de Clases.
+
+Elementos: Clases *DAO (Ej. ReservaDAO), Clase ConexionDB |Cumple |
+
+QAS-Seguridad (Integridad) (QAS-06, QAS-17)
+
+Tipo: Atributo de Calidad| Capa de Managers (Lógica de negocio centralizada).
+
+Delegación a sistema externo (Pasarela de Pagos) | Vista Lógica (5.1) : Clases *Manager (Ej. PagoManager).
+
+Vista de Contexto (7) : DFD Nivel 0/1 (Actor 'Sistema de pago').| Cumple |
+
+QAS-Seguridad (Trazabilidad) (QAS-32, QAS-33, QAS-40)
+
+Tipo: Atributo de Calidad |Integración de reportes (Clase ReporteManager).
+
+Patrón DAO para persistencia de auditoría. | Vista Lógica (5.1) : Clases ReporteManager, ReporteDAO.
+
+Vista de Implementación (5.4) : Componente ServicioDeAuditoria , Interfaces de Auditoría (Ej. IConsultarReporte) | Cumple|
+
+CON-1
+
+Tipo: Restricción | Delegación a Actor Externo (Pasarela de Pagos) | Vista de Contexto (7) : DFD Nivel 0/1.
+
+Vista de Implementación (5.1.3): Diagrama de Objetos (Objeto pasarela_pago).
+
+Casos de Uso (2.3) : Actor 'Sistema de pago' | Cumple|
+
+CON-3
+
+Tipo: Restricción | Persistencia de "solo escritura" (append-only) para auditoría. | Vista Lógica (5.1) : Clase ReporteDAO.
+
+Vista de Implementación (5.4) : Componente ServicioDeAuditoria. | Cumple |
+
+CRN-1, CRN-3, CRN-5, CRN-6  (Mantenibilidad, Testabilidad, Extensibilidad)
+
+Tipo: Preocupación | Estilo Arquitectónico en Capas Cliente-Servidor.
+
+Patrón DAO y Patrón Service Layer (para desacoplamiento) | Vista Lógica (5.1)  (Completa).
+
+Vista de Implementación (5.4)  (Diagramas de Componentes e Interfaces) | Cumple |
+
+CU01-CU06 (Gestión Huésped)
+
+Tipo: Caso de Uso | Patrones MVC, Service Layer, Manager y DAO. | Vista Lógica (5.1) : Clases ReservaUI, ReservaController, ReservaClientService, IReservaService, ReservaServiceImp, ReservaManager, ReservaDAO
+
+Vista de Implementación (5.4) : Componente ServicioDeReservas , Interfaces de Reserva | Cumple |
+
+CU07-CU13 (Gestión Recepción)
+
+Tipo: Caso de Uso | Patrones MVC, Service Layer, Manager y DAO. | Vista Lógica (5.1).
+
+Vista de Implementación (5.4) : Componente ServicioDeEstancia , Componente RecepcionistaMgt , Interfaces ICheckIn, ICheckOut |
+
+Cumple |
+
+CU14-CU18 (Gestión Administración)
+
+Tipo: Caso de Uso | Patrones MVC, Service Layer, Manager y DAO | Vista Lógica (5.1).
+
+Vista de Implementación (5.4) : Componentes ServicioDeInventario , ServicioDeConfiguracion , AdministradorMgt , Interfaces IAltaHabitacion, IRegistrarPrecio | Cumple |
+
+CU19-CU26 (Gestión Auditoría)
+
+Tipo: Caso de Uso | Patrones MVC, Service Layer, Manager y DAO | Vista Lógica (5.1) : Clases ReporteUI, ReporteController, ReporteServiceImp, ReporteManager, ReporteDAO .
+
+Vista de Implementación (5.4) : Componente ServicioDeAuditoria , AuditorMgt , Interfaces de Auditoría | Cumple
+|===
 
