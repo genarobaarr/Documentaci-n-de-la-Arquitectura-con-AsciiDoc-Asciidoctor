@@ -480,12 +480,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_tbd">6. TBD</a></li>
 <li><a href="#_vista_de_contexto">7. Vista de Contexto</a></li>
-<li><a href="#_registro_de_decisiones_arquitectónicas">8. Registro de decisiones arquitectónicas</a>
+<li><a href="#_trazabilidad">8. Trazabilidad</a></li>
+<li><a href="#_registro_de_decisiones_arquitectónicas">9. Registro de decisiones arquitectónicas</a>
 <ul class="sectlevel2">
-<li><a href="#_record_architecture_decisions">8.1. Record architecture decisions</a></li>
+<li><a href="#_record_architecture_decisions">9.1. Record architecture decisions</a></li>
 </ul>
 </li>
-<li><a href="#_trazabilidad">9. Trazabilidad</a></li>
 <li><a href="#_apéndice">10. Apéndice</a></li>
 </ul>
 </div>
@@ -6244,17 +6244,17 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 <h5 id="_interfaz_de_auditoría">Interfaz de Auditoría</h5>
 <div class="imageblock text-center">
 <div class="content">
-<img src="images/IConsularReporte.png" alt="Diagrama de Especificación de interfaces de Interfaz Auditoria" width="400">
+<img src="images/IConsultarReporte.png" alt="Diagrama de Especificación de interfaces de Interfaz Auditoria" width="400">
 </div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="images/IConsularPeticiones.png" alt="Diagrama de Especificación de interfaces de Interfaz Auditoria" width="400">
+<img src="images/IConsultarPeticiones.png" alt="Diagrama de Especificación de interfaces de Interfaz Auditoria" width="400">
 </div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<img src="images/IConsularInicioDeSesion.png" alt="Diagrama de Especificación de interfaces de Interfaz Auditoria" width="400">
+<img src="images/IConsultarIniciosDeSesion.png" alt="Diagrama de Especificación de interfaces de Interfaz Auditoria" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -6645,66 +6645,165 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 </div>
 </div>
 <div class="sect1">
-<h2 id="_registro_de_decisiones_arquitectónicas">8. Registro de decisiones arquitectónicas</h2>
+<h2 id="_trazabilidad">8. Trazabilidad</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Driver (ID y Tipo)</th>
+<th class="tableblock halign-left valign-top">Decisión de Diseño</th>
+<th class="tableblock halign-left valign-top">Artefactos Afectados</th>
+<th class="tableblock halign-left valign-top">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QAS-Usabilidad (QAS-01, QAS-04, QAS-12, QAS-14, QAS-16)</p>
+<p class="tableblock">Tipo: Atributo de Calidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patrón Model-View-Controller (MVC) en Cliente</p>
+<p class="tableblock">Controladores especializados por caso de uso.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1): Diagrama de Clases.</p>
+<p class="tableblock">Elementos: Clases *UI (Ej. LoginUI), Clases *Controller (Ej. LoginController)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QAS-Disponibilidad (QAS-03, QAS-05, QAS-13, QAS-21)</p>
+<p class="tableblock"> Tipo: Atributo de Calidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estilo Cliente-Servidor en Capas</p>
+<p class="tableblock"> Manejo controlado de excepciones</p>
+<p class="tableblock"> Patrón Service Layer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1): Diagrama de Clases (Separación Cliente/Servidor).</p>
+<p class="tableblock">Elementos: Clases *ServiceImp.</p>
+<p class="tableblock">Vista de Implementación (5.4): Diagramas de Componentes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QAS-Rendimiento (QAS-11, QAS-31, QAS-38, QAS-42)</p>
+<p class="tableblock">Tipo: Atributo de Calidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patrón Singleton para ConexionDB (reducir conexiones).</p>
+<p class="tableblock">Patrón Data Access Object (DAO) (optimizar consultas)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1): Diagrama de Clases.</p>
+<p class="tableblock">Elementos: Clases *DAO (Ej. ReservaDAO), Clase ConexionDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QAS-Seguridad (Integridad) (QAS-06, QAS-17)</p>
+<p class="tableblock">Tipo: Atributo de Calidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Capa de Managers (Lógica de negocio centralizada).</p>
+<p class="tableblock">Delegación a sistema externo (Pasarela de Pagos)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1) : Clases *Manager (Ej. PagoManager).</p>
+<p class="tableblock">Vista de Contexto (7) : DFD Nivel 0/1 (Actor 'Sistema de pago').</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QAS-Seguridad (Trazabilidad) (QAS-32, QAS-33, QAS-40)</p>
+<p class="tableblock">Tipo: Atributo de Calidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integración de reportes (Clase ReporteManager).</p>
+<p class="tableblock">Patrón DAO para persistencia de auditoría.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1) : Clases ReporteManager, ReporteDAO.</p>
+<p class="tableblock">Vista de Implementación (5.4) : Componente ServicioDeAuditoria , Interfaces de Auditoría (Ej. IConsultarReporte)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CON-1</p>
+<p class="tableblock">Tipo: Restricción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delegación a Actor Externo (Pasarela de Pagos)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista de Contexto (7) : DFD Nivel 0/1.</p>
+<p class="tableblock">Vista de Implementación (5.1.3): Diagrama de Objetos (Objeto pasarela_pago).</p>
+<p class="tableblock">Casos de Uso (2.3) : Actor 'Sistema de pago'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CON-3</p>
+<p class="tableblock">Tipo: Restricción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Persistencia de "solo escritura" (append-only) para auditoría.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1) : Clase ReporteDAO.</p>
+<p class="tableblock">Vista de Implementación (5.4) : Componente ServicioDeAuditoria.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRN-1, CRN-3, CRN-5, CRN-6  (Mantenibilidad, Testabilidad, Extensibilidad)</p>
+<p class="tableblock">Tipo: Preocupación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estilo Arquitectónico en Capas Cliente-Servidor.</p>
+<p class="tableblock">Patrón DAO y Patrón Service Layer (para desacoplamiento)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1)  (Completa).</p>
+<p class="tableblock">Vista de Implementación (5.4)  (Diagramas de Componentes e Interfaces)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CU01-CU06 (Gestión Huésped)</p>
+<p class="tableblock">Tipo: Caso de Uso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patrones MVC, Service Layer, Manager y DAO.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1) : Clases ReservaUI, ReservaController, ReservaClientService, IReservaService, ReservaServiceImp, ReservaManager, ReservaDAO</p>
+<p class="tableblock">Vista de Implementación (5.4) : Componente ServicioDeReservas , Interfaces de Reserva</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CU07-CU13 (Gestión Recepción)</p>
+<p class="tableblock">Tipo: Caso de Uso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patrones MVC, Service Layer, Manager y DAO.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1).</p>
+<p class="tableblock">Vista de Implementación (5.4) : Componente ServicioDeEstancia , Componente RecepcionistaMgt , Interfaces ICheckIn, ICheckOut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CU14-CU18 (Gestión Administración)</p>
+<p class="tableblock">Tipo: Caso de Uso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patrones MVC, Service Layer, Manager y DAO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1).</p>
+<p class="tableblock">Vista de Implementación (5.4) : Componentes ServicioDeInventario , ServicioDeConfiguracion , AdministradorMgt , Interfaces IAltaHabitacion, IRegistrarPrecio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CU19-CU26 (Gestión Auditoría)</p>
+<p class="tableblock">Tipo: Caso de Uso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patrones MVC, Service Layer, Manager y DAO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista Lógica (5.1) : Clases ReporteUI, ReporteController, ReporteServiceImp, ReporteManager, ReporteDAO .</p>
+<p class="tableblock">Vista de Implementación (5.4) : Componente ServicioDeAuditoria , AuditorMgt , Interfaces de Auditoría</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cumple</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_registro_de_decisiones_arquitectónicas">9. Registro de decisiones arquitectónicas</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_record_architecture_decisions">8.1. Record architecture decisions</h3>
+<h3 id="_record_architecture_decisions">9.1. Record architecture decisions</h3>
 <div class="paragraph">
 <p>Date: 2025-10-23</p>
 </div>
 <div class="sect3">
-<h4 id="_status">8.1.1. Status</h4>
+<h4 id="_status">9.1.1. Status</h4>
 <div class="paragraph">
 <p>Accepted</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_context">8.1.2. Context</h4>
+<h4 id="_context">9.1.2. Context</h4>
 <div class="paragraph">
 <p>We need to record the architectural decisions made on this project.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_decision">8.1.3. Decision</h4>
+<h4 id="_decision">9.1.3. Decision</h4>
 <div class="paragraph">
 <p>We will use Architecture Decision Records, as [described by Michael Nygard](<a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions" class="bare">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_consequences">8.1.4. Consequences</h4>
+<h4 id="_consequences">9.1.4. Consequences</h4>
 <div class="paragraph">
 <p>See Michael Nygard&#8217;s article, linked above. For a lightweight ADR toolset, see Nat Pryce&#8217;s [adr-tools](<a href="https://github.com/npryce/adr-tools" class="bare">https://github.com/npryce/adr-tools</a>).</p>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_trazabilidad">9. Trazabilidad</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(HITO 4 e HITO 5)</p>
-</div>
-<div class="paragraph">
-<p>(Verificar la coherencia y completitud del diseño, demostrando cómo cada ASR se materializa en decisiones y artefactos concretos a lo largo del documento. Esta matriz es la evidencia final de que la arquitectura responde directamente a los requisitos. Ayuda a asegurar que no haya decisiones de diseño "huérfanas" (sin justificación) o requisitos importantes que no hayan sido atendidos en el diseño.)</p>
-</div>
-<div class="paragraph">
-<p>(Una única Matriz de Trazabilidad en formato de tabla. Columnas Requeridas:)</p>
-</div>
-<div class="paragraph">
-<p>(1. Driver (ID y Tipo) — {CU, QAS, CON, CRN})</p>
-</div>
-<div class="paragraph">
-<p>(2. Decisión de Diseño (Táctica / Patrón))</p>
-</div>
-<div class="paragraph">
-<p>(4. Artefactos Afectados (añadir referencia a Vistas/Elementos))</p>
-</div>
-<div class="paragraph">
-<p>(5. Estado (Cumple / Parcial / Pendiente))</p>
-</div>
-<div class="paragraph">
-<p>(Nota: Un mismo driver puede aparecer en varias filas si fue atendido en iteraciones distintas.)</p>
 </div>
 </div>
 </div>
@@ -6719,7 +6818,7 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-28 10:36:37 -0600
+Last updated 2025-11-16 14:16:23 -0600
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
