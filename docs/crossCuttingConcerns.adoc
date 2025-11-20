@@ -1,0 +1,40 @@
+== Aspectos Transversales (Cross-Cutting Concerns)
+
+En el diseño del Sistema Hotelero, se han identificado tres preocupaciones transversales críticas que deben manejarse de manera uniforme para garantizar la integridad, seguridad y operabilidad del sistema: Seguridad y Auditoría, Gestión de Transacciones y Ma
+
+=== Seguridad y Auditoría (Trazabilidad)
+La seguridad y la trazabilidad son impulsores arquitectónicos primarios (QAS-32, QAS-33, QAS-40 y la restricción CON-3). Dado que el sistema maneja información sensible de huéspedes y operaciones financieras, la seguridad no se trata como un módulo aislado, sino como una capa de protección que envuelve todas las operaciones de negocio.
+
+==== Estrategia y Tácticas
+Para satisfacer estos requisitos, se implementa una estrategia de "Defensa en Profundidad" y "Logging Centralizado":
+
+1. Autenticación y Control de Acceso (Nivel Servicio): Aunque existe un ServicioDeAccesoAlSistema y un LoginManager, la validación de permisos se aplica transversalmente. Cada método expuesto en la capa de Servicios (por ejemplo, IReservaService, IConfiguracionService) actúa como una puerta de entrada (Facade) que verifica que la sesión del usuario (Recepcionista, Administrador o Auditor) sea válida y tenga los privilegios necesarios antes de delegar la llamada al Manager correspondiente. Esto evita que accesos no autorizados lleguen a la lógica de negocio.
+
+2. Auditoría de Eventos Críticos (Append-Only): Para cumplir con CON-3, se utiliza un mecanismo de intercepción en la capa de Managers. Operaciones críticas como cancelarReserva, realizarCobro o ajustarOverbooking disparan automáticamente un evento de registro hacia el componente ReporteManager.
+
+- Implementación: Se utiliza el patrón Observer o llamadas directas al ReporteDAO dentro del bloque transaccional de la operación. Esto asegura que si la operación de negocio tiene éxito, el registro de auditoría se persista obligatoriamente. Si la auditoría falla, la operación se revierte, garantizando la integridad de la trazabilidad.
+
+=== Gestión de Transacciones (Atomicidad)
+La visión del sistema establece como prioridad "cero incidentes de dobles reservas o dobles cobros". Esto implica que la gestión de transacciones es un aspecto transversal vital que afecta a los módulos de Reservas, Pagos y Habitaciones simultáneamente.
+
+==== Estrategia y Tácticas
+La estrategia se basa en el principio ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad), gestionado explícitamente en la Capa de Negocio (Managers):
+
+1. Delimitación de la Transacción (Unit of Work): La responsabilidad de iniciar y finalizar transacciones recae en los Managers (ReservaManager, PagoManager), no en los DAOs. Un caso de uso como "Realizar Reserva" (CU03) implica múltiples escrituras: insertar el cliente, crear el registro de reserva y actualizar el estado de la habitación.
+
+- Táctica: El Manager abre una transacción a través de la clase ConexionDB (Patrón Singleton), ejecuta las operaciones secuenciales llamando a ReservaDAO y HabitacionDAO, y finalmente realiza el Commit.
+
+2. Manejo de Fallos y Rollback: Si ocurre un error en cualquier punto (por ejemplo, la pasarela de pagos rechaza la tarjeta después de haber bloqueado la habitación), el sistema captura la excepción y ejecuta un Rollback completo. Esto garantiza que el sistema nunca quede en un estado inconsistente.
+
+=== Manejo de Excepciones y Observabilidad
+Para garantizar la Disponibilidad y la Usabilidad (CRN-4, CRN-6), el sistema no puede permitirse fallos silenciosos o mensajes de error crípticos (SQL Errors) mostrados al usuario final. El manejo de excepciones atraviesa desde la base de datos hasta la interfaz de usuario.
+
+==== Estrategia y Tácticas
+Se utiliza una estrategia de "Propagación y Enmascaramiento":
+
+1. Captura y Traducción (Capa DAO a Manager): Los DAOs capturan excepciones técnicas de bajo nivel. Estas se envuelven y se relanzan como excepciones de dominio personalizadas (ej. ReservaException, DatabaseConnectionException). Esto desacopla la lógica de negocio de la tecnología de persistencia específica.
+
+2. Manejo y Recuperación (Capa Service/Controller): En la capa superior (*Controller y *UI), se implementan bloques globales de captura (try-catch) que interceptan estas excepciones de dominio.
+
+- Táctica: Dependiendo del tipo de error, el sistema decide si puede recuperarse o si debe informar al usuario. Si es un error irrecuperable, se muestra un mensaje amigable y se registra el Stack Trace técnico en un log interno para el equipo de desarrollo, cumpliendo con la mantenibilidad.
+

@@ -1,4 +1,4 @@
 == Apéndice
 
-(Material adicional, referencias, glosario, notas)
+include::views/context.adoc[]
 

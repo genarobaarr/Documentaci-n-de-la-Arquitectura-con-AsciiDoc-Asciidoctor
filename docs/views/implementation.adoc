@@ -349,3 +349,7 @@ image::communicationDiagramServicioDeReservasConsultarReserva.png[Diagrama de Co
 
 image::communicationDiagramServicioDeReservasRegistrarReserva.png[Diagrama de Comunicación Servicio De Reservas Registrar Reserva, width=600, align=center]
 
+==== Vista de Despliegue
+
+include::deployment.adoc[]
+

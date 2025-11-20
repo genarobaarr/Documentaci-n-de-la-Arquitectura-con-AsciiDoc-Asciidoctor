@@ -1,5 +1,3 @@
-== Trazabilidad
-
 [cols="1,2,2,1", options="header"]
 |===
 |Driver (ID y Tipo) |Decisión de Diseño |Artefactos Afectados |Estado

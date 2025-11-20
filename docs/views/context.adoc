@@ -1,4 +1,4 @@
-== Vista de Contexto
+=== Vista de Contexto
 
 image::contextDiagramSistemaHoteleroLevel0.png[Diagrama de Contexto Nivel 0, width=600, align=center]
 

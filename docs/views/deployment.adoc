@@ -1,0 +1,10 @@
+image::Diagrama de despliegue - Sistema hotelero.png[Diagrama de Despliegue, width=600, align=center]
+
+(HITO 5)
+
+(Mostrar cómo el software se mapea a la infraestructura hardware/virtual para satisfacer escalabilidad, rendimiento y confiabilidad operativa.)
+
+(Diagrama(s) de Despliegue UML. Muestra nodos (servidores, contenedores), artefactos desplegados y protocolos de comunicación. El texto justifica la topología y las tácticas (ej. redundancia, balanceo de carga). El diagrama debe de reflejar el patrón de despliegue seleccionado y el texto justificar su elección.)
+
+(Texto explicativo: 450–900 palabras. Explica la estructura mostrada en el diagrama, justifica cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los escenarios de atributos de calidad relevantes para esta vista.)
+

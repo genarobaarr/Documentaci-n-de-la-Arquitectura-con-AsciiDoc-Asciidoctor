@@ -51,11 +51,13 @@ include::views/businessConceptModel.adoc[]
 include::views/process.adoc[]
 include::views/implementation.adoc[]
 
-== TBD
-include::views/context.adoc[]
+== Registro de decisiones arquitectónicas
+include::architecturallySignificantDecisions.adoc[]
+
+include::crossCuttingConcerns.adoc[]
+
+== Trazabilidad
 
 include::traceability.adoc[]
-
-include::architecturallySignificantDecisions.adoc[]
 
 include::appendix.adoc[]
