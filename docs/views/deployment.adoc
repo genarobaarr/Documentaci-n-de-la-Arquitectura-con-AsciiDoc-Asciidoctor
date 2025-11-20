@@ -1,10 +1,35 @@
-image::Diagrama de despliegue - Sistema hotelero.png[Diagrama de Despliegue, width=600, align=center]
+image::deploymentDiagramSistemaHotelero.png[Diagrama de Despliegue, width=600, align=center]
 
-(HITO 5)
 
-(Mostrar cómo el software se mapea a la infraestructura hardware/virtual para satisfacer escalabilidad, rendimiento y confiabilidad operativa.)
+==== Estructura y Topología de Despliegue
 
-(Diagrama(s) de Despliegue UML. Muestra nodos (servidores, contenedores), artefactos desplegados y protocolos de comunicación. El texto justifica la topología y las tácticas (ej. redundancia, balanceo de carga). El diagrama debe de reflejar el patrón de despliegue seleccionado y el texto justificar su elección.)
+La infraestructura se organiza en tres niveles físicos principales, separados por fronteras de red (Firewalls y VLANs) para garantizar la seguridad y el rendimiento. Esta separación permite una administración independiente de los recursos y facilita el escalado granular.
 
-(Texto explicativo: 450–900 palabras. Explica la estructura mostrada en el diagrama, justifica cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los escenarios de atributos de calidad relevantes para esta vista.)
+. Nivel de Cliente (Frontend):
+Representado por los dispositivos de los usuarios finales (Huéspedes y Personal). En este nivel residen los artefactos de presentación: la Aplicación Móvil y la Aplicación Web. Estos clientes son "ligeros" y no contienen lógica de negocio compleja; su función principal es la renderización de la interfaz de usuario y la comunicación segura mediante el protocolo HTTPS con el servidor de aplicaciones.
+
+. Nivel de Aplicación (Backend Server):
+Este es el núcleo de procesamiento del sistema, donde reside la lógica de negocio. Se ha optado por un cluster de Servidores de Aplicación gestionado mediante una plataforma de orquestación de contenedores (como Kubernetes).
+** API Gateway / Balanceador de Carga: Actúa como el único punto de entrada (Entrypoint) al sistema desde el exterior. Su función es desacoplar a los clientes de la ubicación física de los servicios, gestionar la terminación SSL (descifrado HTTPS), aplicar límites de tasa y distribuir el tráfico entrante entre los nodos disponibles para evitar cuellos de botella.
+** Servicios de Negocio: Los componentes lógicos definidos en la vista anterior (Reservas, Inventario, Cobro) se despliegan aquí como unidades de ejecución independientes (Deployment Units o Contenedores). Esta separación permite que cada servicio escale vertical u horizontalmente según su demanda específica. Por ejemplo, el Servicio de Reservas puede replicarse en múltiples nodos para manejar picos de tráfico estacionales sin consumir los recursos asignados al Servicio de Configuración.
+
+. Nivel de Datos (Persistencia):
+Para garantizar la integridad y el rendimiento, la capa de datos se ha segregado físicamente en un cluster de base de datos dedicado.
+** BD Principal (Transaccional): Aloja los datos operativos críticos (Reservas, Inventario) en un RDBMS configurado en modo de alta disponibilidad (Master-Replica), garantizando la consistencia ACID requerida por las transacciones de negocio.
+** BD de Auditoría: Cumpliendo con la restricción CON-4, se despliega una instancia de base de datos separada, optimizada para operaciones de escritura secuencial. Esto asegura la inmutabilidad y la trazabilidad forense de todos los registros de seguridad y transacciones financieras, aislándolos de la carga operativa diaria.
+** BD de Configuración: Almacena reglas de negocio y tarifas. Al estar segregada, se puede optimizar con estrategias de caché agresivas para lecturas frecuentes y baja latencia.
+
+==== Justificación del Estilo Arquitectónico y Satisfacción de QAS
+
+La elección de esta topología de despliegue distribuida no es accidental, sino que responde directamente a los impulsores arquitectónicos y escenarios de atributos de calidad (QAS) del proyecto:
+
+* Escalabilidad (Soporte a 5,000 Hoteles): La separación física del nivel de aplicación del nivel de datos permite escalar los recursos de cómputo independientemente del almacenamiento. El uso de un Balanceador de Carga frente a los servicios permite añadir nuevos nodos de procesamiento de forma transparente al usuario, gestionando el crecimiento masivo proyectado en la visión del sistema sin interrupciones.
+
+* Rendimiento (Baja Latencia): La comunicación interna entre los servicios dentro del Cluster de Aplicación se optimiza mediante redes locales de alta velocidad y protocolos ligeros, minimizando la latencia de red en las transacciones complejas como la generación atómica de reserva. Además, la segregación de la BD de Configuración reduce drásticamente la carga de lectura sobre la base de datos transaccional principal, liberando recursos para las operaciones de escritura críticas.
+
+* Confiabilidad y Disponibilidad: La arquitectura elimina los puntos únicos de fallo mediante redundancia en todos los niveles. Si el Servicio de Auditoría experimenta una latencia alta o una caída, la separación física de su base de datos evita que esto bloquee las operaciones de la BD Principal. El sistema puede seguir procesando reservas en un modo degradado o poniendo en cola los logs asíncronamente, cumpliendo así con los objetivos de continuidad operativa.
+
+* Seguridad (Integridad y PCI-DSS): El despliegue aísla el Servicio de Cobro dentro de la red interna del servidor, sin acceso público directo. La comunicación con la Pasarela de Pagos externa se realiza estrictamente desde este punto seguro, asegurando que los datos sensibles de las tarjetas nunca toquen el nivel de cliente ni sean almacenados en logs intermedios, facilitando el cumplimiento de la normativa PCI-DSS y protegiendo la integridad financiera del negocio.
+
+En conclusión, este mapeo de despliegue proporciona la infraestructura física necesaria para soportar la lógica distribuida del SRC, garantizando que la atomicidad lógica diseñada en los componentes se respalde con una robustez física en el servidor.
 
