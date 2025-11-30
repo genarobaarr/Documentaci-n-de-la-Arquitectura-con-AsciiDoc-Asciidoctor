@@ -1,31 +1,24 @@
 === Vista de Proceso
 
-Aquí se abordan aspectos dinámicos de la arquitectura, centrándose en cómo el sistema gestiona la ejecución simultánea de múltiples solicitudes, cómo se sincronizan los datos críticos y cómo se distribuyen los procesos entre el cliente y el servidor para cumplir con los atributos de calidad de Disponibilidad (QAS-03), Rendimiento (QAS-05) y Seguridad/Integridad (QAS-06).
-
-El sistema utiliza un modelo de concurrencia basado en hilos en el servidor, donde cada solicitud entrante de un usuario es asignada a un hilo de ejecución independiente. Esto permite que el sistema soporte la carga esperada de múltiples usuarios operando simultáneamente sin bloquear la disponibilidad general del servicio.
+Aquí se abordan aspectos dinámicos de la arquitectura, y en cómo se sincronizan los datos críticos y cómo se distribuyen los procesos entre el cliente y el servidor para cumplir con los atributos de calidad de Disponibilidad (QAS-03), Rendimiento (QAS-05) y Seguridad/Integridad (QAS-06).
 
 ==== Diagrama de Seciencia de Flujo Crítico: Realizar Reserva
-image::secuenceDiagram.png[Diagrama de Secuencia UML, width=600, align=center]
+image::sequenceDiagramRealizarReserva.png[Diagrama de Secuencia UML, width=800, align=center]
 
 ===== Análisis del Flujo Crítico: Realizar Reserva
 El diagrama de secuencia presentado detalla el flujo de "Realizar Reserva" (CU03). Este proceso ha sido seleccionado como arquitectónicamente significativo porque es el punto donde convergen los requisitos más estrictos de integridad de datos ("tasa cero de dobles reservas" ) y la integración con sistemas externos (Pasarela de Pagos ).
 
 ====== Modelo de Interacción y Comunicación
-La comunicación inicia en la capa Cliente, donde el ReservaController captura la intención del usuario. Siguiendo el patrón de desacoplamiento definido en la vista lógica, el controlador no ejecuta lógica de negocio, sino que delega la llamada al ReservaClientService. La comunicación entre la capa Cliente y la capa Servidor se realiza de forma síncrona para operaciones transaccionales críticas; el usuario debe esperar la confirmación inmediata de que su habitación ha sido asegurada.
+La comunicación inicia en la capa Cliente, donde el ReservaController captura la intención del usuario. Siguiendo el patrón de desacoplamiento definido en la vista lógica, el controlador no ejecuta lógica de negocio, sino que delega la llamada a la interfaz IConsultarHabitacion. La comunicación entre la capa Cliente y la capa Servidor se realiza de forma síncrona para operaciones transaccionales críticas; el usuario debe esperar la confirmación inmediata de que su habitación ha sido asegurada.
 
-====== Gestión de Concurrencia y Sincronización
-Para satisfacer el QAS-06 (Integridad de transacciones) y evitar condiciones de carrera (race conditions) donde dos huéspedes intentan reservar la misma habitación simultáneamente, se implementa una estrategia de control de concurrencia pesimista o de bloqueo a nivel de base de datos gestionada por el ReservaManager:
-
-1. Inicio de Transacción: El ReservaManager obtiene la instancia única de ConexionDB (Singleton), garantizando un punto centralizado de acceso a la base de datos para optimizar recursos (QAS-11). Se inicia un bloque transaccional con propiedades ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad).
-
-2. Bloqueo de Recursos: Antes de procesar el pago, el sistema verifica la disponibilidad invocando a HabitacionDAO. En este punto, se aplica un bloqueo de escritura sobre el registro de la habitación específica. Si otro hilo intenta acceder a esta misma habitación, deberá esperar o fallar inmediatamente dependiendo de la configuración de timeout, garantizando que solo una transacción pueda comprometer el inventario a la vez.
+1. Inicio de Transacción: El IConsultarHabitacion obtiene la instancia única de conexionDB (Singleton), garantizando un punto centralizado de acceso a la base de datos para optimizar recursos (QAS-11). Se inicia un bloque transaccional con propiedades ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad).
 
 ====== Consistencia y Manejo de Fallos
 La política de consistencia aplicada es fuerte. El sistema no puede permitirse consistencia eventual en la asignación de habitaciones.
 
-1. Integración con Pasarela de Pagos: La llamada a la PasarelaPago es una operación externa y síncrona. Debido a la latencia de red, se establece un timeout operativo.
+1. Integración con Pasarela de Pagos: La llamada a la PasarelaPago es una operación externa y síncrona.
 
-2. Atomicidad (Rollback): Si la pasarela de pagos rechaza la transacción o si ocurre un error de conexión (QAS-05), el ReservaManager captura la excepción y ejecuta un rollback completo en la base de datos. Esto libera el bloqueo de la habitación y revierte cualquier cambio de estado, asegurando que el sistema nunca quede en un estado inconsistente donde una habitación aparezca como reservada sin un pago válido asociado.
+2. Atomicidad (Rollback): Si la pasarela de pagos rechaza la transacción o si ocurre un error de conexión (QAS-05), se captura la excepción y ejecuta un rollback completo en la base de datos.
 
 ====== Satisfacción de Atributos de Calidad
 Este diseño de proceso satisface los impulsores arquitectónicos clave:
@@ -34,7 +27,7 @@ Este diseño de proceso satisface los impulsores arquitectónicos clave:
 
 - Seguridad (Trazabilidad): Como parte de la transacción, el ReservaManager invoca al ReporteManager para registrar el evento en el log de auditoría inmutable (CON-3), garantizando que cada intento de reserva, exitoso o fallido, quede documentado para análisis posterior (QAS-32).
 
-image::secuenceDiagram.png[Diagrama de Secuencia UML, width=600, align=center]
+image::sequenceDiagramRegistrarCheckIn.png[Diagrama de Secuencia UML, width=800, align=center]
 
-image::secuenceDiagram.png[Diagrama de Secuencia UML, width=600, align=center]
+image::sequenceDiagram.png[Diagrama de Secuencia UML, width=800, align=center]
 
