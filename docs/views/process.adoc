@@ -27,7 +27,14 @@ Este diseño de proceso satisface los impulsores arquitectónicos clave:
 
 - Seguridad (Trazabilidad): Como parte de la transacción, el ReservaManager invoca al ReporteManager para registrar el evento en el log de auditoría inmutable (CON-3), garantizando que cada intento de reserva, exitoso o fallido, quede documentado para análisis posterior (QAS-32).
 
+==== Diagrama de Seciencia de Flujo Crítico: Registrar Check-In
 image::sequenceDiagramRegistrarCheckIn.png[Diagrama de Secuencia UML, width=800, align=center]
 
+===== Análisis del Flujo Crítico: Registrar Check-In
+- TEXTO
+
+==== Diagrama de Seciencia de Flujo Crítico:
 image::sequenceDiagram.png[Diagrama de Secuencia UML, width=800, align=center]
+
+===== Análisis del Flujo Crítico:
 
