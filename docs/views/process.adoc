@@ -6,7 +6,7 @@ Aquí se abordan aspectos dinámicos de la arquitectura, y en cómo se sincroniz
 image::sequenceDiagramRealizarReserva.png[Diagrama de Secuencia UML, width=800, align=center]
 
 ===== Análisis del Flujo Crítico: Realizar Reserva
-El diagrama de secuencia presentado detalla el flujo de "Realizar Reserva" (CU03). Este proceso ha sido seleccionado como arquitectónicamente significativo porque es el punto donde convergen los requisitos más estrictos de integridad de datos ("tasa cero de dobles reservas" ) y la integración con sistemas externos (Pasarela de Pagos ).
+El diagrama de secuencia presentado detalla el flujo de "Realizar Reserva" (CU03). Este proceso ha sido seleccionado como arquitectónicamente significativo porque es el punto donde convergen los requisitos más estrictos de integridad de datos ("tasa cero de dobles reservas" ) y la integración con sistemas externos (Pasarela de Pagos).
 
 ====== Modelo de Interacción y Comunicación
 La comunicación inicia en la capa Cliente, donde el ReservaController captura la intención del usuario. Siguiendo el patrón de desacoplamiento definido en la vista lógica, el controlador no ejecuta lógica de negocio, sino que delega la llamada a la interfaz IConsultarHabitacion. La comunicación entre la capa Cliente y la capa Servidor se realiza de forma síncrona para operaciones transaccionales críticas; el usuario debe esperar la confirmación inmediata de que su habitación ha sido asegurada.
@@ -31,7 +31,29 @@ Este diseño de proceso satisface los impulsores arquitectónicos clave:
 image::sequenceDiagramRegistrarCheckIn.png[Diagrama de Secuencia UML, width=800, align=center]
 
 ===== Análisis del Flujo Crítico: Registrar Check-In
-- TEXTO
+El diagrama de secuencia presentado detalla el flujo de "Registrar Check-In". Este proceso ha sido seleccionado como arquitectónicamente significativo porque representa la materialización del servicio, donde convergen la actualización de estado del inventario (Habitaciones), la validación financiera y la persistencia de la estancia del cliente.
+
+====== Modelo de Interacción y Comunicación
+
+La comunicación inicia en la capa de Presentación (GUI), donde el CheckInController captura la interacción del Recepcionista. Siguiendo el patrón de desacoplamiento, el controlador orquesta el flujo delegando responsabilidades a interfaces especializadas (IConsultarReserva, IActualizarHabitacion, IPagoConTarjeta, ICheckIn) en lugar de ejecutar la lógica directamente.
+
+La comunicación entre los componentes es estrictamente síncrona, ya que el proceso ocurre en tiempo real frente al cliente (Huésped), requiriendo confirmación inmediata de cada paso (búsqueda, pago, asignación).
+
+====== Consistencia y Manejo de Fallos
+
+El diseño prioriza la robustez y la integridad operativa a través de mecanismos explícitos de control de errores:
+
+. Gestión de Conexiones y Excepciones: Se observa un patrón repetitivo de manejo de fallos mediante bloques break y try-catch implícitos. Si ocurre una Exception al intentar conectar con la base de datos (ya sea al consultar la reserva, actualizar la habitación o registrar el pago), el sistema captura el error, muestra un mensaje amigable ("Error en la conexión... intentarlo más tarde") y detiene el flujo crítico para evitar estados inconsistentes.
+. Lógica Condicional de Negocio: El flujo maneja la variabilidad del negocio mediante bloques alt. Por ejemplo, el sistema evalúa si la reserva tiene prepago == false. Si es así, fuerza la validación de datos de tarjeta y la ejecución del cobro a través de IPagoConTarjeta antes de permitir la finalización del Check-In.
+. Atomicidad Lógica: El cambio de estado de la habitación a "Ocupada" (IActualizarHabitacion) y la inserción del registro de check-in (ICheckIn) ocurren secuencialmente. El diseño asegura que no se genere un código de check-in si los pasos previos (pago o actualización de habitación) fallan.
+
+====== Satisfacción de Atributos de Calidad
+
+Este diseño de proceso satisface los impulsores arquitectónicos clave:
+
+* Disponibilidad y Recuperabilidad: El uso de bucles (loop) y bloques de ruptura (break) ante fallos de conexión demuestra una táctica de defensa para mantener la interfaz receptiva incluso cuando la capa de datos presenta intermitencias, evitando el colapso total de la aplicación.
+* Usabilidad: El sistema provee retroalimentación constante al Recepcionista en cada punto de decisión (ej. "Reserva no encontrada", "Error de conexión", "Check-in registrado exitosamente"), facilitando la operación bajo presión.
+* Modificabilidad: La separación de preocupaciones en interfaces distintas (IConsultarReserva contra IPagoConTarjeta) permite cambiar la lógica de pagos o de consultas sin afectar el flujo principal del controlador.
 
 ==== Diagrama de Seciencia de Flujo Crítico:
 image::sequenceDiagram.png[Diagrama de Secuencia UML, width=800, align=center]

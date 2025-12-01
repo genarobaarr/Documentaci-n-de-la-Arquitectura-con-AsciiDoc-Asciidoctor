@@ -302,5 +302,15 @@ Omar Morales García
 | Omar Morales García
 | Se añadió la descripción y justificación del diagrama de despliegue
 
+| 0.3.0.0
+| 30 de noviembre de 2025
+| Genaro Alejandro Barradas Sánchez
+| Se añadió diagramas de secuencia
+
+| 0.3.1.0
+| 30 de noviembre de 2025
+| Omar Morales García
+| Se añadió la descripción del diagrama de secuencia
+
 |===
 
