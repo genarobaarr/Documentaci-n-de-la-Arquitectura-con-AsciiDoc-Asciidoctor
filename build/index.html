@@ -478,15 +478,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_vista_de_implementación">5.4. Vista de Implementación</a></li>
 </ul>
 </li>
-<li><a href="#_tbd">6. TBD</a></li>
-<li><a href="#_vista_de_contexto">7. Vista de Contexto</a></li>
-<li><a href="#_trazabilidad">8. Trazabilidad</a></li>
-<li><a href="#_registro_de_decisiones_arquitectónicas">9. Registro de decisiones arquitectónicas</a>
+<li><a href="#_registro_de_decisiones_arquitectónicas">6. Registro de decisiones arquitectónicas</a>
 <ul class="sectlevel2">
-<li><a href="#_record_architecture_decisions">9.1. Record architecture decisions</a></li>
+<li><a href="#_record_architecture_decisions">6.1. Record architecture decisions</a></li>
 </ul>
 </li>
-<li><a href="#_apéndice">10. Apéndice</a></li>
+<li><a href="#_aspectos_transversales_cross_cutting_concerns">7. Aspectos Transversales (Cross-Cutting Concerns)</a>
+<ul class="sectlevel2">
+<li><a href="#_seguridad_y_auditoría_trazabilidad">7.1. Seguridad y Auditoría (Trazabilidad)</a></li>
+<li><a href="#_gestión_de_transacciones_atomicidad">7.2. Gestión de Transacciones (Atomicidad)</a></li>
+<li><a href="#_manejo_de_excepciones_y_observabilidad">7.3. Manejo de Excepciones y Observabilidad</a></li>
+</ul>
+</li>
+<li><a href="#_trazabilidad">8. Trazabilidad</a></li>
+<li><a href="#_apéndice">9. Apéndice</a>
+<ul class="sectlevel2">
+<li><a href="#_vista_de_contexto">9.1. Vista de Contexto</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -876,6 +885,30 @@ Morales García Omar || <a href="mailto:zs23014039@estudiantes.uv.mx">zs23014039
 <td class="tableblock halign-left valign-top"><p class="tableblock">6 de noviembre de 2025</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cambio dentro del nombrado de diagramas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.4.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 de noviembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió un diagrama de despliegue</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.5.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 de noviembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió la descripción y justificación del diagrama de despliegue</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.3.0.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de noviembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Genaro Alejandro Barradas Sánchez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió diagramas de secuencia</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.3.1.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 de noviembre de 2025</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Omar Morales García</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se añadió la descripción del diagrama de secuencia</p></td>
 </tr>
 </tbody>
 </table>
@@ -5873,25 +5906,140 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 </div>
 <div class="sect2">
 <h3 id="_vista_de_proceso">5.3. Vista de Proceso</h3>
+<div class="paragraph">
+<p>Aquí se abordan aspectos dinámicos de la arquitectura, y en cómo se sincronizan los datos críticos y cómo se distribuyen los procesos entre el cliente y el servidor para cumplir con los atributos de calidad de Disponibilidad (QAS-03), Rendimiento (QAS-05) y Seguridad/Integridad (QAS-06).</p>
+</div>
+<div class="sect3">
+<h4 id="_diagrama_de_seciencia_de_flujo_crítico_realizar_reserva">5.3.1. Diagrama de Seciencia de Flujo Crítico: Realizar Reserva</h4>
 <div class="imageblock text-center">
 <div class="content">
-<img src="images/secuenceDiagram.png" alt="Diagrama de Secuencia UML" width="600">
+<img src="images/sequenceDiagramRealizarReserva.png" alt="Diagrama de Secuencia UML" width="800">
 </div>
+</div>
+<div class="sect4">
+<h5 id="_análisis_del_flujo_crítico_realizar_reserva">Análisis del Flujo Crítico: Realizar Reserva</h5>
+<div class="paragraph">
+<p>El diagrama de secuencia presentado detalla el flujo de "Realizar Reserva" (CU03). Este proceso ha sido seleccionado como arquitectónicamente significativo porque es el punto donde convergen los requisitos más estrictos de integridad de datos ("tasa cero de dobles reservas" ) y la integración con sistemas externos (Pasarela de Pagos).</p>
+</div>
+<div class="sect5">
+<h6 id="_modelo_de_interacción_y_comunicación">Modelo de Interacción y Comunicación</h6>
+<div class="paragraph">
+<p>La comunicación inicia en la capa Cliente, donde el ReservaController captura la intención del usuario. Siguiendo el patrón de desacoplamiento definido en la vista lógica, el controlador no ejecuta lógica de negocio, sino que delega la llamada a la interfaz IConsultarHabitacion. La comunicación entre la capa Cliente y la capa Servidor se realiza de forma síncrona para operaciones transaccionales críticas; el usuario debe esperar la confirmación inmediata de que su habitación ha sido asegurada.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Inicio de Transacción: El IConsultarHabitacion obtiene la instancia única de conexionDB (Singleton), garantizando un punto centralizado de acceso a la base de datos para optimizar recursos (QAS-11). Se inicia un bloque transaccional con propiedades ACID (Atomicidad, Consistencia, Aislamiento, Durabilidad).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_consistencia_y_manejo_de_fallos">Consistencia y Manejo de Fallos</h6>
+<div class="paragraph">
+<p>La política de consistencia aplicada es fuerte. El sistema no puede permitirse consistencia eventual en la asignación de habitaciones.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Integración con Pasarela de Pagos: La llamada a la PasarelaPago es una operación externa y síncrona.</p>
+</li>
+<li>
+<p>Atomicidad (Rollback): Si la pasarela de pagos rechaza la transacción o si ocurre un error de conexión (QAS-05), se captura la excepción y ejecuta un rollback completo en la base de datos.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_satisfacción_de_atributos_de_calidad">Satisfacción de Atributos de Calidad</h6>
+<div class="paragraph">
+<p>Este diseño de proceso satisface los impulsores arquitectónicos clave:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Disponibilidad: El uso de ClientService y el manejo de excepciones en los Managers aseguran que un fallo en la pasarela de pago no tumbe el servicio, sino que retorne un mensaje de error controlado al usuario.</p>
+</li>
+<li>
+<p>Seguridad (Trazabilidad): Como parte de la transacción, el ReservaManager invoca al ReporteManager para registrar el evento en el log de auditoría inmutable (CON-3), garantizando que cada intento de reserva, exitoso o fallido, quede documentado para análisis posterior (QAS-32).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_diagrama_de_seciencia_de_flujo_crítico_registrar_check_in">5.3.2. Diagrama de Seciencia de Flujo Crítico: Registrar Check-In</h4>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/sequenceDiagramRegistrarCheckIn.png" alt="Diagrama de Secuencia UML" width="800">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_análisis_del_flujo_crítico_registrar_check_in">Análisis del Flujo Crítico: Registrar Check-In</h5>
+<div class="paragraph">
+<p>El diagrama de secuencia presentado detalla el flujo de "Registrar Check-In". Este proceso ha sido seleccionado como arquitectónicamente significativo porque representa la materialización del servicio, donde convergen la actualización de estado del inventario (Habitaciones), la validación financiera y la persistencia de la estancia del cliente.</p>
+</div>
+<div class="sect5">
+<h6 id="_modelo_de_interacción_y_comunicación_2">Modelo de Interacción y Comunicación</h6>
+<div class="paragraph">
+<p>La comunicación inicia en la capa de Presentación (GUI), donde el CheckInController captura la interacción del Recepcionista. Siguiendo el patrón de desacoplamiento, el controlador orquesta el flujo delegando responsabilidades a interfaces especializadas (IConsultarReserva, IActualizarHabitacion, IPagoConTarjeta, ICheckIn) en lugar de ejecutar la lógica directamente.</p>
 </div>
 <div class="paragraph">
-<p>(HITO 5)</p>
+<p>La comunicación entre los componentes es estrictamente síncrona, ya que el proceso ocurre en tiempo real frente al cliente (Huésped), requiriendo confirmación inmediata de cada paso (búsqueda, pago, asignación).</p>
 </div>
-<div class="paragraph">
-<p>(Mostrar el comportamiento del sistema en ejecución para satisfacer rendimiento y disponibilidad. Se enfoca en concurrencia, comunicación y sincronización.)</p>
 </div>
+<div class="sect5">
+<h6 id="_consistencia_y_manejo_de_fallos_2">Consistencia y Manejo de Fallos</h6>
 <div class="paragraph">
-<p>(Diagrama de Secuencia UML (alternativas: Sequence, Communication, Activity, Timing, Interaction Overview) para 2-3 flujos críticos. El texto debe explicar el modelo de concurrencia y los patrones de interacción.)</p>
+<p>El diseño prioriza la robustez y la integridad operativa a través de mecanismos explícitos de control de errores:</p>
 </div>
-<div class="paragraph">
-<p>(Indicar qué se ejecuta en paralelo, qué llamadas son sincrónicas / asíncronas, tiempos objetivo/timeout y reintentos, y dónde empieza/termina la transacción con la política de consistencia aplicada (fuerte/eventual)”.)</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Gestión de Conexiones y Excepciones: Se observa un patrón repetitivo de manejo de fallos mediante bloques break y try-catch implícitos. Si ocurre una Exception al intentar conectar con la base de datos (ya sea al consultar la reserva, actualizar la habitación o registrar el pago), el sistema captura el error, muestra un mensaje amigable ("Error en la conexión&#8230;&#8203; intentarlo más tarde") y detiene el flujo crítico para evitar estados inconsistentes.</p>
+</li>
+<li>
+<p>Lógica Condicional de Negocio: El flujo maneja la variabilidad del negocio mediante bloques alt. Por ejemplo, el sistema evalúa si la reserva tiene prepago == false. Si es así, fuerza la validación de datos de tarjeta y la ejecución del cobro a través de IPagoConTarjeta antes de permitir la finalización del Check-In.</p>
+</li>
+<li>
+<p>Atomicidad Lógica: El cambio de estado de la habitación a "Ocupada" (IActualizarHabitacion) y la inserción del registro de check-in (ICheckIn) ocurren secuencialmente. El diseño asegura que no se genere un código de check-in si los pasos previos (pago o actualización de habitación) fallan.</p>
+</li>
+</ol>
 </div>
+</div>
+<div class="sect5">
+<h6 id="_satisfacción_de_atributos_de_calidad_2">Satisfacción de Atributos de Calidad</h6>
 <div class="paragraph">
-<p>(Texto explicativo: 450–900 palabras. Explica la estructura mostrada en el diagrama, justifica cómo refleja el estilo arquitectónico elegido y cómo contribuye a satisfacer los escenarios de atributos de calidad relevantes para esta vista.)</p>
+<p>Este diseño de proceso satisface los impulsores arquitectónicos clave:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Disponibilidad y Recuperabilidad: El uso de bucles (loop) y bloques de ruptura (break) ante fallos de conexión demuestra una táctica de defensa para mantener la interfaz receptiva incluso cuando la capa de datos presenta intermitencias, evitando el colapso total de la aplicación.</p>
+</li>
+<li>
+<p>Usabilidad: El sistema provee retroalimentación constante al Recepcionista en cada punto de decisión (ej. "Reserva no encontrada", "Error de conexión", "Check-in registrado exitosamente"), facilitando la operación bajo presión.</p>
+</li>
+<li>
+<p>Modificabilidad: La separación de preocupaciones en interfaces distintas (IConsultarReserva contra IPagoConTarjeta) permite cambiar la lógica de pagos o de consultas sin afectar el flujo principal del controlador.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_diagrama_de_seciencia_de_flujo_crítico">5.3.3. Diagrama de Seciencia de Flujo Crítico:</h4>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/sequenceDiagram.png" alt="Diagrama de Secuencia UML" width="800">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_análisis_del_flujo_crítico">Análisis del Flujo Crítico:</h5>
+
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -6620,26 +6768,213 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_vista_de_despliegue">5.4.4. Vista de Despliegue</h4>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/deploymentDiagramSistemaHotelero.png" alt="Diagrama de Despliegue" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_estructura_y_topología_de_despliegue">5.4.5. Estructura y Topología de Despliegue</h4>
+<div class="paragraph">
+<p>La infraestructura se organiza en tres niveles físicos principales, separados por fronteras de red (Firewalls y VLANs) para garantizar la seguridad y el rendimiento. Esta separación permite una administración independiente de los recursos y facilita el escalado granular.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Nivel de Cliente (Frontend):
+Representado por los dispositivos de los usuarios finales (Huéspedes y Personal). En este nivel residen los artefactos de presentación: la Aplicación Móvil y la Aplicación Web. Estos clientes son "ligeros" y no contienen lógica de negocio compleja; su función principal es la renderización de la interfaz de usuario y la comunicación segura mediante el protocolo HTTPS con el servidor de aplicaciones.</p>
+</li>
+<li>
+<p>Nivel de Aplicación (Backend Server):
+Este es el núcleo de procesamiento del sistema, donde reside la lógica de negocio. Se ha optado por un cluster de Servidores de Aplicación gestionado mediante una plataforma de orquestación de contenedores (como Kubernetes).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>API Gateway / Balanceador de Carga: Actúa como el único punto de entrada (Entrypoint) al sistema desde el exterior. Su función es desacoplar a los clientes de la ubicación física de los servicios, gestionar la terminación SSL (descifrado HTTPS), aplicar límites de tasa y distribuir el tráfico entrante entre los nodos disponibles para evitar cuellos de botella.</p>
+</li>
+<li>
+<p>Servicios de Negocio: Los componentes lógicos definidos en la vista anterior (Reservas, Inventario, Cobro) se despliegan aquí como unidades de ejecución independientes (Deployment Units o Contenedores). Esta separación permite que cada servicio escale vertical u horizontalmente según su demanda específica. Por ejemplo, el Servicio de Reservas puede replicarse en múltiples nodos para manejar picos de tráfico estacionales sin consumir los recursos asignados al Servicio de Configuración.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Nivel de Datos (Persistencia):
+Para garantizar la integridad y el rendimiento, la capa de datos se ha segregado físicamente en un cluster de base de datos dedicado.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>BD Principal (Transaccional): Aloja los datos operativos críticos (Reservas, Inventario) en un RDBMS configurado en modo de alta disponibilidad (Master-Replica), garantizando la consistencia ACID requerida por las transacciones de negocio.</p>
+</li>
+<li>
+<p>BD de Auditoría: Cumpliendo con la restricción CON-4, se despliega una instancia de base de datos separada, optimizada para operaciones de escritura secuencial. Esto asegura la inmutabilidad y la trazabilidad forense de todos los registros de seguridad y transacciones financieras, aislándolos de la carga operativa diaria.</p>
+</li>
+<li>
+<p>BD de Configuración: Almacena reglas de negocio y tarifas. Al estar segregada, se puede optimizar con estrategias de caché agresivas para lecturas frecuentes y baja latencia.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_justificación_del_estilo_arquitectónico_y_satisfacción_de_qas">5.4.6. Justificación del Estilo Arquitectónico y Satisfacción de QAS</h4>
+<div class="paragraph">
+<p>La elección de esta topología de despliegue distribuida no es accidental, sino que responde directamente a los impulsores arquitectónicos y escenarios de atributos de calidad (QAS) del proyecto:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Escalabilidad (Soporte a 5,000 Hoteles): La separación física del nivel de aplicación del nivel de datos permite escalar los recursos de cómputo independientemente del almacenamiento. El uso de un Balanceador de Carga frente a los servicios permite añadir nuevos nodos de procesamiento de forma transparente al usuario, gestionando el crecimiento masivo proyectado en la visión del sistema sin interrupciones.</p>
+</li>
+<li>
+<p>Rendimiento (Baja Latencia): La comunicación interna entre los servicios dentro del Cluster de Aplicación se optimiza mediante redes locales de alta velocidad y protocolos ligeros, minimizando la latencia de red en las transacciones complejas como la generación atómica de reserva. Además, la segregación de la BD de Configuración reduce drásticamente la carga de lectura sobre la base de datos transaccional principal, liberando recursos para las operaciones de escritura críticas.</p>
+</li>
+<li>
+<p>Confiabilidad y Disponibilidad: La arquitectura elimina los puntos únicos de fallo mediante redundancia en todos los niveles. Si el Servicio de Auditoría experimenta una latencia alta o una caída, la separación física de su base de datos evita que esto bloquee las operaciones de la BD Principal. El sistema puede seguir procesando reservas en un modo degradado o poniendo en cola los logs asíncronamente, cumpliendo así con los objetivos de continuidad operativa.</p>
+</li>
+<li>
+<p>Seguridad (Integridad y PCI-DSS): El despliegue aísla el Servicio de Cobro dentro de la red interna del servidor, sin acceso público directo. La comunicación con la Pasarela de Pagos externa se realiza estrictamente desde este punto seguro, asegurando que los datos sensibles de las tarjetas nunca toquen el nivel de cliente ni sean almacenados en logs intermedios, facilitando el cumplimiento de la normativa PCI-DSS y protegiendo la integridad financiera del negocio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En conclusión, este mapeo de despliegue proporciona la infraestructura física necesaria para soportar la lógica distribuida del SRC, garantizando que la atomicidad lógica diseñada en los componentes se respalde con una robustez física en el servidor.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tbd">6. TBD</h2>
+<h2 id="_registro_de_decisiones_arquitectónicas">6. Registro de decisiones arquitectónicas</h2>
 <div class="sectionbody">
-
+<div class="sect2">
+<h3 id="_record_architecture_decisions">6.1. Record architecture decisions</h3>
+<div class="paragraph">
+<p>Date: 2025-10-23</p>
+</div>
+<div class="sect3">
+<h4 id="_status">6.1.1. Status</h4>
+<div class="paragraph">
+<p>Accepted</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_context">6.1.2. Context</h4>
+<div class="paragraph">
+<p>We need to record the architectural decisions made on this project.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_decision">6.1.3. Decision</h4>
+<div class="paragraph">
+<p>We will use Architecture Decision Records, as [described by Michael Nygard](<a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions" class="bare">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_consequences">6.1.4. Consequences</h4>
+<div class="paragraph">
+<p>See Michael Nygard&#8217;s article, linked above. For a lightweight ADR toolset, see Nat Pryce&#8217;s [adr-tools](<a href="https://github.com/npryce/adr-tools" class="bare">https://github.com/npryce/adr-tools</a>).</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vista_de_contexto">7. Vista de Contexto</h2>
+<h2 id="_aspectos_transversales_cross_cutting_concerns">7. Aspectos Transversales (Cross-Cutting Concerns)</h2>
 <div class="sectionbody">
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/contextDiagramSistemaHoteleroLevel0.png" alt="Diagrama de Contexto Nivel 0" width="600">
+<div class="paragraph">
+<p>En el diseño del Sistema Hotelero, se han identificado tres preocupaciones transversales críticas que deben manejarse de manera uniforme para garantizar la integridad, seguridad y operabilidad del sistema: Seguridad y Auditoría, Gestión de Transacciones y Ma</p>
+</div>
+<div class="sect2">
+<h3 id="_seguridad_y_auditoría_trazabilidad">7.1. Seguridad y Auditoría (Trazabilidad)</h3>
+<div class="paragraph">
+<p>La seguridad y la trazabilidad son impulsores arquitectónicos primarios (QAS-32, QAS-33, QAS-40 y la restricción CON-3). Dado que el sistema maneja información sensible de huéspedes y operaciones financieras, la seguridad no se trata como un módulo aislado, sino como una capa de protección que envuelve todas las operaciones de negocio.</p>
+</div>
+<div class="sect3">
+<h4 id="_estrategia_y_tácticas">7.1.1. Estrategia y Tácticas</h4>
+<div class="paragraph">
+<p>Para satisfacer estos requisitos, se implementa una estrategia de "Defensa en Profundidad" y "Logging Centralizado":</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Autenticación y Control de Acceso (Nivel Servicio): Aunque existe un ServicioDeAccesoAlSistema y un LoginManager, la validación de permisos se aplica transversalmente. Cada método expuesto en la capa de Servicios (por ejemplo, IReservaService, IConfiguracionService) actúa como una puerta de entrada (Facade) que verifica que la sesión del usuario (Recepcionista, Administrador o Auditor) sea válida y tenga los privilegios necesarios antes de delegar la llamada al Manager correspondiente. Esto evita que accesos no autorizados lleguen a la lógica de negocio.</p>
+</li>
+<li>
+<p>Auditoría de Eventos Críticos (Append-Only): Para cumplir con CON-3, se utiliza un mecanismo de intercepción en la capa de Managers. Operaciones críticas como cancelarReserva, realizarCobro o ajustarOverbooking disparan automáticamente un evento de registro hacia el componente ReporteManager.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Implementación: Se utiliza el patrón Observer o llamadas directas al ReporteDAO dentro del bloque transaccional de la operación. Esto asegura que si la operación de negocio tiene éxito, el registro de auditoría se persista obligatoriamente. Si la auditoría falla, la operación se revierte, garantizando la integridad de la trazabilidad.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </div>
-<div class="imageblock text-center">
-<div class="content">
-<img src="images/contextDiagramSistemaHoteleroLevel1.png" alt="Diagrama de Contexto Nivel 1" width="600">
+</div>
+<div class="sect2">
+<h3 id="_gestión_de_transacciones_atomicidad">7.2. Gestión de Transacciones (Atomicidad)</h3>
+<div class="paragraph">
+<p>La visión del sistema establece como prioridad "cero incidentes de dobles reservas o dobles cobros". Esto implica que la gestión de transacciones es un aspecto transversal vital que afecta a los módulos de Reservas, Pagos y Habitaciones simultáneamente.</p>
+</div>
+<div class="sect3">
+<h4 id="_estrategia_y_tácticas_2">7.2.1. Estrategia y Tácticas</h4>
+<div class="paragraph">
+<p>La estrategia se basa en el principio ACID (Atomicidad, Consistencia, Aislamiento y Durabilidad), gestionado explícitamente en la Capa de Negocio (Managers):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delimitación de la Transacción (Unit of Work): La responsabilidad de iniciar y finalizar transacciones recae en los Managers (ReservaManager, PagoManager), no en los DAOs. Un caso de uso como "Realizar Reserva" (CU03) implica múltiples escrituras: insertar el cliente, crear el registro de reserva y actualizar el estado de la habitación.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Táctica: El Manager abre una transacción a través de la clase ConexionDB (Patrón Singleton), ejecuta las operaciones secuenciales llamando a ReservaDAO y HabitacionDAO, y finalmente realiza el Commit.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Manejo de Fallos y Rollback: Si ocurre un error en cualquier punto (por ejemplo, la pasarela de pagos rechaza la tarjeta después de haber bloqueado la habitación), el sistema captura la excepción y ejecuta un Rollback completo. Esto garantiza que el sistema nunca quede en un estado inconsistente.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manejo_de_excepciones_y_observabilidad">7.3. Manejo de Excepciones y Observabilidad</h3>
+<div class="paragraph">
+<p>Para garantizar la Disponibilidad y la Usabilidad (CRN-4, CRN-6), el sistema no puede permitirse fallos silenciosos o mensajes de error crípticos (SQL Errors) mostrados al usuario final. El manejo de excepciones atraviesa desde la base de datos hasta la interfaz de usuario.</p>
+</div>
+<div class="sect3">
+<h4 id="_estrategia_y_tácticas_3">7.3.1. Estrategia y Tácticas</h4>
+<div class="paragraph">
+<p>Se utiliza una estrategia de "Propagación y Enmascaramiento":</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Captura y Traducción (Capa DAO a Manager): Los DAOs capturan excepciones técnicas de bajo nivel. Estas se envuelven y se relanzan como excepciones de dominio personalizadas (ej. ReservaException, DatabaseConnectionException). Esto desacopla la lógica de negocio de la tecnología de persistencia específica.</p>
+</li>
+<li>
+<p>Manejo y Recuperación (Capa Service/Controller): En la capa superior (*Controller y *UI), se implementan bloques globales de captura (try-catch) que interceptan estas excepciones de dominio.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Táctica: Dependiendo del tipo de error, el sistema decide si puede recuperarse o si debe informar al usuario. Si es un error irrecuperable, se muestra un mensaje amigable y se registra el Stack Trace técnico en un log interno para el equipo de desarrollo, cumpliendo con la mantenibilidad.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -6773,52 +7108,27 @@ Los criterios de “suficiente” se aplicaron cuando los escenarios de atributo
 </div>
 </div>
 <div class="sect1">
-<h2 id="_registro_de_decisiones_arquitectónicas">9. Registro de decisiones arquitectónicas</h2>
+<h2 id="_apéndice">9. Apéndice</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_record_architecture_decisions">9.1. Record architecture decisions</h3>
-<div class="paragraph">
-<p>Date: 2025-10-23</p>
-</div>
-<div class="sect3">
-<h4 id="_status">9.1.1. Status</h4>
-<div class="paragraph">
-<p>Accepted</p>
+<h3 id="_vista_de_contexto">9.1. Vista de Contexto</h3>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/contextDiagramSistemaHoteleroLevel0.png" alt="Diagrama de Contexto Nivel 0" width="600">
 </div>
 </div>
-<div class="sect3">
-<h4 id="_context">9.1.2. Context</h4>
-<div class="paragraph">
-<p>We need to record the architectural decisions made on this project.</p>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/contextDiagramSistemaHoteleroLevel1.png" alt="Diagrama de Contexto Nivel 1" width="600">
 </div>
 </div>
-<div class="sect3">
-<h4 id="_decision">9.1.3. Decision</h4>
-<div class="paragraph">
-<p>We will use Architecture Decision Records, as [described by Michael Nygard](<a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions" class="bare">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_consequences">9.1.4. Consequences</h4>
-<div class="paragraph">
-<p>See Michael Nygard&#8217;s article, linked above. For a lightweight ADR toolset, see Nat Pryce&#8217;s [adr-tools](<a href="https://github.com/npryce/adr-tools" class="bare">https://github.com/npryce/adr-tools</a>).</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_apéndice">10. Apéndice</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>(Material adicional, referencias, glosario, notas)</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-12 19:48:00 -0600
+Last updated 2025-11-19 19:26:39 -0600
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
