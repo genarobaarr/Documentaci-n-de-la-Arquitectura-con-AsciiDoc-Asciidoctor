@@ -2,7 +2,7 @@
 
 Aquí se abordan aspectos dinámicos de la arquitectura, y en cómo se sincronizan los datos críticos y cómo se distribuyen los procesos entre el cliente y el servidor para cumplir con los atributos de calidad de Disponibilidad (QAS-03), Rendimiento (QAS-05) y Seguridad/Integridad (QAS-06).
 
-==== Diagrama de Seciencia de Flujo Crítico: Realizar Reserva
+==== Diagrama de Secuencia de Flujo Crítico: Realizar Reserva
 image::sequenceDiagramRealizarReserva.png[Diagrama de Secuencia UML, width=800, align=center]
 
 ===== Análisis del Flujo Crítico: Realizar Reserva
@@ -27,7 +27,7 @@ Este diseño de proceso satisface los impulsores arquitectónicos clave:
 
 - Seguridad (Trazabilidad): Como parte de la transacción, el ReservaManager invoca al ReporteManager para registrar el evento en el log de auditoría inmutable (CON-3), garantizando que cada intento de reserva, exitoso o fallido, quede documentado para análisis posterior (QAS-32).
 
-==== Diagrama de Seciencia de Flujo Crítico: Registrar Check-In
+==== Diagrama de Secuencia de Flujo Crítico: Registrar Check-In
 image::sequenceDiagramRegistrarCheckIn.png[Diagrama de Secuencia UML, width=800, align=center]
 
 ===== Análisis del Flujo Crítico: Registrar Check-In
@@ -54,9 +54,4 @@ Este diseño de proceso satisface los impulsores arquitectónicos clave:
 * Disponibilidad y Recuperabilidad: El uso de bucles (loop) y bloques de ruptura (break) ante fallos de conexión demuestra una táctica de defensa para mantener la interfaz receptiva incluso cuando la capa de datos presenta intermitencias, evitando el colapso total de la aplicación.
 * Usabilidad: El sistema provee retroalimentación constante al Recepcionista en cada punto de decisión (ej. "Reserva no encontrada", "Error de conexión", "Check-in registrado exitosamente"), facilitando la operación bajo presión.
 * Modificabilidad: La separación de preocupaciones en interfaces distintas (IConsultarReserva contra IPagoConTarjeta) permite cambiar la lógica de pagos o de consultas sin afectar el flujo principal del controlador.
-
-==== Diagrama de Seciencia de Flujo Crítico:
-image::sequenceDiagram.png[Diagrama de Secuencia UML, width=800, align=center]
-
-===== Análisis del Flujo Crítico:
 
