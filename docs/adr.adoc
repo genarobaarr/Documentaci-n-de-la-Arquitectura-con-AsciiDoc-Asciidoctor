@@ -1,19 +1,19 @@
-= Requisitos Arquitectónicamente Significativos (ASR)
+=== Requisitos Arquitectónicamente Significativos (ASR)
 
-== ADR-001: Adopción del Estilo Arquitectónico Cliente-Servidor en Capas
+==== ADR-001: Adopción del Estilo Arquitectónico Cliente-Servidor en Capas
 *Estado:* Aceptado
 
-=== Contexto
+===== Contexto
 El sistema debe soportar múltiples tipos de clientes (escritorio para recepción y web para administración).
 Se requiere alta seguridad en el manejo de datos y una separación clara entre la interfaz y la lógica de negocio.
 
-=== Decisión
+===== Decisión
 Se adopta una arquitectura Cliente-Servidor distribuida organizada en capas lógicas:
 - Presentación
 - Negocio / Servicios
 - Acceso a Datos
 
-=== Consecuencias
+===== Consecuencias
 *Positivas:*
 - La lógica de negocio y credenciales de la base de datos residen únicamente en el servidor.
 - Permite modificar la interfaz de usuario sin afectar la lógica de base de datos.
@@ -23,17 +23,17 @@ Se adopta una arquitectura Cliente-Servidor distribuida organizada en capas lóg
 
 ---
 
-== ADR-002: Uso del Patrón DAO (Data Access Object)
+==== ADR-002: Uso del Patrón DAO (Data Access Object)
 *Estado:* Aceptado
 
-=== Contexto
+===== Contexto
 Se necesita desacoplar la lógica de negocio (Managers) de la implementación específica de la base de datos para facilitar pruebas, mantenimiento y cambios futuros.
 
-=== Decisión
+===== Decisión
 Utilizar el patrón DAO para encapsular todas las operaciones CRUD.
 Los Managers delegarán en objetos como `ReservaDAO`, `PagoDAO`, etc., evitando ejecutar SQL directamente.
 
-=== Consecuencias
+===== Consecuencias
 *Positivas:*
 - Facilita la testabilidad y permite crear mocks de la base de datos para pruebas unitarias.
 - Permite cambiar el motor de base de datos con mínimo impacto en el resto del sistema.
@@ -43,18 +43,18 @@ Los Managers delegarán en objetos como `ReservaDAO`, `PagoDAO`, etc., evitando 
 
 ---
 
-== ADR-003: Estrategia de Auditoría Append-Only (Solo Escritura)
+==== ADR-003: Estrategia de Auditoría Append-Only (Solo Escritura)
 *Estado:* Aceptado
 
-=== Contexto
+===== Contexto
 Requisitos de negocio (CON-3) y de seguridad (QAS-32) exigen trazabilidad total de operaciones financieras y cancelaciones, sin posibilidad de alteración o eliminación.
 
-=== Decisión
+===== Decisión
 Implementar una estrategia de auditoría inmutable mediante una tabla histórica "append-only".
 Ninguna operación de actualización (UPDATE) o borrado (DELETE) estará permitida.
 El `ReporteManager` gestionará estos registros.
 
-=== Consecuencias
+===== Consecuencias
 *Positivas:*
 - Garantiza integridad y no-repudio de acciones.
 
