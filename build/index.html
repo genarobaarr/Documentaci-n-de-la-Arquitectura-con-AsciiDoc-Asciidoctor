@@ -479,14 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_vista_de_implementación">5.4. Vista de Implementación</a></li>
 </ul>
 </li>
-<li><a href="#_registro_de_decisiones_arquitectónicas">6. Registro de decisiones arquitectónicas</a>
-<ul class="sectlevel2">
-<li><a href="#_record_architecture_decisions">6.1. Record architecture decisions</a></li>
-<li><a href="#_adr_001_adopción_del_estilo_arquitectónico_cliente_servidor_en_capas_2">6.2. ADR-001: Adopción del Estilo Arquitectónico Cliente-Servidor en Capas</a></li>
-<li><a href="#_adr_002_uso_del_patrón_dao_data_access_object_2">6.3. ADR-002: Uso del Patrón DAO (Data Access Object)</a></li>
-<li><a href="#_adr_003_estrategia_de_auditoría_append_only_solo_escritura_2">6.4. ADR-003: Estrategia de Auditoría Append-Only (Solo Escritura)</a></li>
-</ul>
-</li>
+<li><a href="#_registro_de_decisiones_arquitectónicas">6. Registro de decisiones arquitectónicas</a></li>
 <li><a href="#_aspectos_transversales_cross_cutting_concerns">7. Aspectos Transversales (Cross-Cutting Concerns)</a>
 <ul class="sectlevel2">
 <li><a href="#_seguridad_y_auditoría_trazabilidad">7.1. Seguridad y Auditoría (Trazabilidad)</a></li>
@@ -6945,115 +6938,7 @@ Para garantizar la integridad y el rendimiento, la capa de datos se ha segregado
 <div class="sect1">
 <h2 id="_registro_de_decisiones_arquitectónicas">6. Registro de decisiones arquitectónicas</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_record_architecture_decisions">6.1. Record architecture decisions</h3>
-<div class="paragraph">
-<p>Date: 2025-10-23</p>
-</div>
-<hr>
-</div>
-<div class="sect2">
-<h3 id="_adr_001_adopción_del_estilo_arquitectónico_cliente_servidor_en_capas_2">6.2. ADR-001: Adopción del Estilo Arquitectónico Cliente-Servidor en Capas</h3>
-<div class="paragraph">
-<p><strong>Status:</strong> Accepted
-<strong>Date:</strong> 2025-10-23</p>
-</div>
-<div class="sect3">
-<h4 id="_context">6.2.1. Context</h4>
-<div class="paragraph">
-<p>El sistema debe soportar distintos tipos de clientes (escritorio para recepción y web para administración).
-Se requiere alta seguridad en manejo de datos, evitando exponer lógica o credenciales en los clientes.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_decision">6.2.2. Decision</h4>
-<div class="paragraph">
-<p>Adoptar una arquitectura Cliente-Servidor distribuida organizada en capas lógicas:
-- Presentación
-- Negocio / Servicios
-- Acceso a Datos</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_consequences">6.2.3. Consequences</h4>
-<div class="paragraph">
-<p><strong>Pros:</strong>
-- Mayor seguridad: la lógica y credenciales están solo en el servidor.
-- Mantenibilidad: permite cambiar la UI sin afectar la lógica de negocio o la base de datos.</p>
-</div>
-<div class="paragraph">
-<p><strong>Cons:</strong>
-- Aumenta la latencia por el salto de red adicional.</p>
-</div>
-<hr>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adr_002_uso_del_patrón_dao_data_access_object_2">6.3. ADR-002: Uso del Patrón DAO (Data Access Object)</h3>
-<div class="paragraph">
-<p><strong>Status:</strong> Accepted
-<strong>Date:</strong> 2025-10-23</p>
-</div>
-<div class="sect3">
-<h4 id="_context_2">6.3.1. Context</h4>
-<div class="paragraph">
-<p>Se requiere desacoplar la lógica de negocio de los detalles específicos de la base de datos para facilitar mantenimiento, flexibilidad y pruebas.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_decision_2">6.3.2. Decision</h4>
-<div class="paragraph">
-<p>Aplicar el patrón DAO para encapsular operaciones CRUD.
-Los Managers no ejecutarán SQL directamente, sino que delegarán en objetos como <code>ReservaDAO</code>, <code>PagoDAO</code>, etc.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_consequences_2">6.3.3. Consequences</h4>
-<div class="paragraph">
-<p><strong>Pros:</strong>
-- Facilita pruebas unitarias gracias a los mocks de base de datos.
-- Reduce el impacto ante cambios de motor de base de datos.</p>
-</div>
-<div class="paragraph">
-<p><strong>Cons:</strong>
-- Añade una capa adicional de código que se debe mantener.</p>
-</div>
-<hr>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adr_003_estrategia_de_auditoría_append_only_solo_escritura_2">6.4. ADR-003: Estrategia de Auditoría Append-Only (Solo Escritura)</h3>
-<div class="paragraph">
-<p><strong>Status:</strong> Accepted
-<strong>Date:</strong> 2025-10-23</p>
-</div>
-<div class="sect3">
-<h4 id="_context_3">6.4.1. Context</h4>
-<div class="paragraph">
-<p>Por requisitos de negocio (CON-3) y seguridad (QAS-32), es necesario asegurar trazabilidad total de operaciones financieras y evitar alteraciones o eliminaciones.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_decision_3">6.4.2. Decision</h4>
-<div class="paragraph">
-<p>Crear una tabla de auditoría inmutable bajo una estrategia append-only.
-No se permitirá <strong>UPDATE</strong> ni <strong>DELETE</strong> sobre los registros históricos.
-El <code>ReporteManager</code> será responsable de registrar los eventos críticos.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_consequences_3">6.4.3. Consequences</h4>
-<div class="paragraph">
-<p><strong>Pros:</strong>
-- Garantiza integridad y no-repudio de acciones.</p>
-</div>
-<div class="paragraph">
-<p><strong>Cons:</strong>
-- La tabla crecerá rápidamente, por lo que a futuro se requerirán mecanismos de archivado.</p>
-</div>
-<hr>
-</div>
-</div>
+
 </div>
 </div>
 <div class="sect1">
@@ -7300,7 +7185,7 @@ El <code>ReporteManager</code> será responsable de registrar los eventos críti
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-12-06 21:53:49 -0600
+Last updated 2025-12-06 22:48:09 -0600
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

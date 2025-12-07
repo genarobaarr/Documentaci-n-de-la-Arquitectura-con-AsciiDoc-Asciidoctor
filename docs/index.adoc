@@ -53,8 +53,6 @@ include::views/process.adoc[]
 include::views/implementation.adoc[]
 
 == Registro de decisiones arquitectónicas
-include::architecturallySignificantDecisions.adoc[]
-
 include::crossCuttingConcerns.adoc[]
 
 == Trazabilidad
