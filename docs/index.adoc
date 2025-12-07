@@ -38,6 +38,7 @@ include::views/useCase.adoc[]
 include::useCaseDescription.adoc[]
 
 == Impulsores Arquitectónicos (ASRs) y Priorización
+include::adr.adoc[]
 include::views/utilityTree.adoc[]
 include::qualityAttributeScenarios.adoc[]
 include::restrictionsConcerns.adoc[]
